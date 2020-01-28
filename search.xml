@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>单例模式</title>
+    <url>/2020/01/28/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<hr>
+<h2 id="单例设计模式（饿汉式）"><a href="#单例设计模式（饿汉式）" class="headerlink" title="单例设计模式（饿汉式）"></a>单例设计模式（饿汉式）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskManger</span></span>&#123;</span><br><span class="line">    <span class="comment">//类创建时就开始new</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TaskManger taskManger = <span class="keyword">new</span> TaskManager();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">TaskManger</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TaskManger <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> taskManger;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="单例设计模式（懒汉式）"><a href="#单例设计模式（懒汉式）" class="headerlink" title="单例设计模式（懒汉式）"></a>单例设计模式（懒汉式）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">//需要对象时再new</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TaskManager taskManager = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">TaskManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TaskManager <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//判断对象是否等于null，等于null给其new对象，不等于null直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (taskManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">            taskManager = <span class="keyword">new</span> TaskManager();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> taskManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>My-first-blog</title>
     <url>/2020/01/28/My-first-blog/</url>
     <content><![CDATA[<h1 id="Mac下-hexo博客的搭建"><a href="#Mac下-hexo博客的搭建" class="headerlink" title="Mac下 hexo博客的搭建"></a>Mac下 hexo博客的搭建</h1><h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><h3 id="这里可以去Nodejs的官网去下载安装"><a href="#这里可以去Nodejs的官网去下载安装" class="headerlink" title="这里可以去Nodejs的官网去下载安装"></a>这里可以去Nodejs的官网去下载安装</h3><ul>
@@ -71,5 +84,12 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+      <categories>
+        <category>文章</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
   </entry>
 </search>
