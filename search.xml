@@ -9,8 +9,12 @@
 <h2 id="单例设计模式（懒汉式）"><a href="#单例设计模式（懒汉式）" class="headerlink" title="单例设计模式（懒汉式）"></a>单例设计模式（懒汉式）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">//需要对象时再new</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TaskManager taskManager = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">TaskManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TaskManager <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//判断对象是否等于null，等于null给其new对象，不等于null直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (taskManager == <span class="keyword">null</span>) &#123;</span><br><span class="line">            taskManager = <span class="keyword">new</span> TaskManager();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> taskManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
       <tags>
-        <tag>设计模式</tag>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
