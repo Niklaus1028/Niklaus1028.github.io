@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://org.opencloudb/" >
+
+        <schema name="TESTDB" checkSQLschema="true" sqlMaxLimit="100">
+                <table name="tb_user"  primaryKey="id" dataNode="dn1,dn2" rule="auto-sharding-long"/>
+                <table name="t_product"  primaryKey="product_id" dataNode="dn3,dn4" rule="sharding-by-murmur"/>
+        </schema>
+        <!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743" 
+                /> -->
+        <dataNode name="dn1" dataHost="localhost1" database="mastertest"/>
+        <dataNode name="dn2" dataHost="localhost2" database="mastertest"/>
+        <dataNode name="dn3" dataHost="localhost1" database="easydb"/>
+        <dataNode name="dn4" dataHost="localhost2" database="easydb"/>
+        <dataHost name="localhost1" maxCon="1000" minCon="10" balance="1"
+                writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+                <heartbeat>select user()</heartbeat>
+                <!-- can have multi write hosts -->
+                <writeHost host="M1" url="10.42.135.162:3306" user="root"
+                        password="root">
+                </writeHost>
+        </dataHost>
+        <dataHost name="localhost2" maxCon="1000" minCon="10" balance="1"
+                writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+                <heartbeat>select user()</heartbeat>
+                <!-- can have multi write hosts -->
+        <writeHost host="M2" url="10.42.8.164:3306" user="root"
+                        password="root">
+                </writeHost>
+        </dataHost>
+</mycat:schema>
