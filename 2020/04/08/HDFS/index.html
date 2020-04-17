@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="分享,导航," />
+  <meta name="keywords" content="导航,分享," />
 
 
 
@@ -88,15 +88,15 @@
 
 <meta name="description" content="大数据简介一、大数据特征 - 6V 数据体量大，一般从TB级别开始计算 数据种类和来源多 数据的增长速度越来越快 数据的价值密度越来越低，但是这不意味着想要的数据越来越少，相反，想要的数据越来越多的，但是样本总量的增长速度是要高于想要的数据的增长速度的 数据的真实性&#x2F;质量 数据的连通性 数据的动态性、数据的可视化、合法性  二、概述 Hadoop是Apache提供的一个开源的、可靠的、可扩展的系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop">
-<meta property="og:url" content="http://yoursite.com/2020/04/08/Hadoop/index.html">
+<meta property="og:title" content="HDFS">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/HDFS/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="大数据简介一、大数据特征 - 6V 数据体量大，一般从TB级别开始计算 数据种类和来源多 数据的增长速度越来越快 数据的价值密度越来越低，但是这不意味着想要的数据越来越少，相反，想要的数据越来越多的，但是样本总量的增长速度是要高于想要的数据的增长速度的 数据的真实性&#x2F;质量 数据的连通性 数据的动态性、数据的可视化、合法性  二、概述 Hadoop是Apache提供的一个开源的、可靠的、可扩展的系统">
 <meta property="article:published_time" content="2020-04-08T06:23:09.000Z">
-<meta property="article:modified_time" content="2020-04-10T09:27:47.047Z">
+<meta property="article:modified_time" content="2020-04-11T08:18:06.026Z">
 <meta property="article:author" content="Niklaus Yu">
-<meta property="article:tag" content="分享">
 <meta property="article:tag" content="导航">
+<meta property="article:tag" content="分享">
 <meta name="twitter:card" content="summary">
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/08/Hadoop/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/08/HDFS/"/>
 
 
 
 
 
-  <title>Hadoop | Hexo</title>
+  <title>HDFS | Hexo</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/Hadoop/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/HDFS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Niklaus Yu">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hadoop</h1>
+          <h1 class="post-title" itemprop="name headline">HDFS</h1>
         
 
         <div class="post-meta">
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
                   </a>
                 </span>
 
@@ -365,8 +365,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/08/Hadoop/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/08/Hadoop/" itemprop="commentCount"></span>
+                <a href="/2020/04/08/HDFS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/08/HDFS/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.6k
+                  3.9k
                 </span>
               
 
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  13
                 </span>
               
             </div>
@@ -464,7 +464,14 @@
 </ol>
 <h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
 <li>HDFS是Hadoop提供一套用于进行分布式存储的文件系统</li>
-<li>HDFS根据Google的GFS来进行实现的</li>
+<li>HDFS根据Google的GFS来进行实现的<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4></li>
+<li>能够存储超大文件 - 切块</li>
+<li>快速的应对和检测故障 - 心跳</li>
+<li>能够在相对廉价的机器上来进行动态横向扩展</li>
+<li>不支持低延迟响应</li>
+<li>不建议存储小文件 - 每一个小文件对应一条元数据，大量的硒筽啊文件就会产生大量的元数据。元数据过多导致内存被大量占用，导致查询效率降低。</li>
+<li>简化的一致性模型，一次写入多次读取，不允许修改，但允许追加写入。</li>
+<li>不支持强事务或者不支持事务，在实际开发中，在样本量足够大的前提下，允许存在一定的容量误差</li>
 </ol>
 <h3 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h3><ol>
 <li>HDFS主要包含2类进程：NameNode和DataNode</li>
@@ -581,8 +588,42 @@
 <li>in_use.lock用于标记是否已经启动对应的进程</li>
 <li>每一个blk文件对应一个.meta,这个.meta文件可以认为是对blk的校验</li>
 <li>HDFS在第一次启动的时候，间隔1min之后出发edits_inprogress文件的滚动，之后就按照指定的条件进行滚动</li>
-<li>在HFDS中，每一次写操作看成一次事务，分配一个全局递增的事物的id，简称zxid</li>
-<li></li>
+<li>在HFDS中，每一次写操作看成一次事务，分配一个全局递增的编号，简称txid</li>
+<li>文件上传完成之后不能修改</li>
+<li>fsimage_XXXX.md5是利用了md5加密算法对fsimage_xxxx来进行校验</li>
+<li>version文件中包含的主要内容<ul>
+<li>clusterID：集群编号 - 本质上是进行校验的</li>
+<li>storageType：节点类型</li>
+<li>blockpooIID：块池编号</li>
+</ul>
+</li>
+</ol>
+<h2 id="Hadoop流程"><a href="#Hadoop流程" class="headerlink" title="Hadoop流程"></a>Hadoop流程</h2><h3 id="写流程-put"><a href="#写流程-put" class="headerlink" title="写流程 -put"></a>写流程 -put</h3><ol>
+<li>客户端发起RPC请求到NameNode要求上传文件</li>
+<li>NameNode收到请求之后会进行校验<ul>
+<li>校验上传的路径是否有写入权限</li>
+<li>检验上传的路径下是否有同名文件</li>
+</ul>
+</li>
+<li>如果校验失败，直接报错，如果校验成功，则NameNode会修改edits_inprogress,更新内存中的元数据，最后会给客户端返回一个允许上传的信号。</li>
+<li>客户端收到信号之后，会给NameNode发送请求，请求获取第一个Block的存储位置</li>
+<li>NameNode收到请求之后，会等待DataNode的心跳，然后选择符合要求的节点（副本放置策略），将节点位置（默认是3个）放入队列中返回给客户端</li>
+<li>客户端收到队列之后，会从队列中将所有的位置去除，然后选择一个较近的节点将第一个Block的第一个副本写入，客户端同时会告诉第一个副本所在的节点两个副本的存储位置，第一个副本所在的节点就会通过管道（pipeline，本质就是NIO Channel）将第二个副本写入对应的节点同时告诉第二个副本所在的节点最后一个副本的存储位置，第二个副本所在的节点通过管道将第三个副本写入对应的节点；第三个副本写完之后，会给第二个副本所在的节点返回一个ack（确认字符）信号，第二个副本所在的节点会给第一个副本所在的节点返回一个ack；第一个副本所在的节点会给客户端返回一个ack</li>
+<li>客户端收到ack之后，会向namenode发送请求要下一个Block的存储位置，重复4，5，6三个步骤</li>
+<li>当写完所有的数据之后，客户端会给NameNode发送信号，请求NameNode关闭文件。文件一旦关闭就不能再修改了。</li>
+</ol>
+<h3 id="读流程-get"><a href="#读流程-get" class="headerlink" title="读流程 -get"></a>读流程 -get</h3><ol>
+<li>客户端发起RPC请求到NameNode要求下载指定文件</li>
+<li>NameNode在收到请求之后会查询元数据确定是否有指定的文件，如果没有直接报错，如果有，则给客户端返回一个信号表示允许读取</li>
+<li>客户端收到信号之后，会再给NameNode发送请求，请求获取这个文件的第一个block的存储位置</li>
+<li>NameNode在收到请求之后，会将第一个Block的存储位置（默认是3个）放到一个队列中返回客户端</li>
+<li>客户端收到队列之后，会从队列中将block的位置全部取出来，从中选择一个较近（网络拓扑距离）的DataNode来读取第一个Block</li>
+<li>客户端读取完Block之后，会进行checksum（校验和 - 实际上就是利用.meta文件进行校验）验证，如果校验失败，则客户端会给NameNode发送信号，重新选择节点重新读取；如果校验成功，那么客户端会再向NameNode要下一个Block的地址，重复4，5，6三个步骤</li>
+<li>当客户端读取完最后一个Block的时候，NameNode就会关闭文件（实际就是关流）<h3 id="删流程-rmr"><a href="#删流程-rmr" class="headerlink" title="删流程 -rmr"></a>删流程 -rmr</h3></li>
+<li>客户端发起RPC请求到NameNode要求删除指定的文件</li>
+<li>NameNode收到请求后，先记录edits_inprogress文件，然后修改内存中的元数据，然后NameNode就会给客户端返回一个成功信号，但是这个过程中，注意文件并没有从HDFS上移除而是依然存储在DataNode上</li>
+<li>NameNode等待DataNode的心跳，收到心跳信息之后，NameNode就会校验这个心跳信息（比对元数据和心跳信息中的BlockID是否一致），然后NameNode就会进行心跳响应，要求DataNode删除对应的Block</li>
+<li>DataNode收到心跳响应之后才会删除Block，此时文件才真正的从HDFS上移除</li>
 </ol>
 
       
@@ -633,9 +674,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"><i class="fa fa-google"></i> 分享</a>
-          
             <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"><i class="fa fa-google"></i> 导航</a>
+          
+            <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"><i class="fa fa-google"></i> 分享</a>
           
         </div>
       
@@ -648,8 +689,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/07/ZooKeeper/" rel="next" title="ZooKeeper">
-                <i class="fa fa-chevron-left"></i> ZooKeeper
+              <a href="/2020/04/08/Dubbo/" rel="next" title="Dubbo">
+                <i class="fa fa-chevron-left"></i> Dubbo
               </a>
             
           </div>
@@ -770,7 +811,7 @@ var jiathis_config={
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -781,7 +822,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -841,7 +882,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据简介"><span class="nav-number">1.</span> <span class="nav-text">大数据简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、大数据特征-6V"><span class="nav-number">1.1.</span> <span class="nav-text">一、大数据特征 - 6V</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、概述"><span class="nav-number">1.2.</span> <span class="nav-text">二、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-版本："><span class="nav-number">1.3.</span> <span class="nav-text">三、 版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、模块"><span class="nav-number">1.4.</span> <span class="nav-text">四、模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、安装方式"><span class="nav-number">1.5.</span> <span class="nav-text">五、安装方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS"><span class="nav-number">2.</span> <span class="nav-text">HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">2.1.</span> <span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基本概念"><span class="nav-number">2.2.</span> <span class="nav-text">二、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Block"><span class="nav-number">2.3.</span> <span class="nav-text">三、Block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、NameNode"><span class="nav-number">2.4.</span> <span class="nav-text">四、NameNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、多副本的放置策略"><span class="nav-number">2.5.</span> <span class="nav-text">五、多副本的放置策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、-机架感知策略"><span class="nav-number">2.6.</span> <span class="nav-text">六、 机架感知策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、DataNode"><span class="nav-number">2.7.</span> <span class="nav-text">七、DataNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、SecondaryNameNode"><span class="nav-number">2.8.</span> <span class="nav-text">八、SecondaryNameNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、回收站机制"><span class="nav-number">2.9.</span> <span class="nav-text">九、回收站机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、dfs目录"><span class="nav-number">2.10.</span> <span class="nav-text">十、dfs目录</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据简介"><span class="nav-number">1.</span> <span class="nav-text">大数据简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、大数据特征-6V"><span class="nav-number">1.1.</span> <span class="nav-text">一、大数据特征 - 6V</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、概述"><span class="nav-number">1.2.</span> <span class="nav-text">二、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-版本："><span class="nav-number">1.3.</span> <span class="nav-text">三、 版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、模块"><span class="nav-number">1.4.</span> <span class="nav-text">四、模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、安装方式"><span class="nav-number">1.5.</span> <span class="nav-text">五、安装方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS"><span class="nav-number">2.</span> <span class="nav-text">HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">2.1.</span> <span class="nav-text">一、概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点："><span class="nav-number">2.1.1.</span> <span class="nav-text">特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基本概念"><span class="nav-number">2.2.</span> <span class="nav-text">二、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Block"><span class="nav-number">2.3.</span> <span class="nav-text">三、Block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、NameNode"><span class="nav-number">2.4.</span> <span class="nav-text">四、NameNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、多副本的放置策略"><span class="nav-number">2.5.</span> <span class="nav-text">五、多副本的放置策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、-机架感知策略"><span class="nav-number">2.6.</span> <span class="nav-text">六、 机架感知策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、DataNode"><span class="nav-number">2.7.</span> <span class="nav-text">七、DataNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、SecondaryNameNode"><span class="nav-number">2.8.</span> <span class="nav-text">八、SecondaryNameNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、回收站机制"><span class="nav-number">2.9.</span> <span class="nav-text">九、回收站机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、dfs目录"><span class="nav-number">2.10.</span> <span class="nav-text">十、dfs目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop流程"><span class="nav-number">3.</span> <span class="nav-text">Hadoop流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#写流程-put"><span class="nav-number">3.1.</span> <span class="nav-text">写流程 -put</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读流程-get"><span class="nav-number">3.2.</span> <span class="nav-text">读流程 -get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删流程-rmr"><span class="nav-number">3.3.</span> <span class="nav-text">删流程 -rmr</span></a></li></ol></li></ol></div>
             
 
           </div>

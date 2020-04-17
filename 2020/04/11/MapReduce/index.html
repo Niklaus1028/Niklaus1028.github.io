@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="导航,分享," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MapReduce定义 MapReduce是一个分布式运算程序放入编程框架，是用户开发“基于Hadoop的数据分析应用”的核心框架。 MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。  MapReduce的优缺点1. MapReduce易于编程它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MapReduce">
+<meta property="og:url" content="http://yoursite.com/2020/04/11/MapReduce/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MapReduce定义 MapReduce是一个分布式运算程序放入编程框架，是用户开发“基于Hadoop的数据分析应用”的核心框架。 MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。  MapReduce的优缺点1. MapReduce易于编程它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到">
+<meta property="article:published_time" content="2020-04-11T06:23:09.000Z">
+<meta property="article:modified_time" content="2020-04-17T13:16:06.589Z">
+<meta property="article:author" content="Niklaus Yu">
+<meta property="article:tag" content="导航">
+<meta property="article:tag" content="分享">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/11/MapReduce/"/>
+
+
+
+
+
+  <title>MapReduce | Hexo</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Niklaus1028" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/11/MapReduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Niklaus Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/SJ.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MapReduce</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-11T14:23:09+08:00">
+                2020-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/11/MapReduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/11/MapReduce/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><ol>
+<li>MapReduce是一个分布式运算程序放入编程框架，是用户开发“基于Hadoop的数据分析应用”的核心框架。</li>
+<li>MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</li>
+</ol>
+<h2 id="MapReduce的优缺点"><a href="#MapReduce的优缺点" class="headerlink" title="MapReduce的优缺点"></a>MapReduce的优缺点</h2><h3 id="1-MapReduce易于编程"><a href="#1-MapReduce易于编程" class="headerlink" title="1. MapReduce易于编程"></a>1. MapReduce易于编程</h3><pre><code>它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点是的MapReduce编程变得非常流行。</code></pre><h3 id="2-良好的扩展性"><a href="#2-良好的扩展性" class="headerlink" title="2.良好的扩展性"></a>2.良好的扩展性</h3><pre><code>当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</code></pre><h3 id="3-高容错性"><a href="#3-高容错性" class="headerlink" title="3.高容错性"></a>3.高容错性</h3><pre><code>MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器宕机了，他可以把上面的计算任务转移到另一个节点上运行，不至于这个任务执行失败，而且这个过程不需要人工参与，而完全是由Hadoop内部完成</code></pre><h3 id="4-适合PB级以上海量数据的离线处理"><a href="#4-适合PB级以上海量数据的离线处理" class="headerlink" title="4.适合PB级以上海量数据的离线处理"></a>4.适合PB级以上海量数据的离线处理</h3><pre><code>可以实现上千台服务器集群并发工作，提高数据处理能力。</code></pre><h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><ol>
+<li>不擅长实时计算——  MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
+<li>不擅长流式计算—— 流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的</li>
+<li>不擅长DAG（有向图计算）</li>
+</ol>
+<h2 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h2><h3 id="一、数据本地化的策略"><a href="#一、数据本地化的策略" class="headerlink" title="一、数据本地化的策略"></a>一、数据本地化的策略</h3><ol>
+<li>MapReduce的物理结构：JobTracker（Master）和TaskTracker（slave）</li>
+<li>JobTracker在接受到任务之后会向NameNode发送请求获取文件信息，而JobTracker在收到文件信息之后会对文件进行切片（Split）。切片不是真正将数据切开，而是划分任务量。每一个切片就需要对应一个MapTask</li>
+<li>实际开发中，Split=Block/n，默认split和block大小一样</li>
+<li>数据本地化：</li>
+</ol>
+<ul>
+<li>为了减少跨集群的数据传输，往往会将DataNode和TaskTracker部署在相同的节点上，即一个节点既是DataNode又是TaskTracker</li>
+<li>JobTracker在分配任务的时候，会考虑哪个节点有要处理的数据就将任务分给谁，这样分配的目的是为了能够在处理数据的时候从节点上读取而不需要跨节点读取</li>
+</ul>
+<ol start="5">
+<li>如果文件为空，那么整个文件作为一个切片来进行处理</li>
+<li>在MapReduce中，文件分为可切与不可切。如果不指定，则文件默认可切。如果文件不可切，则整个文件作为一个切片来进行处理</li>
+<li>如果需要调小splitSize，那么需要减小maxSize -FileInputFormat.setMaxInputSplitSize();如果需要增大splitSize，那么需要增大minSize - FileInputFormat.setMinInputSplitSize()</li>
+<li>在切片的时候要考虑阈值SPLIT_SLOP(1.1)</li>
+</ol>
+<h3 id="二、Job-MapReduce执行流程"><a href="#二、Job-MapReduce执行流程" class="headerlink" title="二、Job/MapReduce执行流程"></a>二、Job/MapReduce执行流程</h3><h4 id="提交流程"><a href="#提交流程" class="headerlink" title="提交流程"></a>提交流程</h4><ol>
+<li>检查job指定的输入输出路径</li>
+<li>计算切片</li>
+<li>如果需要，为这个job设置分布式缓存的存根账户信息</li>
+<li>将这个job的jar包和配置信息提交到HFDFS上</li>
+<li>将job提交到jobtracker，并且选择监控这个job的执行状态</li>
+</ol>
+<h4 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h4><ul>
+<li>拆分任务：JobTracker在收到Job任务之后，会将Job任务拆分成MapTask和ReduceTask。MapTask的数量由切片数量来决定，ReduceTask的数量由分区数量来决定</li>
+<li>分配任务：JobTracker在拆分完成之后会等待TaskTracker的心跳。当JobTracker收到TaskTracker会拆分出来的子任务分配给taskTracker，注意每一个TaskTracker不一定只分配分配一个任务，可以能会被分配到多个任务。在分配的时候，MapTask尽量考虑数据本地化策略（在分配的时候，哪一个TaskTracker上有要处理的数据就将MapTask分配给哪一个TaskTracker，ReduceTask则会考虑分配给相对空闲的TaskTracker</li>
+<li>下载jar包：TaskTracker领取到任务（MapTask或者ReduceTask）之后，会连接对应的节点来下载jar包。这一步体现的是逻辑移动数据固定的思想</li>
+<li>执行任务：TaskTracker在下载完jar包之后，会在本节点内部开启一个JVM子进程来执行MapTask或者是ReduceTask。默认情况下，一个JVM子进程只执行一个任务。所以如果一个TaskTracker被分配到了多个任务，那么这个TaskTracker就会多次开启并且关闭JVM子进程</li>
+</ul>
+<h3 id="三、uber模式"><a href="#三、uber模式" class="headerlink" title="三、uber模式"></a>三、uber模式</h3><ol>
+<li>uber默认是关闭的，即JVM子进程默认只能执行一个任务；当开启uber模式的时候就可以一个jvm子进程的复用，即开启JVM子进程之后，可以执行多个任务之后再关闭。</li>
+</ol>
+<h2 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h2><h3 id="一、Map端的Shuffle"><a href="#一、Map端的Shuffle" class="headerlink" title="一、Map端的Shuffle"></a>一、Map端的Shuffle</h3><ol>
+<li>MapTask默认对切片进行按行处理,每处理一行，先将数据写到缓冲区（MemoryBuffer）中</li>
+<li>每一个MapTask默认自带一个缓冲区，这个缓冲区在内存中，默认占用内存100m的大小</li>
+<li>当缓冲区的时候达到指定阈值（默认是0.8，当缓冲区的使用达到80%时就会产生溢写操作），会将缓冲区的数据溢写（spill）到磁盘上，产生一个溢写文件（spillable file）</li>
+<li>溢写后的数据会再次向缓冲区写，如果达到阈值，会再次溢写，每一次溢写，会产生一个新的溢写文件</li>
+<li>当MapTask将所有的数据处理完成之后会将所有的溢写文件进行合并（merge），合并成一个结果文件（final out），如果maptask处理完之后缓冲区还有数据，会将缓冲区的数据直接合并到fileout中</li>
+<li>不一定会产生溢写过程，输入的数据量并不能决定溢写次数，而是由MapTask处理逻辑来决定的；溢写文件的大小并不是完全由缓冲区大小和溢写阈值决定，还需要考虑序列化的影响</li>
+<li>如果没产生溢写，结果都在缓冲区中，那么缓冲区的数据直接冲刷产生一个final out</li>
+</ol>
+<h3 id="三、Shuffle的调优"><a href="#三、Shuffle的调优" class="headerlink" title="三、Shuffle的调优"></a>三、Shuffle的调优</h3><ol>
+<li>扩大缓冲区，实际开发中会将缓冲区设置为250M～400M</li>
+<li>尽量增加Combiner</li>
+<li>可以将MapTask的结果进行压缩，</li>
+</ol>
+<h3 id="InputFormat-–输入格式"><a href="#InputFormat-–输入格式" class="headerlink" title="InputFormat –输入格式"></a>InputFormat –输入格式</h3><ol>
+<li>输入格式类是MapReduce中顶级的输入格式的父类</li>
+<li>作用：</li>
+</ol>
+<ul>
+<li>对文件切片</li>
+<li>针对切片提供输入流用于读取切片</li>
+</ul>
+<ol start="3">
+<li><p>InputFormat将HDFS上的数据切片，然后读取切片的内容，将读取的内容传递给Mapper，所以InputFormat读出来的数据是什么格式，mapper接受的就是什么格式</p>
+</li>
+<li><p>如果没有指定，默认使用的是TextInputformat，所以mapper的接受类型也是&lt;longwritable,Text&gt;，-&gt;TextInputFormat底层实际上依靠了LineRecordReader来读取数据 - 在TextInputFormat中，从第二个切片开始，每一个MapTask处理的数据都是从当前切片的第二行开始到下一个切片的第一行</p>
+</li>
+<li><p>自定义输入格式：如果MapReduce中提供的输入格式不适合指定场景，那么就需要自己定义输入格式-定义类继承InputFormat，因为实际过程中切片比较复杂所以一般继承FileinputFormat这个类中已经覆盖了切片方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthInputFormat</span> <span class="keyword">extends</span> <span class="title">FileInputFormat</span>&lt;<span class="title">Text</span>, <span class="title">Text</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RecordReader&lt;Text, Text&gt; <span class="title">createRecordReader</span><span class="params">(InputSplit split, TaskAttemptContext context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AuthReader();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AuthReader</span> <span class="keyword">extends</span> <span class="title">RecordReader</span>&lt;<span class="title">Text</span>, <span class="title">Text</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> LineReader reader;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] blank = <span class="keyword">new</span> Text(<span class="string">" "</span>).getBytes();</span><br><span class="line">    <span class="keyword">private</span> Text key;</span><br><span class="line">    <span class="keyword">private</span> Text value;</span><br><span class="line">    <span class="keyword">private</span> Text tmp;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化的方法</span></span><br><span class="line">    <span class="comment">//AuthReader在创建的时候会自动调用初始化方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(InputSplit split, TaskAttemptContext context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//转化为文件切片</span></span><br><span class="line">        FileSplit fsplit = (FileSplit) split;</span><br><span class="line">        <span class="comment">//拿到切片的路径</span></span><br><span class="line">        Path path = fsplit.getPath();</span><br><span class="line">        <span class="comment">//链接HDFS</span></span><br><span class="line">        FileSystem fs = FileSystem.get(URI.create(path.toString()), context.getConfiguration());</span><br><span class="line">        <span class="comment">//获取输入流</span></span><br><span class="line">        InputStream in = fs.open(path);</span><br><span class="line">        <span class="comment">//输入流是一个字节流，原文件是字符流，三行组成一行数据</span></span><br><span class="line">        <span class="comment">//如果使用字节流需要判断什么时候读完三行数据</span></span><br><span class="line">        <span class="comment">//将字节流进行包装，最好还能按行读取</span></span><br><span class="line">        reader = <span class="keyword">new</span> LineReader(in);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在执行过程中判断是否有下一个间值对需要处理</span></span><br><span class="line">    <span class="comment">//如果有，那么就会传递给map中</span></span><br><span class="line">    <span class="comment">//如果没有，执行结束</span></span><br><span class="line">    <span class="comment">//试着去读取数据，如果读到，那么代表有数据要处理返回true</span></span><br><span class="line">    <span class="comment">//如果没有读到，那代表没有数据需要处理返回false</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">nextKeyValue</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        key = <span class="keyword">new</span> Text();</span><br><span class="line">        value = <span class="keyword">new</span> Text();</span><br><span class="line">        tmp = <span class="keyword">new</span> Text();</span><br><span class="line">        <span class="comment">//会将读取到的一行数据放入传入的参数tmp</span></span><br><span class="line">        <span class="keyword">if</span> (reader.readLine(tmp) == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        key.set(tmp.toString());</span><br><span class="line">        <span class="keyword">if</span> (reader.readLine(tmp) == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        value.set(tmp.toString());</span><br><span class="line">        value.append(blank, <span class="number">0</span>, blank.length);</span><br><span class="line">        <span class="keyword">if</span> (reader.readLine(tmp) == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = tmp.getBytes();</span><br><span class="line">        value.append(bytes, <span class="number">0</span>, bytes.length);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Text <span class="title">getCurrentKey</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Text <span class="title">getCurrentValue</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//获取执行进度的方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getProgress</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">            reader.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>多源输入：在MapReduce中可以同时指定多个路径来同时处理，这多个路径中的文件格式可以不一样，每一个路径单独制定输入格式以及Mapper类，但是最终使用的一个Reducer</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiDriver</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"hadoop_user_name"</span>,<span class="string">"root"</span>);</span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line">        job.setJarByClass(MultiDriver<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        job.setReducerClass(MultiReducer<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//设置自定义输入格式</span></span><br><span class="line">        job.setOutputKeyClass(Text<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        job.setOutputValueClass(IntWritable<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//同时指定多个输入路径 -多元输入</span></span><br><span class="line">        MultipleInputs.addInputPath(job,<span class="keyword">new</span> Path(<span class="string">"hdfs://192.168.243.134:9000/txt/score.txt"</span>), TextInputFormat<span class="class">.<span class="keyword">class</span>,<span class="title">MultiMapper1</span>.<span class="title">class</span>)</span>;</span><br><span class="line">        MultipleInputs.addInputPath(job,<span class="keyword">new</span> Path(<span class="string">"hdfs://192.168.243.134:9000/txt/score3.txt"</span>), AuthInputFormat<span class="class">.<span class="keyword">class</span>,<span class="title">MultiMapper2</span>.<span class="title">class</span>)</span>;</span><br><span class="line">        FileOutputFormat.setOutputPath(job,<span class="keyword">new</span> Path(<span class="string">"hdfs://192.168.243.134:9000//result/Multi"</span>));</span><br><span class="line">        job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="输出格式-OutputFormat"><a href="#输出格式-OutputFormat" class="headerlink" title="输出格式 OutputFormat"></a>输出格式 OutputFormat</h3><h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><ol>
+<li>校验这个任务的输出路径，例如校验输出路径是否不存在</li>
+<li>提供RecorderWriter输出流用于写出数据，这个数据是存储在文件系统中</li>
+<li>如果不指定，默认值的是TextOutputFormat</li>
+<li>OutputFormat是MapReduce中输出格式的顶级父类</li>
+</ol>
+<h3 id="数据倾斜"><a href="#数据倾斜" class="headerlink" title="数据倾斜"></a>数据倾斜</h3><ol>
+<li>每一个任务处理的数据量不均匀，那么就产生了数据倾斜</li>
+<li>数据本身就具有倾斜特性 - 倾斜度越大效率越低</li>
+<li>Map端倾斜的产生条件：多源输入，文件大小不均等，文件不可切，这三个条件缺一不可，在实际开发过程中Map端的数据倾斜无法处理。</li>
+<li>实际开发过程中，绝大部分的数据倾斜都产生在Reduce端，而直接导致Reduce端数据倾斜的原因是因为数据的分类（分区），本质原因是因为数据本省不均衡，Reduce端的倾斜可以使用二阶段聚合来解决。</li>
+<li>join：如果需要处理多个文件，且文件之间有关系，可以把小文件先存根，先处理大文件，然后从根中取出处理</li>
+</ol>
+<h3 id="小文件"><a href="#小文件" class="headerlink" title="小文件"></a>小文件</h3><ol>
+<li>危害</li>
+</ol>
+<ul>
+<li>存储：每一个小文件对应一条元数据，如果HDFS上存储了大量的小文件，那么就会产生大量的元数据。元数据数量过多的时候，导致NameNode的内存被大量占用，还会导致NameNode的查询效率变低。</li>
+<li>计算：每一个小文件对应一个切片，那么大量的小文件就会产生大量的切片对应了大量的MapTask，当切片过多导致MapTask（线程）的数量，线程数量过多可能会导致服务器的负载压力变大甚至崩溃</li>
+</ul>
+<ol start="2">
+<li>目前为止处理办法，合并和打包</li>
+</ol>
+<h3 id="推测执行机制"><a href="#推测执行机制" class="headerlink" title="推测执行机制"></a>推测执行机制</h3><ol>
+<li>推测执行机制实际上是Hadoop针对慢任务优化方案，当MapReduce出现慢任务的时候，Hadoop自动将慢任务拷贝一份，谁先处理完就取那个节点的结果，剩下的就会被kill掉</li>
+<li>出现慢任务的场景：</li>
+</ol>
+<ul>
+<li>任务分配不均   正常情况下不会出现，Namenode默认会找空闲的节点处理</li>
+<li>硬件环境不同  正常情况下也不会出现，服务器购买按批买，性能基本一致</li>
+<li>数据倾斜   集中在这个场景，推测执行机制无效，所以一般是关闭这个机制</li>
+</ul>
+<ol start="3">
+<li>实际开发中，数据倾斜导致的慢任务的场景更多，此时推测执行机制是无效的，所以一般是会关闭推测执行机制。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/chat.jpg" alt="Niklaus Yu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>请扫一扫上方的二维码关注我哦</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你可以对我进行打赏了哦</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="Niklaus Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"><i class="fa fa-google"></i> 导航</a>
+          
+            <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"><i class="fa fa-google"></i> 分享</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/08/Gateway/" rel="next" title="Gateway">
+                <i class="fa fa-chevron-left"></i> Gateway
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/SJ.jpeg"
+                alt="Niklaus Yu" />
+            
+              <p class="site-author-name" itemprop="name">Niklaus Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Niklaus1028/Niklaus1028.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6821094241/home?wvr=5" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce定义"><span class="nav-number">1.</span> <span class="nav-text">MapReduce定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce的优缺点"><span class="nav-number">2.</span> <span class="nav-text">MapReduce的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-MapReduce易于编程"><span class="nav-number">2.1.</span> <span class="nav-text">1. MapReduce易于编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-良好的扩展性"><span class="nav-number">2.2.</span> <span class="nav-text">2.良好的扩展性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-高容错性"><span class="nav-number">2.3.</span> <span class="nav-text">3.高容错性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-适合PB级以上海量数据的离线处理"><span class="nav-number">2.4.</span> <span class="nav-text">4.适合PB级以上海量数据的离线处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点："><span class="nav-number">2.5.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本理论"><span class="nav-number">3.</span> <span class="nav-text">基本理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、数据本地化的策略"><span class="nav-number">3.1.</span> <span class="nav-text">一、数据本地化的策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Job-MapReduce执行流程"><span class="nav-number">3.2.</span> <span class="nav-text">二、Job&#x2F;MapReduce执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#提交流程"><span class="nav-number">3.2.1.</span> <span class="nav-text">提交流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行流程"><span class="nav-number">3.2.2.</span> <span class="nav-text">执行流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、uber模式"><span class="nav-number">3.3.</span> <span class="nav-text">三、uber模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shuffle"><span class="nav-number">4.</span> <span class="nav-text">Shuffle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Map端的Shuffle"><span class="nav-number">4.1.</span> <span class="nav-text">一、Map端的Shuffle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Shuffle的调优"><span class="nav-number">4.2.</span> <span class="nav-text">三、Shuffle的调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputFormat-–输入格式"><span class="nav-number">4.3.</span> <span class="nav-text">InputFormat –输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-OutputFormat"><span class="nav-number">4.4.</span> <span class="nav-text">输出格式 OutputFormat</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">4.4.1.</span> <span class="nav-text">作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据倾斜"><span class="nav-number">4.5.</span> <span class="nav-text">数据倾斜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小文件"><span class="nav-number">4.6.</span> <span class="nav-text">小文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推测执行机制"><span class="nav-number">4.7.</span> <span class="nav-text">推测执行机制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Niklaus Yu</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'aB7hWarEDw4qynFNUbSg2v7g-gzGzoHsz',
+        appKey: 'GnAe9sBXzCXfCs9ABl5RcVLj',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
