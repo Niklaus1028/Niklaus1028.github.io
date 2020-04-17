@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="导航,分享," />
+  <meta name="keywords" content="分享,导航," />
 
 
 
@@ -89,14 +89,14 @@
 <meta name="description" content="1、什么是 Mybatis? Mybatis是一个半ORM（对象关系映射）的框架，它内部封装了JDBC，开发时只需要关注sql语句本身，不需要花费精力去处理加载驱动、创建连接，创建statement等复杂过程。程序员直接编写原生态的sql，严格控制sql的执行性能，灵活度高。 Mybatis可以通过xml和注解的方式来配置和映射原生信息，将普通JavaBeans映射成数据库中的记录，避免了几乎所有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mybatis">
-<meta property="og:url" content="http://yoursite.com/2020/01/29/Mybatis/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/04/17/Mybatis/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1、什么是 Mybatis? Mybatis是一个半ORM（对象关系映射）的框架，它内部封装了JDBC，开发时只需要关注sql语句本身，不需要花费精力去处理加载驱动、创建连接，创建statement等复杂过程。程序员直接编写原生态的sql，严格控制sql的执行性能，灵活度高。 Mybatis可以通过xml和注解的方式来配置和映射原生信息，将普通JavaBeans映射成数据库中的记录，避免了几乎所有">
-<meta property="article:published_time" content="2020-01-29T04:22:20.000Z">
-<meta property="article:modified_time" content="2020-04-17T15:17:13.609Z">
+<meta property="article:published_time" content="2020-04-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-17T16:11:30.388Z">
 <meta property="article:author" content="Niklaus Yu">
-<meta property="article:tag" content="导航">
 <meta property="article:tag" content="分享">
+<meta property="article:tag" content="导航">
 <meta name="twitter:card" content="summary">
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/29/Mybatis/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/17/Mybatis/"/>
 
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/29/Mybatis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/Mybatis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Niklaus Yu">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-29T12:22:20+08:00">
-                2020-01-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T00:00:00+08:00">
+                2020-04-17
               </time>
             
 
@@ -365,8 +365,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/01/29/Mybatis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/29/Mybatis/" itemprop="commentCount"></span>
+                <a href="/2020/04/17/Mybatis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/17/Mybatis/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -460,20 +460,17 @@
 <li>Mybatis在处理${},就是把${}替换成变量的值没有预编译的过程</li>
 <li>使用#{}可以有效的防止sql注入，提高系统的安全性</li>
 </ol>
-<h2 id="7、当实体类中的属性名和表中的字段名不一样-，怎么办"><a href="#7、当实体类中的属性名和表中的字段名不一样-，怎么办" class="headerlink" title="7、当实体类中的属性名和表中的字段名不一样 ，怎么办 ?"></a>7、当实体类中的属性名和表中的字段名不一样 ，怎么办 ?</h2><ul>
-<li><p>第1种：通过在查询的sql语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。</p>
+<h2 id="7、当实体类中的属性名和表中的字段名不一样-，怎么办"><a href="#7、当实体类中的属性名和表中的字段名不一样-，怎么办" class="headerlink" title="7、当实体类中的属性名和表中的字段名不一样 ，怎么办 ?"></a>7、当实体类中的属性名和表中的字段名不一样 ，怎么办 ?</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>第1种：通过在查询的sql语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getOrder"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"orderresultmap"</span>&gt;</span></span><br><span class="line">select * from orders where order_id=#&#123;id&#125; <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"me.gacl.domain.order"</span> <span class="attr">id</span>=<span class="string">"orderresultmap"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!–用</span> <span class="attr">id</span> 属性来映射主键字段–&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"order_id"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!–用</span> <span class="attr">result</span> 属性来映射非主键字段，<span class="attr">property</span> 为实体类属性名，<span class="attr">column</span> 为数据表中的属性–&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span> = <span class="string">“orderno</span>" <span class="attr">column</span> =<span class="string">”order_no</span>"/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"price"</span> <span class="attr">column</span>=<span class="string">"order_price"</span> /&gt;</span> <span class="tag">&lt;/<span class="name">reslutMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二种通过<code>&lt;resultMap&gt;</code>来映射字段名和实体类属性名一一对应的关系 </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">”selectorder”</span> <span class="attr">parametertype</span>=<span class="string">”int”</span> <span class="attr">resultetype</span>=<span class="string">”</span> <span class="attr">me.gacl.domain.order</span>”&gt;</span></span><br><span class="line">select order_id id, order_no orderno ,order_price price form orders where order_id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第二种通过<resultMap>来映射字段名和实体类属性名一一对应的关系 </p>
-</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getOrder"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"orderresultmap"</span>&gt;</span></span><br><span class="line">select * from orders where order_id=#&#123;id&#125; <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"me.gacl.domain.order"</span> <span class="attr">id</span>=<span class="string">"orderresultmap"</span>&gt;</span> <span class="tag">&lt;<span class="name">!–用</span> <span class="attr">id</span> 属性来映射主键字段–&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"order_id"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!–用</span> <span class="attr">result</span> 属性来映射非主键字段，<span class="attr">property</span> 为实体类属性名，<span class="attr">column</span> 为数据表中的属性–&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span> = <span class="string">“orderno</span>" <span class="attr">column</span> =<span class="string">”order_no</span>"/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"price"</span> <span class="attr">column</span>=<span class="string">"order_price"</span> /&gt;</span> <span class="tag">&lt;/<span class="name">reslutMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="8、-模糊查询-like-语句该怎么写"><a href="#8、-模糊查询-like-语句该怎么写" class="headerlink" title="8、 模糊查询 like 语句该怎么写?"></a>8、 模糊查询 like 语句该怎么写?</h2><ul>
 <li>第 1 种:在 Java 代码中添加 sql 通配符。<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string wildcardname = “%smi%”;</span><br><span class="line">list<span class="tag">&lt;<span class="name">name</span>&gt;</span> names = mapper.selectlike(wildcardname);</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">”selectlike”</span>&gt;</span></span><br><span class="line">select * from foo where bar like #&#123;value&#125;</span><br></pre></td></tr></table></figure></li>
-<li>第二种：在sql语句中拼接通配符，会引起sql注入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string wildcardname &#x3D; “smi”;</span><br><span class="line">list&lt;name&gt; names &#x3D; mapper.selectlike(wildcardname);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;”selectlike”&gt;</span><br><span class="line">select * from foo where bar like &quot;%&quot;#&#123;value&#125;&quot;%&quot; &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<li>第二种：在sql语句中拼接通配符，会引起sql注入<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string wildcardname = “smi”;</span><br><span class="line">list<span class="tag">&lt;<span class="name">name</span>&gt;</span> names = mapper.selectlike(wildcardname);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">”selectlike”</span>&gt;</span></span><br><span class="line">select * from foo where bar like "%"#&#123;value&#125;"%" <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="9、通常一个-Xml-映射文件，都会写一个-Dao-接口与之对应，-请问，这个-Dao-接口的工作原理是什么-Dao-接口里的方法，-参数不同时，方法能重载吗"><a href="#9、通常一个-Xml-映射文件，都会写一个-Dao-接口与之对应，-请问，这个-Dao-接口的工作原理是什么-Dao-接口里的方法，-参数不同时，方法能重载吗" class="headerlink" title="9、通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应， 请问，这个 Dao 接口的工作原理是什么?Dao 接口里的方法， 参数不同时，方法能重载吗?"></a>9、通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应， 请问，这个 Dao 接口的工作原理是什么?Dao 接口里的方法， 参数不同时，方法能重载吗?</h2></li>
 <li>Dao接口即Mapper接口，接口的全限名，就是映射文件中namespace的值；接口的方法名，就是映射文件中Mapper的StateMent的id值，接口方法内的参数，就是传递给 sql 的参数。</li>
-<li>Mapper 接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符 串作为 key 值，可唯一定位一个 MapperStatement。在 Mybatis 中，每一个 <select>、<insert>、<update>、<delete>标签，都会被解析为一个 MapperStatement 对象。</li>
+<li>Mapper 接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符 串作为 key 值，可唯一定位一个 MapperStatement。在 Mybatis 中，每一个 <code>&lt;select&gt;、&lt;insert&gt;、&lt;update&gt;、&lt;delete&gt;</code>标签，都会被解析为一个 MapperStatement 对象。</li>
 <li>Mapper 接口里的方法，是不能重载的，因为是使用 全限名+方法名 的保存和寻 找策略。Mapper 接口的工作原理是 JDK 动态代理，Mybatis 运行时会使用 JDK 动态代理为 Mapper 接口生成代理对象 proxy，代理对象会拦截接口方法，转而 执行 MapperStatement 所代表的 sql，然后将 sql 执行结果返回。</li>
 </ul>
 <h2 id="10、Mybatis-是如何进行分页的-分页插件的原理是什么"><a href="#10、Mybatis-是如何进行分页的-分页插件的原理是什么" class="headerlink" title="10、Mybatis 是如何进行分页的?分页插件的原理是什么?"></a>10、Mybatis 是如何进行分页的?分页插件的原理是什么?</h2><ul>
@@ -481,7 +478,7 @@
 <li>分页插件的基本原理是使用 Mybatis 提供的插件接口，实现自定义插件，在插件 的拦截方法内拦截待执行的 sql，然后重写 sql，根据 dialect 方言，添加对应的物 理分页语句和物理分页参数。</li>
 </ul>
 <h2 id="11、Mybatis-是如何将-sql-执行结果封装为目标对象并返回的-都有哪些映射形式"><a href="#11、Mybatis-是如何将-sql-执行结果封装为目标对象并返回的-都有哪些映射形式" class="headerlink" title="11、Mybatis 是如何将 sql 执行结果封装为目标对象并返回的? 都有哪些映射形式?"></a>11、Mybatis 是如何将 sql 执行结果封装为目标对象并返回的? 都有哪些映射形式?</h2><ol>
-<li>使用<resultMap>标签，逐一定义数据库列名和对象属性名之间的映 射关系。</li>
+<li>使用<code>&lt;resultMap&gt;</code>标签，逐一定义数据库列名和对象属性名之间的映 射关系。</li>
 <li>使用 sql 列的别名功能，将列的别名书写为对象属性名。</li>
 <li>有了列名与属性名的映射关系后，Mybatis 通过反射创建对象，同时使用反射给 对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。</li>
 </ol>
@@ -503,7 +500,7 @@
 <li>Mybatis 动态 sql 可以在 Xml 映射文件内，以标签的形式编写动态 sql，执行原理 是根据表达式的值 完成逻辑判断并动态拼接 sql 的功能。</li>
 <li>Mybatis 提供了 9 种动态 sql 标签:trim | where | set | foreach | if | choose | when | otherwise | bind。</li>
 </ol>
-<h2 id="16、Xml-映射文件中，除了常见的-select-insert-updae-delete-标签之外，还有哪些标签"><a href="#16、Xml-映射文件中，除了常见的-select-insert-updae-delete-标签之外，还有哪些标签" class="headerlink" title="16、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签?"></a>16、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签?</h2><p>答:<resultMap>、<parameterMap>、<sql>、<include>、 <selectKey>，加上动态 sql 的 9 个标签，其中<sql>为 sql 片段标签，通过 <include>标签引入 sql 片段，<selectKey>为不支持自增的主键生成策略标 签。</p>
+<h2 id="16、Xml-映射文件中，除了常见的-select-insert-updae-delete-标签之外，还有哪些标签"><a href="#16、Xml-映射文件中，除了常见的-select-insert-updae-delete-标签之外，还有哪些标签" class="headerlink" title="16、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签?"></a>16、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签?</h2><p>答:<code>&lt;resultMap&gt;、&lt;parameterMap&gt;、&lt;sql&gt;、&lt;include&gt;、 &lt;selectKey&gt;，加上动态 sql 的 9 个标签，其中&lt;sql&gt;为 sql 片段标签，通过 &lt;include&gt;标签引入 sql 片段，&lt;selectKey&gt;为不支持自增的主键生成策略标 签。</code></p>
 <h2 id="17、Mybatis-的-Xml-映射文件中，不同的-Xml-映射文件，id-是否可以重复"><a href="#17、Mybatis-的-Xml-映射文件中，不同的-Xml-映射文件，id-是否可以重复" class="headerlink" title="17、Mybatis 的 Xml 映射文件中，不同的 Xml 映射文件，id 是否可以重复?"></a>17、Mybatis 的 Xml 映射文件中，不同的 Xml 映射文件，id 是否可以重复?</h2><ul>
 <li>不同的 Xml 映射文件，如果配置了 namespace，那么 id 可以重复;如果没有配 置 namespace，那么 id 不能重复;</li>
 <li>原因就是 namespace+id 是作为 Map&lt;String, MapperStatement&gt;的 key 使用的，如果没有 namespace，就剩下 id，那么，id 重复会导致数据互相覆盖。 有了 namespace，自然 id 就可以重复，namespace 不同，namespace+id 自然 也就不同。</li>
@@ -594,9 +591,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"><i class="fa fa-google"></i> 导航</a>
-          
             <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"><i class="fa fa-google"></i> 分享</a>
+          
+            <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"><i class="fa fa-google"></i> 导航</a>
           
         </div>
       
@@ -609,8 +606,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/29/Shell/" rel="next" title="Shell">
-                <i class="fa fa-chevron-left"></i> Shell
+              <a href="/2020/04/11/MapReduce/" rel="next" title="MapReduce">
+                <i class="fa fa-chevron-left"></i> MapReduce
               </a>
             
           </div>
@@ -618,10 +615,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/29/MyBatisday02/" rel="prev" title="SpringMVCDay01">
-                SpringMVCDay01 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -802,7 +795,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是-Mybatis"><span class="nav-number">1.</span> <span class="nav-text">1、什么是 Mybatis?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、Mybaits-的优点"><span class="nav-number">2.</span> <span class="nav-text">2、Mybaits 的优点:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Mybatis框架的缺点"><span class="nav-number">3.</span> <span class="nav-text">3、Mybatis框架的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、MyBatis-框架适用场合"><span class="nav-number">4.</span> <span class="nav-text">4、MyBatis 框架适用场合:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、MyBatis-与-Hibernate-有哪些不同"><span class="nav-number">5.</span> <span class="nav-text">5、MyBatis 与 Hibernate 有哪些不同?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、-和-的区别是什么"><span class="nav-number">6.</span> <span class="nav-text">6、#{}和${}的区别是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、当实体类中的属性名和表中的字段名不一样-，怎么办"><span class="nav-number">7.</span> <span class="nav-text">7、当实体类中的属性名和表中的字段名不一样 ，怎么办 ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、-模糊查询-like-语句该怎么写"><span class="nav-number">8.</span> <span class="nav-text">8、 模糊查询 like 语句该怎么写?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、通常一个-Xml-映射文件，都会写一个-Dao-接口与之对应，-请问，这个-Dao-接口的工作原理是什么-Dao-接口里的方法，-参数不同时，方法能重载吗"><span class="nav-number">9.</span> <span class="nav-text">9、通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应， 请问，这个 Dao 接口的工作原理是什么?Dao 接口里的方法， 参数不同时，方法能重载吗?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、Mybatis-是如何进行分页的-分页插件的原理是什么"><span class="nav-number">10.</span> <span class="nav-text">10、Mybatis 是如何进行分页的?分页插件的原理是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、Mybatis-是如何将-sql-执行结果封装为目标对象并返回的-都有哪些映射形式"><span class="nav-number">11.</span> <span class="nav-text">11、Mybatis 是如何将 sql 执行结果封装为目标对象并返回的? 都有哪些映射形式?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-如何执行批量插入"><span class="nav-number">12.</span> <span class="nav-text">12.如何执行批量插入?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、如何获取自动生成的-主-键值"><span class="nav-number">13.</span> <span class="nav-text">13、如何获取自动生成的(主)键值?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、在-mapper-中如何传递多个参数"><span class="nav-number">14.</span> <span class="nav-text">14、在 mapper 中如何传递多个参数?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、Mybatis-动态-sql-有什么用-执行原理-有哪些动态-sql"><span class="nav-number">15.</span> <span class="nav-text">15、Mybatis 动态 sql 有什么用?执行原理?有哪些动态 sql?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、Xml-映射文件中，除了常见的-select-insert-updae-delete-标签之外，还有哪些标签"><span class="nav-number">16.</span> <span class="nav-text">16、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、Mybatis-的-Xml-映射文件中，不同的-Xml-映射文件，id-是否可以重复"><span class="nav-number">17.</span> <span class="nav-text">17、Mybatis 的 Xml 映射文件中，不同的 Xml 映射文件，id 是否可以重复?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18、为什么说-Mybatis-是半自动-ORM-映射工具-它与全自动-的区别在哪里"><span class="nav-number">18.</span> <span class="nav-text">18、为什么说 Mybatis 是半自动 ORM 映射工具?它与全自动 的区别在哪里?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19、-一对一、一对多的关联查询"><span class="nav-number">19.</span> <span class="nav-text">19、 一对一、一对多的关联查询 ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20、MyBatis-实现一对一有几种方式-具体怎么操作的"><span class="nav-number">20.</span> <span class="nav-text">20、MyBatis 实现一对一有几种方式?具体怎么操作的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21、MyBatis-实现一对多有几种方式-怎么操作的"><span class="nav-number">21.</span> <span class="nav-text">21、MyBatis 实现一对多有几种方式,怎么操作的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22、Mybatis-是否支持延迟加载-如果支持，它的实现原理是-什么"><span class="nav-number">22.</span> <span class="nav-text">22、Mybatis 是否支持延迟加载?如果支持，它的实现原理是 什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23、Mybatis-的一级、二级缓存"><span class="nav-number">23.</span> <span class="nav-text">23、Mybatis 的一级、二级缓存:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25、使用-MyBatis-的-mapper-接口调用时有哪些要求"><span class="nav-number">24.</span> <span class="nav-text">25、使用 MyBatis 的 mapper 接口调用时有哪些要求?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26、Mapper-编写有哪几种方式"><span class="nav-number">25.</span> <span class="nav-text">26、Mapper 编写有哪几种方式?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27、简述-Mybatis-的插件运行原理，以及如何编写一个插件。"><span class="nav-number">26.</span> <span class="nav-text">27、简述 Mybatis 的插件运行原理，以及如何编写一个插件。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是-Mybatis"><span class="nav-number">1.</span> <span class="nav-text">1、什么是 Mybatis?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、Mybaits-的优点"><span class="nav-number">2.</span> <span class="nav-text">2、Mybaits 的优点:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Mybatis框架的缺点"><span class="nav-number">3.</span> <span class="nav-text">3、Mybatis框架的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、MyBatis-框架适用场合"><span class="nav-number">4.</span> <span class="nav-text">4、MyBatis 框架适用场合:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、MyBatis-与-Hibernate-有哪些不同"><span class="nav-number">5.</span> <span class="nav-text">5、MyBatis 与 Hibernate 有哪些不同?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、-和-的区别是什么"><span class="nav-number">6.</span> <span class="nav-text">6、#{}和${}的区别是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、当实体类中的属性名和表中的字段名不一样-，怎么办"><span class="nav-number">7.</span> <span class="nav-text">7、当实体类中的属性名和表中的字段名不一样 ，怎么办 ?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">7.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、-模糊查询-like-语句该怎么写"><span class="nav-number">8.</span> <span class="nav-text">8、 模糊查询 like 语句该怎么写?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、通常一个-Xml-映射文件，都会写一个-Dao-接口与之对应，-请问，这个-Dao-接口的工作原理是什么-Dao-接口里的方法，-参数不同时，方法能重载吗"><span class="nav-number">9.</span> <span class="nav-text">9、通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应， 请问，这个 Dao 接口的工作原理是什么?Dao 接口里的方法， 参数不同时，方法能重载吗?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、Mybatis-是如何进行分页的-分页插件的原理是什么"><span class="nav-number">10.</span> <span class="nav-text">10、Mybatis 是如何进行分页的?分页插件的原理是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、Mybatis-是如何将-sql-执行结果封装为目标对象并返回的-都有哪些映射形式"><span class="nav-number">11.</span> <span class="nav-text">11、Mybatis 是如何将 sql 执行结果封装为目标对象并返回的? 都有哪些映射形式?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-如何执行批量插入"><span class="nav-number">12.</span> <span class="nav-text">12.如何执行批量插入?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、如何获取自动生成的-主-键值"><span class="nav-number">13.</span> <span class="nav-text">13、如何获取自动生成的(主)键值?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、在-mapper-中如何传递多个参数"><span class="nav-number">14.</span> <span class="nav-text">14、在 mapper 中如何传递多个参数?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、Mybatis-动态-sql-有什么用-执行原理-有哪些动态-sql"><span class="nav-number">15.</span> <span class="nav-text">15、Mybatis 动态 sql 有什么用?执行原理?有哪些动态 sql?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、Xml-映射文件中，除了常见的-select-insert-updae-delete-标签之外，还有哪些标签"><span class="nav-number">16.</span> <span class="nav-text">16、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、Mybatis-的-Xml-映射文件中，不同的-Xml-映射文件，id-是否可以重复"><span class="nav-number">17.</span> <span class="nav-text">17、Mybatis 的 Xml 映射文件中，不同的 Xml 映射文件，id 是否可以重复?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18、为什么说-Mybatis-是半自动-ORM-映射工具-它与全自动-的区别在哪里"><span class="nav-number">18.</span> <span class="nav-text">18、为什么说 Mybatis 是半自动 ORM 映射工具?它与全自动 的区别在哪里?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19、-一对一、一对多的关联查询"><span class="nav-number">19.</span> <span class="nav-text">19、 一对一、一对多的关联查询 ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20、MyBatis-实现一对一有几种方式-具体怎么操作的"><span class="nav-number">20.</span> <span class="nav-text">20、MyBatis 实现一对一有几种方式?具体怎么操作的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21、MyBatis-实现一对多有几种方式-怎么操作的"><span class="nav-number">21.</span> <span class="nav-text">21、MyBatis 实现一对多有几种方式,怎么操作的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22、Mybatis-是否支持延迟加载-如果支持，它的实现原理是-什么"><span class="nav-number">22.</span> <span class="nav-text">22、Mybatis 是否支持延迟加载?如果支持，它的实现原理是 什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23、Mybatis-的一级、二级缓存"><span class="nav-number">23.</span> <span class="nav-text">23、Mybatis 的一级、二级缓存:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25、使用-MyBatis-的-mapper-接口调用时有哪些要求"><span class="nav-number">24.</span> <span class="nav-text">25、使用 MyBatis 的 mapper 接口调用时有哪些要求?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26、Mapper-编写有哪几种方式"><span class="nav-number">25.</span> <span class="nav-text">26、Mapper 编写有哪几种方式?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27、简述-Mybatis-的插件运行原理，以及如何编写一个插件。"><span class="nav-number">26.</span> <span class="nav-text">27、简述 Mybatis 的插件运行原理，以及如何编写一个插件。</span></a></li></ol></div>
             
 
           </div>
