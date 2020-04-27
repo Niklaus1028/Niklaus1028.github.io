@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/01/29/Spring-Review/</loc>
+    
+    <lastmod>2020-04-27T16:26:31.254Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/25/HBase/</loc>
+    
+    <lastmod>2020-04-27T09:40:40.222Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/21/Hive/</loc>
+    
+    <lastmod>2020-04-25T08:34:55.612Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/21/sql-optimize/</loc>
+    
+    <lastmod>2020-04-24T14:49:50.582Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/28/JVM/</loc>
+    
+    <lastmod>2020-04-24T14:43:03.503Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/archives/index.html</loc>
     
     <lastmod>2020-04-22T16:20:25.385Z</lastmod>
@@ -19,13 +54,6 @@
     <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2020-04-22T16:01:38.386Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/21/Hive/</loc>
-    
-    <lastmod>2020-04-22T06:46:43.919Z</lastmod>
     
   </url>
   
@@ -61,13 +89,6 @@
     <loc>http://yoursite.com/2020/04/11/MapReduce/</loc>
     
     <lastmod>2020-04-17T13:16:06.589Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/21/sql-optimize/</loc>
-    
-    <lastmod>2020-04-15T15:50:14.369Z</lastmod>
     
   </url>
   
@@ -131,13 +152,6 @@
     <loc>http://yoursite.com/2020/01/29/redis-cluster/</loc>
     
     <lastmod>2020-03-18T06:23:14.782Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/28/JVM/</loc>
-    
-    <lastmod>2020-03-18T01:18:51.485Z</lastmod>
     
   </url>
   

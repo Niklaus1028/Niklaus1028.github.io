@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-22T06:46:43.919Z</updated>
+  <updated>2020-04-27T09:40:40.222Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,42 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>HBase</title>
+    <link href="http://yoursite.com/2020/04/25/HBase/"/>
+    <id>http://yoursite.com/2020/04/25/HBase/</id>
+    <published>2020-04-25T06:23:09.000Z</published>
+    <updated>2020-04-27T09:40:40.222Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol><li>HBase是有Apache提供的基于Hadoop的分布式，可扩展的非关系型数据库</li><li>HBase可以管理很大的数据的表 -  billions of rows X millions of columns</li><li>HBase是Doug Cutting根据Google的BigTable来实现，所以HBase和BigTable的原理一模一样，只是BigTable是用C语言实现的，HBase是Java语言实现的</li><li>本身是非关系型数据库，底层是利用键值对来存储</li><li>在HBase中也不支持多表关联</li><li>HBase中数据类型只支持字符串和数字</li><li>适合存储稀疏数据 - 结构化数据和半结构化数据</li><li>在put的时候表名列族以及行键都一样，再一次put是更新的效果</li><li>hbase作为一个数据库提供了完整的增删改查的功能，但是hbase是基于hdfs来进行存储的，hdfs上的数据是允许一次写入多次读取不允许修改允许追加的，hbase如何实现“改”的功能 - 当执行“改”操作的时候，HBase并不是修改原来的数据，而是在HDFS中存储的文件的尾端来追加数据，每一条数据都会自动添加时间戳，这个时间戳就是版本</li><li>通过时间戳，每一次默认返回最新的数据</li><li>HBase中的表默认只保留一个版本的数据，也只返回一个版本的数据，如果保留版本，需要建表时需要手动指定</li></ol><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol><li><p>Rowkey - 行键</p><ul><li>在HBase中没有主键的概念，而是采用行键</li><li>行键不属于任意列族</li><li>建表的时候不需要指定行键，行键是在添加数据的时候手动指定</li><li>默人字典排序</li></ul></li><li><p>Column Family - 列族/列族</p><ul><li>在HBase中，一个表中至少包含一个列族，可以多个列族</li><li>理论上来说，列族的数量不限定，但一个表一般不超过三个。</li><li>一个列族中可以包含0到多个列 - HBase，列是可以动态增删的，建表的时候不需要指定列。</li></ul></li><li><p>Cell - 单元</p><ul><li>在HBase中，通过行键+列族+列+版本可以确定唯一数据，这个结构成为cell单元</li></ul></li><li><p>namespace - 名称空间</p><ul><li>类似于mysql中的database</li><li>默认自带两个名称空间default和hbase</li><li>如果没有指定默认使用default</li></ul></li></ol><h3 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h3><table><thead><tr><th>命令</th><th>解释</th></tr></thead><tbody><tr><td>status</td><td>查看HBase状态</td></tr><tr><td>version</td><td>查看hbase的版本</td></tr><tr><td>whoami</td><td>查看当前用户</td></tr><tr><td>create ‘person’ ,{NAME =&gt;’basic’},{NAME =&gt; ‘info’},{NAME =&gt; ‘other’}</td><td>建表方式</td></tr><tr><td>List</td><td>查看已经建立的表</td></tr><tr><td>put ‘person’ ,’p1’ , ‘basic:name’ ,’Reason’</td><td>表示向person表中的basic列族name列添加行键p1的数据Reason</td></tr><tr><td>get ‘person’, ‘p1’, ‘basic:name’</td><td>获取basic 列族name列的值</td></tr><tr><td>get ‘person’, ‘p1’, ‘basic’</td><td>获取basic 列族所有值</td></tr><tr><td>get ‘person’ , ‘p1’</td><td>获取行键p1所有的值</td></tr><tr><td>scan ‘person’ ,{COLUMNS =&gt; ‘basic:name’}</td><td>获取basic所有name列的值</td></tr><tr><td>scan ‘person’ ,{COLUMNS =&gt; ‘basic’}</td><td>获取basic列族所有列的值</td></tr><tr><td>scan ‘person’</td><td>查看person表中的所有数据</td></tr><tr><td>delete ‘person’ ,’p2’ ,’other:phone’</td><td>删除行键p2 other列族的phone字段</td></tr><tr><td>deleteall ‘person’ ,’p2’</td><td>删除行键p2的所有数据</td></tr><tr><td>create ‘student’ , {NAME =&gt; ‘basic’ ,VERSIONS =&gt;3} ,{NAME =&gt; ‘info’ ,VERSIONS =&gt;5}</td><td>创建一个student表有basic 和info两个列族，basic保留三个版本，info保留5个版本</td></tr><tr><td>get ‘student’,’s1’ ,{COLUMN =&gt;’basic:age’,VERSIONS =&gt; 4}</td><td>查询student表列族为basic age字段的4个版本的值，但建表的时候指定三个版本，只能拿到最新的三个版本的值</td></tr><tr><td>disable ‘student’</td><td>先禁用表</td></tr><tr><td>drop ‘student’</td><td>再删除表</td></tr><tr><td>describe ‘person’ or  desc ‘person’</td><td>描述person表的信息</td></tr><tr><td>enable ‘person’</td><td>启用person表</td></tr><tr><td>exits ‘person’</td><td>判断person表是否存在</td></tr><tr><td>create ‘demo:person’ ,’basic’ ,’expand’</td><td>在指定工作空间demo下创建person</td></tr><tr><td>list_namespace_tables ‘demo’</td><td>查看指定名称空间的表</td></tr><tr><td>list_namespace</td><td>查看所有的名称空间</td></tr><tr><td>create namespace ‘demo’</td><td>创建名称空间demo</td></tr><tr><td>disable_all ‘demo:.*’</td><td>禁用demo空间下所有的表</td></tr><tr><td>drop_all ‘demo:.*’</td><td>删除demo中所有的表</td></tr><tr><td>drop_namespace ‘demo’</td><td>删除工作空间demo</td></tr></tbody></table><h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><h3 id="HRegion"><a href="#HRegion" class="headerlink" title="HRegion"></a>HRegion</h3><ol><li>在HBase，会从行键方向上将一个表拆分成一个或者多个HRegion</li><li>每一个HRegion都会交会交由某一个HRegionServer来进行管理</li><li>由于行键是字典排序，所以HRegion之间的范围是不交叉的，也因此客户端在请求的时候会根据行键去访问不同的HRegionServer</li><li>HRegion实际上是行键排序（默认是字典排序）后的按规则分割的连续的存储空间</li></ol><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-27%E4%B8%8B%E5%8D%885.35.27.png"  alt=""></p><ol start="5"><li>一张Hbase表，可能有多个HRegion，每个HRegion达到一定大小（默认是10GB）时，进行分裂。<br><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-27%E4%B8%8B%E5%8D%885.37.21.png"  alt=""></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;ol&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hive</title>
     <link href="http://yoursite.com/2020/04/21/Hive/"/>
     <id>http://yoursite.com/2020/04/21/Hive/</id>
     <published>2020-04-21T14:11:43.660Z</published>
-    <updated>2020-04-22T06:46:43.919Z</updated>
+    <updated>2020-04-25T08:34:55.612Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol><li>Apache Hive™数据仓库软件有助于使用SQL读取，写入和管理驻留在分布式存储中的大型数据集。可以将结构投影到已经存储的数据上。提供了命令行工具和JDBC驱动程序以将用户连接到Hive。</li><li>提供了类SQL（HQL）语言来管理HDFS上的数据，底层会将sql转化为MapReduce执行，Hive适用于离线分析</li><li>在Hive中，每一个database在HDFS上对应一个目录</li><li>在Hive中没有主键的概念</li><li>一个表一旦建立之后，这个表中字段之间的间隔符就不能修改了</li></ol><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol><li>create table p2 like person;  建立一个p2表和person表一样结构</li><li>insert overwrite local directory ‘/home/hivedemo’ row format delimited fields terminated by ‘ ‘  select * from person;  将查询数据传给本地目录中，以空格间隔，要求目录不存在，否则会被覆盖</li></ol><h3 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h3><h4 id="内部表和外部表"><a href="#内部表和外部表" class="headerlink" title="内部表和外部表"></a>内部表和外部表</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><ol><li>内部表:先在hive里建一张表，然后向这个表插入数据(用insert可以插入数据，也可以通过加载外部文件方式来插入数据)，这样的表称之为hive的内部表</li><li>外部表:HDFS里已经有数据了，然后，通过hive创建一张表来管理这个文件数据。则这样表称之为外部表。需要注意的是，hive外部表管理的是HDFS里的某一个目录下的文件数据外部表创建命令<br>进入hive，执行:create external table stu (id int,name string) row format delimited fields terminated by ‘ ‘ location<h5 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h5></li><li>对于内部表，在删除该表的时候，HDFS对应的目录节点会被删除 2. 对于外部表，在删除该表的时候，HDFS对应的目录节点不会删除</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol><li>Apache Hive™数据仓库软件有助于使用SQL读取，写入和管理驻留在分布式存储中的大型数据集。可以将结构投影到已经存储的数据上。提供了命令行工具和JDBC驱动程序以将用户连接到Hive。</li><li>提供了类SQL（HQL）语言来管理HDFS上的数据，底层会将sql转化为MapReduce执行，Hive适用于离线分析</li><li>在Hive中，每一个database在HDFS上对应一个目录</li><li>在Hive中没有主键的概念</li><li>一个表一旦建立之后，这个表中字段之间的间隔符就不能修改了</li></ol><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol><li>create table p2 like person;  建立一个p2表和person表一样结构</li><li>insert overwrite local directory ‘/home/hivedemo’ row format delimited fields terminated by ‘ ‘  select * from person;  将查询数据传给本地目录中，以空格间隔，要求目录不存在，否则会被覆盖</li></ol><h3 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h3><h4 id="内部表和外部表"><a href="#内部表和外部表" class="headerlink" title="内部表和外部表"></a>内部表和外部表</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><ol><li>内部表:先在hive里建一张表，然后向这个表插入数据(用insert可以插入数据，也可以通过加载外部文件方式来插入数据)，这样的表称之为hive的内部表</li><li>外部表:HDFS里已经有数据了，然后，通过hive创建一张表来管理这个文件数据。则这样表称之为外部表。需要注意的是，hive外部表管理的是HDFS里的某一个目录下的文件数据外部表创建命令<br>进入hive，执行:create external table stu (id int,name string) row format delimited fields terminated by ‘ ‘ location<h5 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h5></li><li>对于内部表，在删除该表的时候，HDFS对应的目录节点会被删除 2. 对于外部表，在删除该表的时候，HDFS对应的目录节点不会删除</li></ol><h3 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h3><ol><li>分区表的作用往往是对数据进行分类</li><li>基本操作<h4 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h4>create table cities(id int, name string) partitioned by(province string) row format delimited fields terminated by ‘ ‘;<h4 id="加载hebei分区数据"><a href="#加载hebei分区数据" class="headerlink" title="加载hebei分区数据"></a>加载hebei分区数据</h4>load data local inpath ‘/home/hivedata/hebei.txt’ into table cities partition(province = ‘hebei’);<h4 id="加载guangdong分区数据"><a href="#加载guangdong分区数据" class="headerlink" title="加载guangdong分区数据"></a>加载guangdong分区数据</h4>load data local inpath ‘/home/hivedata/guangdong.txt’ into table cities partition(province = ‘guangdong’);<h4 id="加载jiangsu分区数据"><a href="#加载jiangsu分区数据" class="headerlink" title="加载jiangsu分区数据"></a>加载jiangsu分区数据</h4>load data local inpath ‘/home/hivedata/jiangsu.txt’ into table cities partition(province = ‘jiangsu’);</li><li>每一个分区对应一个目录</li><li>如果在HDFS上新建了目录作为分区，那么需要在Hive中来手动添加分区<br>alter table cities add partition(province=’shandong’) location ‘/user/hive/warehouse/hivedemo.db/cities/province=shandong’;<h4 id="修复表，但是注意这句SQL执行不稳定，有时候会执行失败"><a href="#修复表，但是注意这句SQL执行不稳定，有时候会执行失败" class="headerlink" title="修复表，但是注意这句SQL执行不稳定，有时候会执行失败"></a>修复表，但是注意这句SQL执行不稳定，有时候会执行失败</h4>msck repair table cities;</li><li>在Hive的分区表中，如果根据分区字段进行查询，那么只查询分区对应的目录从而提高查询效率；如果跨分区查询，查询效率反而会降低</li><li>在分区表中，分区字段在原始数据中是不存在的，是需要在加载数据的时候手动指定的</li><li>如果分区字段在原始文件中已经存在，那么需要进行动态分区</li><li>先建立一张表管理原始数据<br>create table c_tmp(cid int, cname string, cpro string) row format delimited fields terminated by ‘ ‘;</li><li>加载数据<br>load data local inpath ‘/home/hivedata/cities.txt’ into table c_tmp;</li><li>开启动态分区机制 - 从一张未分区表中查询数据放到一张已分区的表中，这个过程称之为动态分区<br>set hive.exec.dynamic.partition.mode=nonstrict;</li><li>指定分区字段进行动态分区<br>insert into table cities partition(province) select cid, cname, cpro from c_tmp distribute by cpro;</li><li>删除分区：alter table cities drop partition(province = ‘liaoning’);</li><li>在Hive中，支持多字段分区，前边的字段会包含后边的字段。指定了几个字段，就会形成一个几级的目录。当需要对数据进行多级分类的时候，那么这个时候可以多字段分区 - 实际开发中，往往是需要对数据进行多级分类<h4 id="建表语句"><a href="#建表语句" class="headerlink" title="建表语句"></a>建表语句</h4>create table product(id int, name string) partitioned by(kind string, sub string, subkind string) row format delimited fields terminated by ‘ ‘;<h4 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h4>load data local inpath ‘/home/hivedata/shirt.txt’ into table product partition(kind = ‘clothes’,  sub=’coat’, subkind=’Tshirt’);<br>load data local inpath ‘/home/hivedata/sports.txt’ into table product partition(kind = ‘clothes’, sub = ‘shoes’, subkind = ‘sports’);<h4 id="分桶表"><a href="#分桶表" class="headerlink" title="分桶表"></a>分桶表</h4></li><li>分桶表的作用是对数据进行抽样</li><li>在Hive中，分桶表默认是不开启的，所以需要手动开启分桶机制</li><li>案例<h4 id="开启分桶机制"><a href="#开启分桶机制" class="headerlink" title="开启分桶机制"></a>开启分桶机制</h4>set hive.enforce.bucketing=true;<h4 id="建立分桶表-表示根据name字段进行分桶-在分桶的时候会计算name字段的哈希码，然后利用哈希码进行二次计算确定放在哪个桶中"><a href="#建立分桶表-表示根据name字段进行分桶-在分桶的时候会计算name字段的哈希码，然后利用哈希码进行二次计算确定放在哪个桶中" class="headerlink" title="建立分桶表 - 表示根据name字段进行分桶 - 在分桶的时候会计算name字段的哈希码，然后利用哈希码进行二次计算确定放在哪个桶中"></a>建立分桶表 - 表示根据name字段进行分桶 - 在分桶的时候会计算name字段的哈希码，然后利用哈希码进行二次计算确定放在哪个桶中</h4>create table c_bucket(id int, name string) clustered by(name) into 6 buckets row format delimited fields terminated by ‘ ‘;<h4 id="向分桶表中添加数据"><a href="#向分桶表中添加数据" class="headerlink" title="向分桶表中添加数据"></a>向分桶表中添加数据</h4>insert overwrite table c_bucket select id, name from cities;<h4 id="抽样"><a href="#抽样" class="headerlink" title="抽样"></a>抽样</h4>select * from c_bucket tablesample (bucket 1 out of 3 on name);</li><li>bucket x out of y：x表示起始桶编号，从1开始计算，y表示的是步长。bucket 1 out of 3表示从第1个桶开始抽取数据，每隔3个桶抽取一次。其中x&lt;=y</li></ol><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ol><li>Hive分为基本类型和复杂类型</li><li>复杂类型</li><li>array：数组类型，对应了Java中的数组或者集合<h4 id="建表-1"><a href="#建表-1" class="headerlink" title="建表"></a>建表</h4><figure class="highlight plain"><figcaption><span>table arr(nums1 array<int>, nums2 array<int>) row format delimited fields terminated by ' ' collection items terminated by ',';```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#### 加载数据</span><br><span class="line">load data local inpath &#39;&#x2F;home&#x2F;hivedata&#x2F;nums&#39; into table arr;</span><br><span class="line">####  非空查询</span><br><span class="line">select nums1[5] from arr where nums1[5] is not null;</span><br><span class="line">1. map：映射类型。对应了Java中的映射Map</span><br><span class="line">#### 建表</span><br><span class="line">create table infos (id int, info map&lt;string,int&gt;) row format delimited fields terminated by &#39; &#39; map keys terminated by &#39;,&#39;;</span><br><span class="line">#### 加载数据</span><br><span class="line">load data local inpath &#39;&#x2F;home&#x2F;hivedata&#x2F;map.txt&#39; into table infos;</span><br><span class="line">#### 查询tom对应的值</span><br><span class="line">select info[&#39;tom&#39;] from infos where info[&#39;tom&#39;] is not null;</span><br><span class="line">1. struct：结构体类型。对应了Java中的对象</span><br><span class="line">#### 看作一个对象的四个属性来建表</span><br><span class="line">create external table scores(s struct&lt;name:string, chinese:int, math:int, english:int&gt;) row format delimited collection items terminated by &#39; &#39; location &#39;&#x2F;score&#39;;</span><br><span class="line">#### 查询每一个人的语文成绩</span><br><span class="line">select s.chinese from scores;</span><br><span class="line"></span><br><span class="line">### explode</span><br><span class="line">1. explode会将数组中的每一个元素取出来作为单独的一行处理</span><br><span class="line">2. 案例：单词统计</span><br><span class="line">1. 方式一</span><br><span class="line">#### 建表管理HDFS存在的words.txt文件</span><br><span class="line">&#96;&#96;&#96;create external table words(word array&lt;string&gt;) row format delimited collection items terminated by &#39; &#39; location &#39;&#x2F;words&#39;;</span><br></pre></td></tr></table></figure><h4 id="建表存储单词"><a href="#建表存储单词" class="headerlink" title="建表存储单词"></a>建表存储单词</h4>create table ws(w string);<h4 id="将words表中拆分出来的单词查询出来放到ws表中"><a href="#将words表中拆分出来的单词查询出来放到ws表中" class="headerlink" title="将words表中拆分出来的单词查询出来放到ws表中"></a>将words表中拆分出来的单词查询出来放到ws表中</h4>insert into table ws select explode(*) from words;<h4 id="统计每一个单词出现的次数"><a href="#统计每一个单词出现的次数" class="headerlink" title="统计每一个单词出现的次数"></a>统计每一个单词出现的次数</h4>select w, count(w) from ws group by w;</li><li>方式二<h4 id="建表管理HDFS存在的words-txt文件"><a href="#建表管理HDFS存在的words-txt文件" class="headerlink" title="建表管理HDFS存在的words.txt文件"></a>建表管理HDFS存在的words.txt文件</h4><figure class="highlight plain"><figcaption><span>external table words(word array<string>) row format delimited collection items terminated by ' ' location '/words';```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#### 统计每一个单词出现的次数</span><br><span class="line">select w, count(w) from (select explode(*) w from words)ws group by w;</span><br><span class="line"></span><br><span class="line">### UDF</span><br><span class="line">1. UDF(User-Defined Function)是Hive提供一套用于自定义函数的机制</span><br><span class="line">#### 2. 案例</span><br><span class="line">1. 写一个类继承UDF类，覆盖其中的evaluate方法</span><br><span class="line">2. 打成jar包放到Linux上</span><br><span class="line">3. 在Hive中添加jar包：add jar &#x2F;home&#x2F;hivedata&#x2F;hive-1.0-SNAPSHOT.jar;</span><br><span class="line">4. 定义一个临时函数，并且给函数绑定类：create temporary function repeatstring as &#39;cn.tedu.udf.RepeatString&#39;;</span><br><span class="line"></span><br><span class="line">### join</span><br><span class="line">1. 如果在join的时候没有指定，那么默认就是inner join</span><br><span class="line">2. 案例</span><br><span class="line">#### 先建立orders表</span><br><span class="line">create external table orders(orderid int, orderdate string, productid string, num int) row format delimited fields terminated by &#39; &#39; location &#39;&#x2F;orders&#39;;</span><br><span class="line">#### 建立products表</span><br><span class="line">create external table products(productid int, name string, price double) row format delimited fields terminated by &#39; &#39; location &#39;&#x2F;products&#39;;</span><br><span class="line">#### 统计每一天的售出的商品的总价</span><br><span class="line">select o.orderdate, sum(o.num * p.price) from orders o join products p on o.productid &#x3D; p.productid group by orderdate;</span><br><span class="line">1. Hive中，支持inner&#x2F;left&#x2F;right&#x2F;full outer join，还支持left semi join。如果a left semi join b，那么表示查询a表中哪些数据在b表中出现过：select * from products p left semi join orders o on p.productid &#x3D; o.productid;</span><br><span class="line"></span><br><span class="line">### Serde</span><br><span class="line">1. Serde是Hive提供的一套针对不规则数据进行处理的机制</span><br><span class="line">2. 在Serde中，利用正则的捕获组来对应字段，正则表达式中的每一个捕获组对应了Hive表中的一个字段</span><br><span class="line">3. 案例</span><br><span class="line">#### 建表</span><br><span class="line">&#96;&#96;&#96;create table logs(ip string, time string, timezone string, request_way string, resource string, protocol string, stateid int) row format serde &#39;org.apache.hadoop.hive.serde2.RegexSerDe&#39; with serdeproperties ( &quot;input.regex&quot; &#x3D; &quot;(.*) \-\- \\[(.*) (.*)\\] \&quot;([A-Z]*) (.*) (.*)\&quot; ([0-9]*) \-&quot; ) stored as textfile;</span><br></pre></td></tr></table></figure><h4 id="加载数据-1"><a href="#加载数据-1" class="headerlink" title="加载数据"></a>加载数据</h4>load data local inpath ‘/home/hivedata/server.log’ into table logs;</li></ol><h3 id="beeline"><a href="#beeline" class="headerlink" title="beeline"></a>beeline</h3><ol><li>在实际开发过程中，应该是远程连接公司的Hive服务器，那么此时就需要去进行远程访问 - beeline<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4> 1.在公司服务器的开启Hive的后台服务进程 <figure class="highlight sh"><figcaption><span>hive --service hiveserver2 &```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果开启成功应该出现RunJar进程</span><br><span class="line">1.远程连接公司的Hive服务器</span><br><span class="line">```sh beeline -u jdbc:hive2://10.9.162.133:10000/hivedemo -n root</span><br></pre></td></tr></table></figure></li></ol><h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><ol><li>一个表中可以包含很多字段，但是每一个字段的使用频率并不是相同的，那么可以考虑将其中比较常用的字段抽取出来形成子表，这个子表可以用视图来表示</li><li>如果将抽取出来的视图存到磁盘上，那么此时称之为是物化视图；如果将抽取出来的视图存到内存中，那么此时称之为是虚拟视图</li><li>数据库中一般支持两种视图，但是Hive中只支持虚拟视图</li><li>建立视图：create view o_view as select orderid, num from orders;这句话表示将orders表中的orderid和num两个字段进行抽取，封装到o_view视图中</li><li>建立视图的时候封装的select语句并没有执行，而是需要在第一次使用视图的时候才会触发这句select</li></ol><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ol><li>数据库中，因为存在主键，所以会自动针对主键建立索引，数据库中采用的索引是B+tree机制。在Hive中，因为不存在主键，所以也不会自动建立索引</li><li>在Hive中可以手动建立索引，并且可以针对任意字段来建立索引</li><li>案例<h4 id="建立索引表"><a href="#建立索引表" class="headerlink" title="建立索引表"></a>建立索引表</h4>create index o_index on table orders(orderid) as ‘org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler’ with deferred rebuild in table order_index;<h4 id="建立索引，索引建立完成之后不会自动更新-即orders表中产生变化的时候索引表不会变"><a href="#建立索引，索引建立完成之后不会自动更新-即orders表中产生变化的时候索引表不会变" class="headerlink" title="建立索引，索引建立完成之后不会自动更新 - 即orders表中产生变化的时候索引表不会变"></a>建立索引，索引建立完成之后不会自动更新 - 即orders表中产生变化的时候索引表不会变</h4>alter index o_index on orders rebuild;<h4 id="查询索引数据"><a href="#查询索引数据" class="headerlink" title="查询索引数据"></a>查询索引数据</h4>select * from order_index;<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4>drop index o_index on orders;</li><li>如果一个表比较常用，那么可以针对这个表中的常用的字段来建立索引而并不是针对所有字段/表建立索引</li></ol><h3 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h3><ol><li>用于描述数据的数据就是元数据</li><li>Hive中的元数据包括database名、table名、字段名、分区、分桶信息等都属于元数据<br>Hive中的元数据默认是存储在关系型数据中的，目前支持的元数据的数据库是Derby和MySQL，如果不指定默认使用的是Derby。因为Derby是单连接数据库，所以需要将Hive的元数据库更换为MySQL</li></ol><h3 id="调优"><a href="#调优" class="headerlink" title="调优"></a>调优</h3><h4 id="map-side-join："><a href="#map-side-join：" class="headerlink" title="map side join："></a>map side join：</h4><ol><li>如果一个小表和一个大表进行join查询，那么可以考虑将小表放在缓存中然后处理大表，如果需要用到小表的数据可以从内存中查询</li><li>需要执行set hive.auto.convert.join=true;才会开启小表的缓存机制</li><li>默认要求小表要放在join的左边，即小表 join 大表</li><li>默认只要小表不超过25M，那么就会放入内存中，这个大小可以通过hive.mapjoin.smalltable.filesize来设置<h4 id="如果在join的时候附带了查询条件，那么考虑先用子查询执行where来降低数据量，然后再进行join"><a href="#如果在join的时候附带了查询条件，那么考虑先用子查询执行where来降低数据量，然后再进行join" class="headerlink" title="如果在join的时候附带了查询条件，那么考虑先用子查询执行where来降低数据量，然后再进行join"></a>如果在join的时候附带了查询条件，那么考虑先用子查询执行where来降低数据量，然后再进行join</h4></li><li>group by在有多个ReduceTask的情况下可能会产生Reduce端的数据倾斜，可以通过二阶段聚合解决这个问题。在Hive中可以通过set hive.groupby.skewindata=true;来自动开启二阶段聚合</li><li>distinct和聚合函数的优化，聚合函数最终只能利用一个ReduceTask来进行计算，所以如果distinct和聚合函数同时使用，那么考虑先用子查询来进行去重，最后再进行聚合</li><li>调整切片数：如果数据结构相对比较复杂或者处理逻辑相对比较复杂，那么可以考虑将切片调小来增多MapTask的数量；如果数据结构相对比较简单或者处理逻辑相对比较简单，那么可以考虑将切片调大来减少MapTask的数量 - 任务复杂就增多线程，任务简单就减少线程</li></ol><h3 id="数据处理流程"><a href="#数据处理流程" class="headerlink" title="数据处理流程"></a>数据处理流程</h3><h3 id="数据仓库和数据库"><a href="#数据仓库和数据库" class="headerlink" title="数据仓库和数据库"></a>数据仓库和数据库</h3><table><thead><tr><th></th><th>数据库</th><th>数据仓库</th></tr></thead><tbody><tr><td>数据量</td><td>&lt;=GB</td><td>&gt;=TB</td></tr><tr><td>来源</td><td>相对比较单一，往往来源于单一的web应用</td><td>来源相对丰富，可以是日志，爬虫，网页埋点等</td></tr><tr><td>种类</td><td>数据结构相对单一 - 结构化数据</td><td>数据结构相对丰富 - 结构化数据，半结构化数据，非结构化数据</td></tr><tr><td>操作</td><td>提供了完整的增删改查的能力</td><td>往往只提供增和查的操作而不是提供删和改的操作</td></tr><tr><td>事务</td><td>强调事务，存在ACID四个特性</td><td>不强调事务，往往是若事务甚至不支持事务</td></tr><tr><td>冗余</td><td>精简，尽量避免冗余</td><td>人为制造冗余 - 副本</td></tr><tr><td>数据场景</td><td>往往是用于线上实时捕获数据</td><td>离线历史数据和线上实时处理</td></tr><tr><td>系统</td><td>OLTP - Online Transaction Processor 联机事务处理 - 强调事务的完整性</td><td>OLAP - Online Analysis Processor - 联机分析处理 - 强调数据分析过程</td></tr><tr><td>面向对象</td><td>程序员，DBA，运维等技术人员</td><td>面向领导，市场，客户，销售等非技术人员，辅助决策</td></tr></tbody></table>]]></content>
     
     <summary type="html">
     
@@ -38,9 +67,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -66,9 +95,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -95,9 +124,9 @@
       <category term="面试题" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -124,9 +153,9 @@
       <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -152,9 +181,37 @@
       <category term="分布式" scheme="http://yoursite.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
+  </entry>
+  
+  <entry>
+    <title>HDFS</title>
+    <link href="http://yoursite.com/2020/04/08/HDFS/"/>
+    <id>http://yoursite.com/2020/04/08/HDFS/</id>
+    <published>2020-04-08T06:23:09.000Z</published>
+    <updated>2020-04-11T08:18:06.026Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="大数据简介"><a href="#大数据简介" class="headerlink" title="大数据简介"></a>大数据简介</h2><h3 id="一、大数据特征-6V"><a href="#一、大数据特征-6V" class="headerlink" title="一、大数据特征 - 6V"></a>一、大数据特征 - 6V</h3><ol><li>数据体量大，一般从TB级别开始计算</li><li>数据种类和来源多</li><li>数据的增长速度越来越快</li><li>数据的价值密度越来越低，但是这不意味着想要的数据越来越少，相反，想要的数据越来越多的，但是样本总量的增长速度是要高于想要的数据的增长速度的</li><li>数据的真实性/质量</li><li>数据的连通性</li><li>数据的动态性、数据的可视化、合法性</li></ol><h3 id="二、概述"><a href="#二、概述" class="headerlink" title="二、概述"></a>二、概述</h3><ol><li>Hadoop是Apache提供的一个开源的、可靠的、可扩展的系统架构，可以利用分布式架构来进行海量数据的存储以及计算 </li><li>Hadoop之父：Doug Cutting（道格·卡丁）</li><li>需要注意的是Hadoop处理的是离线数据，即在数据已知以及不要求实时性的场景下使用</li><li>Hadoop发行版:<br> a. Apache版本最基本的版本，入门学习较好。原生版本管理相对比较混乱<br> b. CDH版本是Cloudera提供的商业版本，相对Apache Hadoop更加的稳定和安全<br> c. Hortonworks文档相对完善友好</li></ol><h3 id="三、-版本："><a href="#三、-版本：" class="headerlink" title="三、 版本："></a>三、 版本：</h3><ol><li>Hadoop1.0：包含Common，HDFS，和MapReduce ，停止更新</li><li>Hadoop2.0：包含Common，HDFS，和MapReduce，YARN。1.0和2.0完全不兼容，Hadoop2.8之前的不包含ozone</li><li>Hadoop3.0：包含Common，HDFS，和MapReduce，YARN和ozone。</li></ol><h3 id="四、模块"><a href="#四、模块" class="headerlink" title="四、模块"></a>四、模块</h3><ol><li>Hadoop Common: 基本模块</li><li>Hadoop Distributed File System (HDFS™): 分布式存储</li><li>Hadoop YARN:进行任务调度和资源管理</li><li>Hadoop MapReduce: 分布式计算</li><li>Hadoop Ozone:对象存储</li></ol><h3 id="五、安装方式"><a href="#五、安装方式" class="headerlink" title="五、安装方式"></a>五、安装方式</h3><ol><li>单机模式：只能启动MapReduce</li><li>伪分布式：只能启动HDFS，MapReduce和YARN的大部分功能</li><li>完全分布式：能启动Hadoop的所有功能</li></ol><h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol><li>HDFS是Hadoop提供一套用于进行分布式存储的文件系统</li><li>HDFS根据Google的GFS来进行实现的<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4></li><li>能够存储超大文件 - 切块</li><li>快速的应对和检测故障 - 心跳</li><li>能够在相对廉价的机器上来进行动态横向扩展</li><li>不支持低延迟响应</li><li>不建议存储小文件 - 每一个小文件对应一条元数据，大量的硒筽啊文件就会产生大量的元数据。元数据过多导致内存被大量占用，导致查询效率降低。</li><li>简化的一致性模型，一次写入多次读取，不允许修改，但允许追加写入。</li><li>不支持强事务或者不支持事务，在实际开发中，在样本量足够大的前提下，允许存在一定的容量误差</li></ol><h3 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h3><ol><li>HDFS主要包含2类进程：NameNode和DataNode</li><li>在HDFS中，上传的文件自动的进行切块，每一个数据块称之为一个Block</li><li>HDFS会自动对数据进行备份，每一个备份称之为副本（replication/replicas）默认为3</li><li>HDFS仿照Linux设置一套虚拟的文件系统,根路径/</li></ol><h3 id="三、Block"><a href="#三、Block" class="headerlink" title="三、Block"></a>三、Block</h3><ol><li>Block是HDFS中存储数据的基本单位，即在HDFS中所有数据都是以Block形式存储</li><li>Block默认是128M大小，可以通过dfs.blocksize(在hdfs-site.xml，单位是字节)来设置</li><li>如果一个文件不到一个Block的大小，那么注意，这个文件本身多大block就是多大</li><li>在HDFS中，会给每一个Block自动分配一个全局递增的Block ID</li><li>在HDFS中，会给每一个Block分配一个时间戳（Generation Stamp）编号</li><li>切块的意义<ul><li>为了能够存储超大文件</li><li>为了能够进行快速备份</li></ul></li></ol><h3 id="四、NameNode"><a href="#四、NameNode" class="headerlink" title="四、NameNode"></a>四、NameNode</h3><ol><li>NameNode是HDFS中的主节点（Master），作用：管理DataNode和记录与元数据（metadata）</li><li>元数据是描述数据的数据 —在HDFS中，元数据对存储的文件进行描述，主要包含<ul><li>文件的存储路径，例如/txt/a.txt</li><li>文件的权限</li><li>上传的用户和用户组</li><li>文件的大小</li><li>Block的大小</li><li>文件和BlockID的映射关系</li><li>副本数量</li><li>BlockID和DataNode的映射关系</li></ul></li><li>元数据是存储在内存以及磁盘中<ul><li>维系在内存中的目的是为了快速查询</li><li>维系在磁盘中的目的是为了崩溃恢复</li></ul></li><li>元数据在磁盘中的存储路径由hadoop.tmp.dir(core-site.xml)属性来决定的</li><li>元数据的记录和fsimage以及edits文件相关<ul><li>edits记录写操作</li><li>fsimage：记录元数据。fsimage中的元数据往往是落后于内存中的元数据</li></ul></li><li>当NameNode接受到写请求的时候，NameNode会先将这个写请求记录到edits-iprogress中，如果记录成功则修改内存中的元数据。内存中的元数据修改成功之后会给客户端返回一个成功信号。这个过程中fsimage文件中的元数据没有被修改</li><li>当达到指定条件的时候，触发edits_inprogress文件的滚动，edits_inprogress会滚动生成edits文件，会产生一个新的edits_inprogress。在edits_inprogress滚动过程中，会触发fsimage文件的更新，会根据edits_inprogress中的命令去修改fsimage文件中的元数据</li><li>edits_inprogress文件的滚动条件<ul><li>空间：当edits_inprogress文件达到指定大小（64m通过f s.checkpoint.size，单位是字节 - core-site.xml)的时候，会产生滚动</li><li>时间：当距离上一次滚动的时间间隔（默认3600s，通过f s.checkpoint.period来调节，默认单位是秒-core site.xml）达到指定大小，会产生滚动</li><li>重启：当NameNode重启的时候，自动触发edits——inprogress文件的滚动</li><li>强制滚动：可以利用 hadoop dfsadmin -rollEdits来强制滚动</li></ul></li><li>NameNode通过心跳机制来管理DataNode， DataNode定时的通过RPC的方式来给NameNode发送心跳。</li><li>默认情况下是每隔3s给NameNode发送心跳，可以通过dfs.heartbeat.interval来修改，单位是秒 —hdfs site.xml</li><li>NameNode超过10min没有收到DataNode的心跳，就会认为这个DataNode已经Lost（丢失），那么此时NameNode就会讲这个DataNode上的Block备份到其他节点，保证整个集群的副本数量</li><li>心跳信息<ul><li>当前DataNode的状态（预服役、服役、预退役）</li><li>当前DataNode存储的Block信息</li><li>clusterid：集群编号。当NameNode被格式化的时候，会自动计算产生一个clusterid，每格式化一次就会重新计算产生，当HDFS集群启动的时候，NameNode会将clusterid分发给每一个DataNode的信息之后，会先校验clusterid是否一致；同样，DataNode收到NameNode的指令的时候也会校验clusterid。DataNode只能接受一次clusterid</li></ul></li><li>当NameNode重启的时候，会自动触发edits_inprogress文件的滚动，产生一个新的edits文件和一个新的edits_inprogress文件，同时更新fsimage。当更新完fsimage之后，NameNode就会将fsimage文件中的内容加载到内存中，加载完成后，NameNode等待DataNode的心跳。如果在指定时间内没有收到心跳，则认为节点丢失重新备份。如果收到DataNode的心跳，那么NameNode会校验这个心跳信息，这个过程称之为安全模式。在安全模式中，NameNode如果校验失败，则试图恢复数据，恢复完成之后会重新校验；如果校验成功，则自动退出安全模式。</li><li>当NameNode重启的时候，自动进入安全模式，实际开发过程中，如果进入安全模式，需要等待NameNode自动退出安全模式，但是在合理的时间内，NameNode没有退出安全模式，就说明数据产生了不可挽回的丢失，此时需要强制退出安全模式（hadoop afsadmin -safemode leave）</li><li>在安全模式中，HDFS不对外提供写服务</li><li>正因为有安全模式的存在所以在为分布式中副本数量设置为1；</li></ol><h3 id="五、多副本的放置策略"><a href="#五、多副本的放置策略" class="headerlink" title="五、多副本的放置策略"></a>五、多副本的放置策略</h3><ol><li>第一个副本<ul><li>如果集群内部上传，那么谁上传第一个副本就放在谁身上</li><li>如果是集群外部上传，NameNode会选择相对较闲的DataNode的节点存储数据</li></ul></li><li>第二个副本<ul><li>Hadoop2.7之前：第二个副本是放在和第一个副本不同机架的节点上</li><li>Hadoop2.7开始：第二个副本是放在和第一个副本相同机架的节点上</li></ul></li><li>第三个副本<ul><li>Hadoop2.7之前：第三个副本是放在和第二个副本相同机架的节点上</li><li>Hadoop2.7开始：第三个副本是放在和第二个副本不同机架的节点上</li></ul></li><li>更多副本：那个几点相对空闲就放在谁身上</li></ol><h3 id="六、-机架感知策略"><a href="#六、-机架感知策略" class="headerlink" title="六、 机架感知策略"></a>六、 机架感知策略</h3><ol><li>在HDFS中默认没有启用，需要在hadoop-site.xml中配置topology.script.file.name开启机架感知策略</li><li>HDFS的机架感知策略是通过指定的脚本来进行配置，这个脚本可以是python和shell，所谓的机架就是一个映射，只需要将DataNode的主机名或者ip映射到值上就对应了机架</li><li>机架指的是逻辑机架不是物理机架，允许将一个或几个物理机架上的节点映射到同一个逻辑机架上，但是实际开发中，一般是一个物理机架对应一个逻辑机架</li></ol><h3 id="七、DataNode"><a href="#七、DataNode" class="headerlink" title="七、DataNode"></a>七、DataNode</h3><ol><li>DataNode是HDFS中的从节点，作用：存储数据，数据以block的形式来存储</li><li>DataNode会将数据存储在磁盘中，在磁盘上的存储位置由hadoop.tmp.dir属性来决定</li><li>DataNode的状态:预服役，服役，预退役，退役</li><li>DataNode会主动给NameNode发送心跳来进行注册</li></ol><h3 id="八、SecondaryNameNode"><a href="#八、SecondaryNameNode" class="headerlink" title="八、SecondaryNameNode"></a>八、SecondaryNameNode</h3><ol><li>SecondaryNameNode并不是NameNode备份，而是辅助NameNode进行edits_inprogress文件的滚动和fsimage的更新</li><li>在HDFS集群中，如果存在SecondaryNameNode，edits_inprogress文件的滚动和fsimage的更新由SecondaryNameNode来做，如果不存在，上述事情由NameNode自己来做，存活与否不影响集群向外提供服务，只会影响效率</li><li>在HDFS集群中，支持的结构一般是有两种<ul><li>1个NameNode+1个SecondaryNameNode+多个DataNode</li><li>2个NameNode+多个DataNode</li></ul></li><li>因为在HDFS中，NameNode是核心节点，所以一般要考虑NameNode的备份，那么此时就需要系用双NameNode机制，一个处于active状态，另一个处于备份状态，当active的NameNode宕机后，备份的立即切换为active，在实际工作中以第二方案为主，这样实现了集群的高可用（HA）。</li></ol><h3 id="九、回收站机制"><a href="#九、回收站机制" class="headerlink" title="九、回收站机制"></a>九、回收站机制</h3><ol><li>在HDFS中，回收站机制默认不开启，即删除命令会立即生效，</li><li>如果要开启回收站机制，要在core-site.xml中配置</li></ol><h3 id="十、dfs目录"><a href="#十、dfs目录" class="headerlink" title="十、dfs目录"></a>十、dfs目录</h3><ol><li>dfs目录实际上就是HDFS的数据目录，由hadoop.tmp.dir属性来决定存储路径</li><li>dfs子目录<br> a. data 对应datanode数据的存储路径<br> b. name 对应namenode数据的存储路径<br> c. namesecondary 对应namesecondary数据的存储路径</li><li>实际开发中，三个子目录应该出现在三个不同的节点上</li><li>in_use.lock用于标记是否已经启动对应的进程</li><li>每一个blk文件对应一个.meta,这个.meta文件可以认为是对blk的校验</li><li>HDFS在第一次启动的时候，间隔1min之后出发edits_inprogress文件的滚动，之后就按照指定的条件进行滚动</li><li>在HFDS中，每一次写操作看成一次事务，分配一个全局递增的编号，简称txid</li><li>文件上传完成之后不能修改</li><li>fsimage_XXXX.md5是利用了md5加密算法对fsimage_xxxx来进行校验</li><li>version文件中包含的主要内容<ul><li>clusterID：集群编号 - 本质上是进行校验的</li><li>storageType：节点类型</li><li>blockpooIID：块池编号</li></ul></li></ol><h2 id="Hadoop流程"><a href="#Hadoop流程" class="headerlink" title="Hadoop流程"></a>Hadoop流程</h2><h3 id="写流程-put"><a href="#写流程-put" class="headerlink" title="写流程 -put"></a>写流程 -put</h3><ol><li>客户端发起RPC请求到NameNode要求上传文件</li><li>NameNode收到请求之后会进行校验<ul><li>校验上传的路径是否有写入权限</li><li>检验上传的路径下是否有同名文件</li></ul></li><li>如果校验失败，直接报错，如果校验成功，则NameNode会修改edits_inprogress,更新内存中的元数据，最后会给客户端返回一个允许上传的信号。</li><li>客户端收到信号之后，会给NameNode发送请求，请求获取第一个Block的存储位置</li><li>NameNode收到请求之后，会等待DataNode的心跳，然后选择符合要求的节点（副本放置策略），将节点位置（默认是3个）放入队列中返回给客户端</li><li>客户端收到队列之后，会从队列中将所有的位置去除，然后选择一个较近的节点将第一个Block的第一个副本写入，客户端同时会告诉第一个副本所在的节点两个副本的存储位置，第一个副本所在的节点就会通过管道（pipeline，本质就是NIO Channel）将第二个副本写入对应的节点同时告诉第二个副本所在的节点最后一个副本的存储位置，第二个副本所在的节点通过管道将第三个副本写入对应的节点；第三个副本写完之后，会给第二个副本所在的节点返回一个ack（确认字符）信号，第二个副本所在的节点会给第一个副本所在的节点返回一个ack；第一个副本所在的节点会给客户端返回一个ack</li><li>客户端收到ack之后，会向namenode发送请求要下一个Block的存储位置，重复4，5，6三个步骤</li><li>当写完所有的数据之后，客户端会给NameNode发送信号，请求NameNode关闭文件。文件一旦关闭就不能再修改了。</li></ol><h3 id="读流程-get"><a href="#读流程-get" class="headerlink" title="读流程 -get"></a>读流程 -get</h3><ol><li>客户端发起RPC请求到NameNode要求下载指定文件</li><li>NameNode在收到请求之后会查询元数据确定是否有指定的文件，如果没有直接报错，如果有，则给客户端返回一个信号表示允许读取</li><li>客户端收到信号之后，会再给NameNode发送请求，请求获取这个文件的第一个block的存储位置</li><li>NameNode在收到请求之后，会将第一个Block的存储位置（默认是3个）放到一个队列中返回客户端</li><li>客户端收到队列之后，会从队列中将block的位置全部取出来，从中选择一个较近（网络拓扑距离）的DataNode来读取第一个Block</li><li>客户端读取完Block之后，会进行checksum（校验和 - 实际上就是利用.meta文件进行校验）验证，如果校验失败，则客户端会给NameNode发送信号，重新选择节点重新读取；如果校验成功，那么客户端会再向NameNode要下一个Block的地址，重复4，5，6三个步骤</li><li>当客户端读取完最后一个Block的时候，NameNode就会关闭文件（实际就是关流）<h3 id="删流程-rmr"><a href="#删流程-rmr" class="headerlink" title="删流程 -rmr"></a>删流程 -rmr</h3></li><li>客户端发起RPC请求到NameNode要求删除指定的文件</li><li>NameNode收到请求后，先记录edits_inprogress文件，然后修改内存中的元数据，然后NameNode就会给客户端返回一个成功信号，但是这个过程中，注意文件并没有从HDFS上移除而是依然存储在DataNode上</li><li>NameNode等待DataNode的心跳，收到心跳信息之后，NameNode就会校验这个心跳信息（比对元数据和心跳信息中的BlockID是否一致），然后NameNode就会进行心跳响应，要求DataNode删除对应的Block</li><li>DataNode收到心跳响应之后才会删除Block，此时文件才真正的从HDFS上移除</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;大数据简介&quot;&gt;&lt;a href=&quot;#大数据简介&quot; class=&quot;headerlink&quot; title=&quot;大数据简介&quot;&gt;&lt;/a&gt;大数据简介&lt;/h2&gt;&lt;h3 id=&quot;一、大数据特征-6V&quot;&gt;&lt;a href=&quot;#一、大数据特征-6V&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+    
+      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
+    
+    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -181,37 +238,9 @@
       <category term="Springcloud" scheme="http://yoursite.com/categories/Springcloud/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
-  </entry>
-  
-  <entry>
-    <title>HDFS</title>
-    <link href="http://yoursite.com/2020/04/08/HDFS/"/>
-    <id>http://yoursite.com/2020/04/08/HDFS/</id>
-    <published>2020-04-08T06:23:09.000Z</published>
-    <updated>2020-04-11T08:18:06.026Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="大数据简介"><a href="#大数据简介" class="headerlink" title="大数据简介"></a>大数据简介</h2><h3 id="一、大数据特征-6V"><a href="#一、大数据特征-6V" class="headerlink" title="一、大数据特征 - 6V"></a>一、大数据特征 - 6V</h3><ol><li>数据体量大，一般从TB级别开始计算</li><li>数据种类和来源多</li><li>数据的增长速度越来越快</li><li>数据的价值密度越来越低，但是这不意味着想要的数据越来越少，相反，想要的数据越来越多的，但是样本总量的增长速度是要高于想要的数据的增长速度的</li><li>数据的真实性/质量</li><li>数据的连通性</li><li>数据的动态性、数据的可视化、合法性</li></ol><h3 id="二、概述"><a href="#二、概述" class="headerlink" title="二、概述"></a>二、概述</h3><ol><li>Hadoop是Apache提供的一个开源的、可靠的、可扩展的系统架构，可以利用分布式架构来进行海量数据的存储以及计算 </li><li>Hadoop之父：Doug Cutting（道格·卡丁）</li><li>需要注意的是Hadoop处理的是离线数据，即在数据已知以及不要求实时性的场景下使用</li><li>Hadoop发行版:<br> a. Apache版本最基本的版本，入门学习较好。原生版本管理相对比较混乱<br> b. CDH版本是Cloudera提供的商业版本，相对Apache Hadoop更加的稳定和安全<br> c. Hortonworks文档相对完善友好</li></ol><h3 id="三、-版本："><a href="#三、-版本：" class="headerlink" title="三、 版本："></a>三、 版本：</h3><ol><li>Hadoop1.0：包含Common，HDFS，和MapReduce ，停止更新</li><li>Hadoop2.0：包含Common，HDFS，和MapReduce，YARN。1.0和2.0完全不兼容，Hadoop2.8之前的不包含ozone</li><li>Hadoop3.0：包含Common，HDFS，和MapReduce，YARN和ozone。</li></ol><h3 id="四、模块"><a href="#四、模块" class="headerlink" title="四、模块"></a>四、模块</h3><ol><li>Hadoop Common: 基本模块</li><li>Hadoop Distributed File System (HDFS™): 分布式存储</li><li>Hadoop YARN:进行任务调度和资源管理</li><li>Hadoop MapReduce: 分布式计算</li><li>Hadoop Ozone:对象存储</li></ol><h3 id="五、安装方式"><a href="#五、安装方式" class="headerlink" title="五、安装方式"></a>五、安装方式</h3><ol><li>单机模式：只能启动MapReduce</li><li>伪分布式：只能启动HDFS，MapReduce和YARN的大部分功能</li><li>完全分布式：能启动Hadoop的所有功能</li></ol><h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol><li>HDFS是Hadoop提供一套用于进行分布式存储的文件系统</li><li>HDFS根据Google的GFS来进行实现的<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4></li><li>能够存储超大文件 - 切块</li><li>快速的应对和检测故障 - 心跳</li><li>能够在相对廉价的机器上来进行动态横向扩展</li><li>不支持低延迟响应</li><li>不建议存储小文件 - 每一个小文件对应一条元数据，大量的硒筽啊文件就会产生大量的元数据。元数据过多导致内存被大量占用，导致查询效率降低。</li><li>简化的一致性模型，一次写入多次读取，不允许修改，但允许追加写入。</li><li>不支持强事务或者不支持事务，在实际开发中，在样本量足够大的前提下，允许存在一定的容量误差</li></ol><h3 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h3><ol><li>HDFS主要包含2类进程：NameNode和DataNode</li><li>在HDFS中，上传的文件自动的进行切块，每一个数据块称之为一个Block</li><li>HDFS会自动对数据进行备份，每一个备份称之为副本（replication/replicas）默认为3</li><li>HDFS仿照Linux设置一套虚拟的文件系统,根路径/</li></ol><h3 id="三、Block"><a href="#三、Block" class="headerlink" title="三、Block"></a>三、Block</h3><ol><li>Block是HDFS中存储数据的基本单位，即在HDFS中所有数据都是以Block形式存储</li><li>Block默认是128M大小，可以通过dfs.blocksize(在hdfs-site.xml，单位是字节)来设置</li><li>如果一个文件不到一个Block的大小，那么注意，这个文件本身多大block就是多大</li><li>在HDFS中，会给每一个Block自动分配一个全局递增的Block ID</li><li>在HDFS中，会给每一个Block分配一个时间戳（Generation Stamp）编号</li><li>切块的意义<ul><li>为了能够存储超大文件</li><li>为了能够进行快速备份</li></ul></li></ol><h3 id="四、NameNode"><a href="#四、NameNode" class="headerlink" title="四、NameNode"></a>四、NameNode</h3><ol><li>NameNode是HDFS中的主节点（Master），作用：管理DataNode和记录与元数据（metadata）</li><li>元数据是描述数据的数据 —在HDFS中，元数据对存储的文件进行描述，主要包含<ul><li>文件的存储路径，例如/txt/a.txt</li><li>文件的权限</li><li>上传的用户和用户组</li><li>文件的大小</li><li>Block的大小</li><li>文件和BlockID的映射关系</li><li>副本数量</li><li>BlockID和DataNode的映射关系</li></ul></li><li>元数据是存储在内存以及磁盘中<ul><li>维系在内存中的目的是为了快速查询</li><li>维系在磁盘中的目的是为了崩溃恢复</li></ul></li><li>元数据在磁盘中的存储路径由hadoop.tmp.dir(core-site.xml)属性来决定的</li><li>元数据的记录和fsimage以及edits文件相关<ul><li>edits记录写操作</li><li>fsimage：记录元数据。fsimage中的元数据往往是落后于内存中的元数据</li></ul></li><li>当NameNode接受到写请求的时候，NameNode会先将这个写请求记录到edits-iprogress中，如果记录成功则修改内存中的元数据。内存中的元数据修改成功之后会给客户端返回一个成功信号。这个过程中fsimage文件中的元数据没有被修改</li><li>当达到指定条件的时候，触发edits_inprogress文件的滚动，edits_inprogress会滚动生成edits文件，会产生一个新的edits_inprogress。在edits_inprogress滚动过程中，会触发fsimage文件的更新，会根据edits_inprogress中的命令去修改fsimage文件中的元数据</li><li>edits_inprogress文件的滚动条件<ul><li>空间：当edits_inprogress文件达到指定大小（64m通过f s.checkpoint.size，单位是字节 - core-site.xml)的时候，会产生滚动</li><li>时间：当距离上一次滚动的时间间隔（默认3600s，通过f s.checkpoint.period来调节，默认单位是秒-core site.xml）达到指定大小，会产生滚动</li><li>重启：当NameNode重启的时候，自动触发edits——inprogress文件的滚动</li><li>强制滚动：可以利用 hadoop dfsadmin -rollEdits来强制滚动</li></ul></li><li>NameNode通过心跳机制来管理DataNode， DataNode定时的通过RPC的方式来给NameNode发送心跳。</li><li>默认情况下是每隔3s给NameNode发送心跳，可以通过dfs.heartbeat.interval来修改，单位是秒 —hdfs site.xml</li><li>NameNode超过10min没有收到DataNode的心跳，就会认为这个DataNode已经Lost（丢失），那么此时NameNode就会讲这个DataNode上的Block备份到其他节点，保证整个集群的副本数量</li><li>心跳信息<ul><li>当前DataNode的状态（预服役、服役、预退役）</li><li>当前DataNode存储的Block信息</li><li>clusterid：集群编号。当NameNode被格式化的时候，会自动计算产生一个clusterid，每格式化一次就会重新计算产生，当HDFS集群启动的时候，NameNode会将clusterid分发给每一个DataNode的信息之后，会先校验clusterid是否一致；同样，DataNode收到NameNode的指令的时候也会校验clusterid。DataNode只能接受一次clusterid</li></ul></li><li>当NameNode重启的时候，会自动触发edits_inprogress文件的滚动，产生一个新的edits文件和一个新的edits_inprogress文件，同时更新fsimage。当更新完fsimage之后，NameNode就会将fsimage文件中的内容加载到内存中，加载完成后，NameNode等待DataNode的心跳。如果在指定时间内没有收到心跳，则认为节点丢失重新备份。如果收到DataNode的心跳，那么NameNode会校验这个心跳信息，这个过程称之为安全模式。在安全模式中，NameNode如果校验失败，则试图恢复数据，恢复完成之后会重新校验；如果校验成功，则自动退出安全模式。</li><li>当NameNode重启的时候，自动进入安全模式，实际开发过程中，如果进入安全模式，需要等待NameNode自动退出安全模式，但是在合理的时间内，NameNode没有退出安全模式，就说明数据产生了不可挽回的丢失，此时需要强制退出安全模式（hadoop afsadmin -safemode leave）</li><li>在安全模式中，HDFS不对外提供写服务</li><li>正因为有安全模式的存在所以在为分布式中副本数量设置为1；</li></ol><h3 id="五、多副本的放置策略"><a href="#五、多副本的放置策略" class="headerlink" title="五、多副本的放置策略"></a>五、多副本的放置策略</h3><ol><li>第一个副本<ul><li>如果集群内部上传，那么谁上传第一个副本就放在谁身上</li><li>如果是集群外部上传，NameNode会选择相对较闲的DataNode的节点存储数据</li></ul></li><li>第二个副本<ul><li>Hadoop2.7之前：第二个副本是放在和第一个副本不同机架的节点上</li><li>Hadoop2.7开始：第二个副本是放在和第一个副本相同机架的节点上</li></ul></li><li>第三个副本<ul><li>Hadoop2.7之前：第三个副本是放在和第二个副本相同机架的节点上</li><li>Hadoop2.7开始：第三个副本是放在和第二个副本不同机架的节点上</li></ul></li><li>更多副本：那个几点相对空闲就放在谁身上</li></ol><h3 id="六、-机架感知策略"><a href="#六、-机架感知策略" class="headerlink" title="六、 机架感知策略"></a>六、 机架感知策略</h3><ol><li>在HDFS中默认没有启用，需要在hadoop-site.xml中配置topology.script.file.name开启机架感知策略</li><li>HDFS的机架感知策略是通过指定的脚本来进行配置，这个脚本可以是python和shell，所谓的机架就是一个映射，只需要将DataNode的主机名或者ip映射到值上就对应了机架</li><li>机架指的是逻辑机架不是物理机架，允许将一个或几个物理机架上的节点映射到同一个逻辑机架上，但是实际开发中，一般是一个物理机架对应一个逻辑机架</li></ol><h3 id="七、DataNode"><a href="#七、DataNode" class="headerlink" title="七、DataNode"></a>七、DataNode</h3><ol><li>DataNode是HDFS中的从节点，作用：存储数据，数据以block的形式来存储</li><li>DataNode会将数据存储在磁盘中，在磁盘上的存储位置由hadoop.tmp.dir属性来决定</li><li>DataNode的状态:预服役，服役，预退役，退役</li><li>DataNode会主动给NameNode发送心跳来进行注册</li></ol><h3 id="八、SecondaryNameNode"><a href="#八、SecondaryNameNode" class="headerlink" title="八、SecondaryNameNode"></a>八、SecondaryNameNode</h3><ol><li>SecondaryNameNode并不是NameNode备份，而是辅助NameNode进行edits_inprogress文件的滚动和fsimage的更新</li><li>在HDFS集群中，如果存在SecondaryNameNode，edits_inprogress文件的滚动和fsimage的更新由SecondaryNameNode来做，如果不存在，上述事情由NameNode自己来做，存活与否不影响集群向外提供服务，只会影响效率</li><li>在HDFS集群中，支持的结构一般是有两种<ul><li>1个NameNode+1个SecondaryNameNode+多个DataNode</li><li>2个NameNode+多个DataNode</li></ul></li><li>因为在HDFS中，NameNode是核心节点，所以一般要考虑NameNode的备份，那么此时就需要系用双NameNode机制，一个处于active状态，另一个处于备份状态，当active的NameNode宕机后，备份的立即切换为active，在实际工作中以第二方案为主，这样实现了集群的高可用（HA）。</li></ol><h3 id="九、回收站机制"><a href="#九、回收站机制" class="headerlink" title="九、回收站机制"></a>九、回收站机制</h3><ol><li>在HDFS中，回收站机制默认不开启，即删除命令会立即生效，</li><li>如果要开启回收站机制，要在core-site.xml中配置</li></ol><h3 id="十、dfs目录"><a href="#十、dfs目录" class="headerlink" title="十、dfs目录"></a>十、dfs目录</h3><ol><li>dfs目录实际上就是HDFS的数据目录，由hadoop.tmp.dir属性来决定存储路径</li><li>dfs子目录<br> a. data 对应datanode数据的存储路径<br> b. name 对应namenode数据的存储路径<br> c. namesecondary 对应namesecondary数据的存储路径</li><li>实际开发中，三个子目录应该出现在三个不同的节点上</li><li>in_use.lock用于标记是否已经启动对应的进程</li><li>每一个blk文件对应一个.meta,这个.meta文件可以认为是对blk的校验</li><li>HDFS在第一次启动的时候，间隔1min之后出发edits_inprogress文件的滚动，之后就按照指定的条件进行滚动</li><li>在HFDS中，每一次写操作看成一次事务，分配一个全局递增的编号，简称txid</li><li>文件上传完成之后不能修改</li><li>fsimage_XXXX.md5是利用了md5加密算法对fsimage_xxxx来进行校验</li><li>version文件中包含的主要内容<ul><li>clusterID：集群编号 - 本质上是进行校验的</li><li>storageType：节点类型</li><li>blockpooIID：块池编号</li></ul></li></ol><h2 id="Hadoop流程"><a href="#Hadoop流程" class="headerlink" title="Hadoop流程"></a>Hadoop流程</h2><h3 id="写流程-put"><a href="#写流程-put" class="headerlink" title="写流程 -put"></a>写流程 -put</h3><ol><li>客户端发起RPC请求到NameNode要求上传文件</li><li>NameNode收到请求之后会进行校验<ul><li>校验上传的路径是否有写入权限</li><li>检验上传的路径下是否有同名文件</li></ul></li><li>如果校验失败，直接报错，如果校验成功，则NameNode会修改edits_inprogress,更新内存中的元数据，最后会给客户端返回一个允许上传的信号。</li><li>客户端收到信号之后，会给NameNode发送请求，请求获取第一个Block的存储位置</li><li>NameNode收到请求之后，会等待DataNode的心跳，然后选择符合要求的节点（副本放置策略），将节点位置（默认是3个）放入队列中返回给客户端</li><li>客户端收到队列之后，会从队列中将所有的位置去除，然后选择一个较近的节点将第一个Block的第一个副本写入，客户端同时会告诉第一个副本所在的节点两个副本的存储位置，第一个副本所在的节点就会通过管道（pipeline，本质就是NIO Channel）将第二个副本写入对应的节点同时告诉第二个副本所在的节点最后一个副本的存储位置，第二个副本所在的节点通过管道将第三个副本写入对应的节点；第三个副本写完之后，会给第二个副本所在的节点返回一个ack（确认字符）信号，第二个副本所在的节点会给第一个副本所在的节点返回一个ack；第一个副本所在的节点会给客户端返回一个ack</li><li>客户端收到ack之后，会向namenode发送请求要下一个Block的存储位置，重复4，5，6三个步骤</li><li>当写完所有的数据之后，客户端会给NameNode发送信号，请求NameNode关闭文件。文件一旦关闭就不能再修改了。</li></ol><h3 id="读流程-get"><a href="#读流程-get" class="headerlink" title="读流程 -get"></a>读流程 -get</h3><ol><li>客户端发起RPC请求到NameNode要求下载指定文件</li><li>NameNode在收到请求之后会查询元数据确定是否有指定的文件，如果没有直接报错，如果有，则给客户端返回一个信号表示允许读取</li><li>客户端收到信号之后，会再给NameNode发送请求，请求获取这个文件的第一个block的存储位置</li><li>NameNode在收到请求之后，会将第一个Block的存储位置（默认是3个）放到一个队列中返回客户端</li><li>客户端收到队列之后，会从队列中将block的位置全部取出来，从中选择一个较近（网络拓扑距离）的DataNode来读取第一个Block</li><li>客户端读取完Block之后，会进行checksum（校验和 - 实际上就是利用.meta文件进行校验）验证，如果校验失败，则客户端会给NameNode发送信号，重新选择节点重新读取；如果校验成功，那么客户端会再向NameNode要下一个Block的地址，重复4，5，6三个步骤</li><li>当客户端读取完最后一个Block的时候，NameNode就会关闭文件（实际就是关流）<h3 id="删流程-rmr"><a href="#删流程-rmr" class="headerlink" title="删流程 -rmr"></a>删流程 -rmr</h3></li><li>客户端发起RPC请求到NameNode要求删除指定的文件</li><li>NameNode收到请求后，先记录edits_inprogress文件，然后修改内存中的元数据，然后NameNode就会给客户端返回一个成功信号，但是这个过程中，注意文件并没有从HDFS上移除而是依然存储在DataNode上</li><li>NameNode等待DataNode的心跳，收到心跳信息之后，NameNode就会校验这个心跳信息（比对元数据和心跳信息中的BlockID是否一致），然后NameNode就会进行心跳响应，要求DataNode删除对应的Block</li><li>DataNode收到心跳响应之后才会删除Block，此时文件才真正的从HDFS上移除</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;大数据简介&quot;&gt;&lt;a href=&quot;#大数据简介&quot; class=&quot;headerlink&quot; title=&quot;大数据简介&quot;&gt;&lt;/a&gt;大数据简介&lt;/h2&gt;&lt;h3 id=&quot;一、大数据特征-6V&quot;&gt;&lt;a href=&quot;#一、大数据特征-6V&quot; class=&quot;headerlink&quot; 
-      
-    
-    </summary>
-    
-    
-      <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
-    
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -237,9 +266,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -266,9 +295,9 @@
       <category term="JUC" scheme="http://yoursite.com/categories/JUC/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -294,9 +323,9 @@
       <category term="高并发" scheme="http://yoursite.com/categories/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -322,9 +351,9 @@
       <category term="Interview" scheme="http://yoursite.com/categories/Interview/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -351,9 +380,9 @@
       <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -406,23 +435,23 @@
   </entry>
   
   <entry>
-    <title>JVMDay01</title>
+    <title>JVM</title>
     <link href="http://yoursite.com/2020/02/28/JVM/"/>
     <id>http://yoursite.com/2020/02/28/JVM/</id>
     <published>2020-02-27T16:00:00.000Z</published>
-    <updated>2020-03-18T01:18:51.485Z</updated>
+    <updated>2020-04-24T14:43:03.503Z</updated>
     
     <summary type="html">
     
     </summary>
     
     
-      <category term="JVM" scheme="http://yoursite.com/categories/JVM/"/>
+      <category term="JVM虚拟机" scheme="http://yoursite.com/categories/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
-    
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -448,9 +477,9 @@
       <category term="Java基础" scheme="http://yoursite.com/categories/Java%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -476,9 +505,9 @@
       <category term="Java基础" scheme="http://yoursite.com/categories/Java%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -504,9 +533,9 @@
       <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -532,38 +561,9 @@
       <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Web总结</title>
-    <link href="http://yoursite.com/2020/02/21/Web/"/>
-    <id>http://yoursite.com/2020/02/21/Web/</id>
-    <published>2020-02-20T16:00:00.000Z</published>
-    <updated>2020-02-23T06:42:58.702Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol><li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li></ol><hr><ol start="2"><li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li></ol><hr><ol start="3"><li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure> b. get方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure> c. post方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure> d. getJSON方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li><li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li><li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connectGET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址使用的协议版本1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：Accept：浏览器可以接受的MIME类型Accept-Charset：浏览器可接受的字符集Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类Connection：表示是否需要持久连接，HTTP默认KeepAliveContent-Length：表示请求消息正文的长度Cookie：存放缓存信息Host：初始URL中的主机和端口If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li></ol><hr><p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;AJAX&quot;&gt;&lt;a href=&quot;#AJAX&quot; class=&quot;headerlink&quot; title=&quot;AJAX&quot;&gt;&lt;/a&gt;AJAX&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;背景&lt;br&gt; web开发是通过HTTP协议实现的&lt;br&gt; Http协议的特点：&lt;br&gt; a. 基于请求相应模型&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
