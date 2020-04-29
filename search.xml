@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>redis</title>
+    <url>/2020/04/29/redis/</url>
+    <content><![CDATA[<h2 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis?"></a>什么是 Redis?</h2><ol>
+<li>redis是由Apache提供的高性能的非关系型数据库</li>
+</ol>
+<h2 id="redis的特点"><a href="#redis的特点" class="headerlink" title="redis的特点"></a>redis的特点</h2><ol>
+<li>redis支持数据的持久化，支持将内存中的数据持久到磁盘上，这样可以避免重启或服务器宕机引起数据的丢失</li>
+<li>redis不仅仅支持key-value这样类型的数据，还支持list ，set ，zset，hash等数据结构的存储</li>
+<li>redis常常以集群的方式部署在节点上，采用的主从结构，支持数据的备份，即master-slave模式的数据备份</li>
+</ol>
+<h2 id="Redis-优势"><a href="#Redis-优势" class="headerlink" title="Redis 优势"></a>Redis 优势</h2><ol>
+<li>redis是基于内存存储数据的，所以有高性能的读写速度</li>
+<li>有丰富的数据类型 - redis支持 strings lists hashes sets数据类型的草错</li>
+<li>原子性 –redis所有的操作都是原子性的，即要么同时成功，要么同时失败</li>
+<li>丰富的特性 - redis支持的发布订阅 ，通知 和key过期等特性</li>
+</ol>
+<h2 id="Redis-与其他-key-value-存储有什么不同？"><a href="#Redis-与其他-key-value-存储有什么不同？" class="headerlink" title="Redis 与其他 key-value 存储有什么不同？"></a>Redis 与其他 key-value 存储有什么不同？</h2><ol>
+<li>redis支持丰富的数据类型的数据的存储，如list ，set ，zset hash等</li>
+<li>redis支持数据的持久化，可以将数据持久化到磁盘上防止数据丢失</li>
+<li>redis提供原子性操作</li>
+<li>redis在内存中操作数据更加的简单，以及有更快的读写效率</li>
+</ol>
+<h2 id="Redis支持的数据类型"><a href="#Redis支持的数据类型" class="headerlink" title="Redis支持的数据类型"></a>Redis支持的数据类型</h2><ol>
+<li>支持5种数据类型 string hash list set zset（sorted set 有序集合）</li>
+</ol>
+<h2 id="Redis-是单进程单线程的？"><a href="#Redis-是单进程单线程的？" class="headerlink" title="Redis 是单进程单线程的？"></a>Redis 是单进程单线程的？</h2><ol>
+<li>redis是单进程单线程的，redis利用队列技术将并发访问编程串行访问，消除了传统数据库串行控制的开销</li>
+</ol>
+<h2 id="Redis-的持久化机制是什么？各自的优缺点？"><a href="#Redis-的持久化机制是什么？各自的优缺点？" class="headerlink" title="Redis 的持久化机制是什么？各自的优缺点？"></a>Redis 的持久化机制是什么？各自的优缺点？</h2><ol>
+<li>RDB 以数据集快照方式把持久化模式，记录redis数据库的所有键值对，在某个时间点将数据写入一个临时文件，持久化结束后，用这个临时文件替换上次持久化的文件达到数据恢复<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4></li>
+</ol>
+<ul>
+<li>只有一个dump.rdb方便持久化</li>
+<li>容灾性好，一个文件可以保存到安全的磁盘上</li>
+<li>能最大化，fork 子进程来完成写操作，让主进程继续处理命令，所以是 IO最大化。使用单独子进程来进行持久化，主进程不会进行任何 IO 操作，保证了 redis的高性能) 4.相对于数据集大时，比 AOF 的启动效率更高。<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3></li>
+<li>数据安全性会降低，RDB会隔一段时间持久化，在持久化的过程中如果redis出现故障，则会造成数据的丢失</li>
+</ul>
+<p>AOF（Append-only file）持久化方式： 是指所有的命令行记录以 redis 命令请求协议的格式完全持久化存储)保存为 aof 文件。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>数据安全，aof 持久化可以配置 appendfsync 属性，有 always，每进行一次<br>命令操作就记录到 aof 文件中一次。</li>
+<li>通过 append 模式写文件，即使中途服务器宕机，可以通过 redis-check-aof<br>工具解决数据一致性问题。</li>
+<li>AOF 机制的 rewrite 模式。AOF 文件没被 rewrite 之前（文件过大时会对命令<br>进行合并重写），可以删除其中的某些命令（比如误操作的 flushall）)</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>AOF文件比RDB文件大，且恢复速度慢</li>
+<li>数据集大的时候，比rdb启动效率低</li>
+</ol>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kafka</title>
+    <url>/2020/04/29/Kafka/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
+<li>Kafka是LinkedIn（领英）公司开发后来贡献给了Apache提供的一套分布式的消息系统（message system），是一个分布式流平台</li>
+<li>流平台具有三个关键功能：</li>
+</ol>
+<ul>
+<li>发布和订阅记录流，类似于消息队列或企业消息传递系统。</li>
+<li>以容错的持久方式存储记录流。</li>
+<li>处理记录流。</li>
+</ul>
+<ol start="3">
+<li>应用场景</li>
+</ol>
+<ul>
+<li>建立实时流数据管道，以可靠地在系统或应用程序之间获取数据</li>
+<li>构建实时流应用程序，以转换或响应数据流</li>
+</ul>
+<ol start="4">
+<li>Kafka本身是由Scala来完成的，所以Kafka天然支持高并发和分布式</li>
+<li>Kafka会将生产者添加的数据放到磁盘存储，但是Kafka的读写速度在60-80M/S，Kafka底层采用了0拷贝 —指的是没有状态的转换</li>
+<li>Kafka是纯粹的发布订阅的消息队列，数据可以被重复的消费</li>
+</ol>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li>broker：经纪人<ul>
+<li>一个Kafka节点就是一个broker</li>
+<li>每一个broker都需要编号，只需要&gt;=0整数即可</li>
+</ul>
+</li>
+<li>producer：生产者  生产数据，将数据放到Kafka队列中</li>
+<li>consumer：消费者  消费数据 将数据从Kafka队列中取出</li>
+<li>topic:主题/话题</li>
+</ol>
+<ul>
+<li>topic 的作用<ul>
+<li>对数据进行分类</li>
+<li>在Kafka中,每一条数据必须对应一个topic</li>
+<li>一个topic至少一个partition</li>
+<li>在执行删除命令的时候，topic并不会立即删除，而是先标记为删除状态，之后在某一时刻才会被删除，如果需要删除命令立即生效需要讲server.properties 中的delete.topic.enable属性设置为true</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>partition</li>
+</ol>
+<ul>
+<li>有几个分区就会有几个目录</li>
+<li>平均分配到每一个Kafka节点</li>
+<li>保证数据请求不会集中在一个节点上，保证数据和请求的负载均衡</li>
+<li>分区是有编号的，编号从0开始</li>
+</ul>
+<ol start="6">
+<li>replication-factor :副本因子</li>
+</ol>
+<ul>
+<li>指定备份数量,来对数据备份</li>
+<li>副本数量不能大于节点数量</li>
+</ul>
+<ol start="7">
+<li>consumer group :消费者组</li>
+</ol>
+<ul>
+<li>在Kafka中，可以将一个消费者和多个消费者绑定在同一个组中，如果不指定，一个消费者就是一个消费者组,</li>
+<li>数据在消费者组之间是共享的，在组内是竞争的</li>
+</ul>
+<h2 id="消息队列-系统概述"><a href="#消息队列-系统概述" class="headerlink" title="消息队列/系统概述"></a>消息队列/系统概述</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>Poll to Poll  –&gt; p2p - 点对点模式<ul>
+<li>消息队列中的数据可以被每一个消费者消费</li>
+<li>数据获取可以是pull或者push方法</li>
+</ul>
+</li>
+<li>publish/subscribe  -&gt;P/S - 发布订阅模式<ul>
+<li>消息队列中的数据可以被多个消费者订阅</li>
+<li>一般会提供持久化机制</li>
+</ul>
+</li>
+</ol>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
+<li>实现消费者和生产者之间的解耦。</li>
+<li>在分布式系统下具备异步,削峰,负载均衡等一系列高级功能</li>
+<li>拥有持久化的机制，进程消息，队列中的信息也可以保存下来。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MongoDB</title>
     <url>/2020/04/28/MongoDB/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
@@ -26,8 +175,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -286,34 +435,48 @@
 <li>在合并的过程中，舍弃掉被标记为删除数据或者过时的数据，所以删除是在合并的过程中发生的</li>
 </ol>
 <h2 id="读写流程"><a href="#读写流程" class="headerlink" title="读写流程"></a>读写流程</h2><h3 id="写流程"><a href="#写流程" class="headerlink" title="写流程"></a>写流程</h3><ol>
-<li>当HRegionServer在收到写请求之后，会将写请求记录到到WAl中，会将数据更新到memStore中</li>
-<li>数据在memStore中会进行排序：行键字典排序—&gt;列族字典排序-&gt;列字典排序-&gt;时间戳倒序</li>
-<li>当memStore达到冲刷条件的时候，会冲刷产生一个新的HFile，这个HFile是有序的 - 所有的HFile之间是局部有序的</li>
-<li>正因为HFile是有序的，所以每一个HFile都把持了各自的起始行键和结束行键</li>
-<li>HFile最终会落地到HDFS中以block形式存储<br> HFile的v1格式<ul>
-<li>DataBlock：存储数据，可以一个可以多个<ul>
-<li>包含一个magic和多个key value<ol>
-<li>magic: 魔数 本质上一个随机数，用于校验的</li>
-<li>KeyValue：DataBlock中存储的数据都是以键值对</li>
+<li><p>当HRegionServer在收到写请求之后，会将写请求记录到到WAl中，会将数据更新到memStore中</p>
+</li>
+<li><p>数据在memStore中会进行排序：行键字典排序—&gt;列族字典排序-&gt;列字典排序-&gt;时间戳倒序</p>
+</li>
+<li><p>当memStore达到冲刷条件的时候，会冲刷产生一个新的HFile，这个HFile是有序的 - 所有的HFile之间是局部有序的</p>
+</li>
+<li><p>正因为HFile是有序的，所以每一个HFile都把持了各自的起始行键和结束行键</p>
+</li>
+<li><p>HFile最终会落地到HDFS中以block形式存储<br> HFile的v1格式</p>
+<ul>
+<li><p>DataBlock：存储数据，可以一个可以多个</p>
+<ul>
+<li><p>包含一个magic和多个key value</p>
+<ol>
+<li><p>magic: 魔数 本质上一个随机数，用于校验的</p>
+</li>
+<li><p>KeyValue：DataBlock中存储的数据都是以键值对</p>
+</li>
 </ol>
 </li>
+<li><p>最小存储单位datablock</p>
+</li>
 </ul>
 </li>
-<li>MetaBlock：存储元数据，一般只出现在.meta.文件中，其他的HFile中的一般没有这一块</li>
-<li>FileInfo： 文件信息，对当前HFile的描述，例如文件大小信息</li>
-<li>DataIndex：DataBlock的索引值，记录每一个DataBlock在文件中的起始字节和结束字节位置</li>
-<li>MetaIndex：MetaBlock的索引值，记录每一个MetaBlock在文件中的起始字节和结束字节位置</li>
-<li>Trailer：在文件末尾，固定占4个字节大小，其中前2个字节记录DataIndex在文件的起始字节位置，后2个字节记录MetaIndex在文件的起始字节位置<h3 id="读流程"><a href="#读流程" class="headerlink" title="读流程"></a>读流程</h3></li>
 </ul>
 </li>
+</ol>
+<pre><code>* MetaBlock：存储元数据，一般只出现在.meta.文件中，其他的HFile中的一般没有这一块
+* FileInfo： 文件信息，对当前HFile的描述，例如文件大小信息
+* DataIndex：DataBlock的索引值，记录每一个DataBlock在文件中的起始字节和结束字节位置
+* MetaIndex：MetaBlock的索引值，记录每一个MetaBlock在文件中的起始字节和结束字节位置
+* Trailer：在文件末尾，固定占4个字节大小，其中前2个字节记录DataIndex在文件的起始字节位置，后2个字节记录MetaIndex在文件的起始字节位置</code></pre><h3 id="读流程"><a href="#读流程" class="headerlink" title="读流程"></a>读流程</h3><ol>
+<li>当HRegionServer收到请求之后，会首先从blockcahe中读取数据，如果没有读到，会从memstore中读</li>
+<li>如果以上都没有读到，就会从HFile中读，会根据行键范围删选掉不符合范围的Hfile，再利用布隆过滤器筛选出一定没有的，缩小范围。</li>
 </ol>
 ]]></content>
       <categories>
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +615,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -561,8 +724,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -682,11 +845,11 @@
 <p>编写插件:实现 Mybatis 的 Interceptor 接口并复写 intercept()方法，然后在给 插件编写注解，指定要拦截哪一个接口的哪些方法即可，记住，别忘了在配置文 件中配置你编写的插件。</p>
 ]]></content>
       <categories>
-        <category>面试题</category>
+        <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -808,8 +971,8 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -856,8 +1019,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -898,8 +1061,8 @@
         <category>Springcloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1105,8 +1268,8 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1262,8 +1425,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1418,8 +1581,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>JUC</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1446,8 +1609,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>高并发</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1490,8 +1653,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Interview</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1509,8 +1672,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Web</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1541,8 +1704,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>JVM虚拟机</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1573,8 +1736,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1595,8 +1758,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1613,8 +1776,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1637,8 +1800,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1693,52 +1856,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web总结</title>
-    <url>/2020/02/21/Web/</url>
-    <content><![CDATA[<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
-<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
-</ol>
-<hr>
-<ol start="2">
-<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
-</ol>
-<hr>
-<ol start="3">
-<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
-<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
-<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
-GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
-POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
-使用的协议版本
-1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
-1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
-Accept：浏览器可以接受的MIME类型
-Accept-Charset：浏览器可接受的字符集
-Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
-Connection：表示是否需要持久连接，HTTP默认KeepAlive
-Content-Length：表示请求消息正文的长度
-Cookie：存放缓存信息
-Host：初始URL中的主机和端口
-If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
-</ol>
-<hr>
-<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -1816,8 +1935,52 @@ If-Modified—Since：只有当所请求的内容在指定的日期之后又经�
         <category>Mysql</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web总结</title>
+    <url>/2020/02/21/Web/</url>
+    <content><![CDATA[<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
+<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
+</ol>
+<hr>
+<ol start="2">
+<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
+</ol>
+<hr>
+<ol start="3">
+<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
+<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
+<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
+GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
+POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
+使用的协议版本
+1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
+1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
+Accept：浏览器可以接受的MIME类型
+Accept-Charset：浏览器可接受的字符集
+Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
+Connection：表示是否需要持久连接，HTTP默认KeepAlive
+Content-Length：表示请求消息正文的长度
+Cookie：存放缓存信息
+Host：初始URL中的主机和端口
+If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
+</ol>
+<hr>
+<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1837,8 +2000,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1851,8 +2014,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1863,8 +2026,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1906,8 +2069,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1921,8 +2084,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1953,8 +2116,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1987,8 +2150,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2004,8 +2167,46 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>微服务</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringDay02</title>
+    <url>/2020/01/29/SpringDay02/</url>
+    <content><![CDATA[<h2 id="单例和多例"><a href="#单例和多例" class="headerlink" title="单例和多例"></a>单例和多例</h2><pre><code>Spring容器管理的bean在默认情况下是单例，也就是一个bean创建一个对象，存在内置Map集合中，之后无论获取多少次该bean，都返回的同一个对象。</code></pre><h3 id="bean在单例模式的生命周期："><a href="#bean在单例模式的生命周期：" class="headerlink" title="bean在单例模式的生命周期："></a>bean在单例模式的生命周期：</h3><pre><code>bean在单例模式下，Spring容器启动时解析xml发现该bean标签后，直接创建该bean的对象存入内部map中保存，此后无论调用多少次getBean（）都是从map中获取该对象返回，一直是一个对象，次对象一直被Spring容器持有，知道容器退出时，随着容器的退出对象被销毁</code></pre><h3 id="案例-单例"><a href="#案例-单例" class="headerlink" title="案例-单例"></a>案例-单例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"singelton"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试单例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//初始化Spring容器</span></span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        <span class="comment">//获取bean对象</span></span><br><span class="line">        Person person1 = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        Person person2 = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        System.out.println(person1);<span class="comment">//cn.tedu.domain.Person@2df3b89c</span></span><br><span class="line">        System.out.println(person2);<span class="comment">//cn.tedu.domain.Person@2df3b89c</span></span><br><span class="line">        <span class="comment">//关闭容器</span></span><br><span class="line">        ((ClassPathXmlApplicationContext) context).close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="bean在多例模式下的生命周期："><a href="#bean在多例模式下的生命周期：" class="headerlink" title="bean在多例模式下的生命周期："></a>bean在多例模式下的生命周期：</h3><pre><code>bean在多例模式下，Spring容器启动时解析xml时发现bean标签后，只是将该bean进行管理，并不会创建对象，此后每次使用getBean（）获取该bean时，Spring都会重新创建该对象返回，每次都是一个新的对象。这个对象Spring容器不会持有，什么时候销毁取绝于使用对象自己销毁。</code></pre><h2 id="案例-多例"><a href="#案例-多例" class="headerlink" title="案例-多例"></a>案例-多例</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="懒加载机制"><a href="#懒加载机制" class="headerlink" title="懒加载机制"></a>懒加载机制</h2><pre><code>Spring默认在容器初始化的过程中，解析xml，并且创建单例的bean保存到map中，这样的机制在bean较少时问题不大，但一旦bean非常多时，Spring需要在启动的过程中花费大量的时间来创建bean花费大量的空间来存储bean，但这些bean可能很就都用不上，这种在启动时在时间和空间上的浪费很不值得。所以spring提供了懒加载机制。所谓的懒加载机制就是可以规定指定的bean不在启动时立刻创建，而是后续在第一次使用到才创建，从而减轻在启动过程中对时间和内存的消耗</code></pre><ol>
+<li><strong>懒加载机制只对单例bean有作用，对于多例bean设置懒加载没有意义</strong></li>
+<li><strong>懒加载只是延后了对象的创建的时机，对象仍然是单例</strong></li>
+</ol>
+<h3 id="懒加载的配置方式"><a href="#懒加载的配置方式" class="headerlink" title="懒加载的配置方式"></a>懒加载的配置方式</h3><h4 id="为指定bean配置懒加载"><a href="#为指定bean配置懒加载" class="headerlink" title="为指定bean配置懒加载"></a>为指定bean配置懒加载</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">      </span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--设置指定bean的懒加载default-lazy-init="true"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">lazy-init</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="为全局配置懒加载"><a href="#为全局配置懒加载" class="headerlink" title="为全局配置懒加载"></a>为全局配置懒加载</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">       <span class="attr">default-lazy-init</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--设置默认全局配置的懒加载default-lazy-init="true"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="配置初始化和销毁的方法"><a href="#配置初始化和销毁的方法" class="headerlink" title="配置初始化和销毁的方法"></a>配置初始化和销毁的方法</h3><pre><code>在Spring中如果某个bean在初始化之后or销毁之前要做一些额外操作可以为该bean配置厨师化和销毁的方法，在这些方法中完成功能</code></pre><h4 id="Spring约束文件"><a href="#Spring约束文件" class="headerlink" title="Spring约束文件"></a>Spring约束文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置初始化和摧毁的方法--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcUtils"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.JDBCUtils"</span> <span class="attr">init-method</span>=<span class="string">"myInit"</span> <span class="attr">destroy-method</span>=<span class="string">"myDestroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Spring中关键方法的执行顺序："><a href="#Spring中关键方法的执行顺序：" class="headerlink" title="Spring中关键方法的执行顺序："></a>Spring中关键方法的执行顺序：</h4><p><strong>!!!! 在Spring创建bean对象时，先创建对象（通过无参构造or工厂），之后立即调用init方式来执行初始化操作，之后此bean就可以哪来调用其它普通方法，而在对象销毁之前，Spring容器调用其destroy方法来执行销毁操作</strong></p>
+<h3 id="Spring-DI"><a href="#Spring-DI" class="headerlink" title="Spring DI"></a>Spring DI</h3><h4 id="IOC（DI）-控制反转（依赖注入）"><a href="#IOC（DI）-控制反转（依赖注入）" class="headerlink" title="IOC（DI）-控制反转（依赖注入）"></a>IOC（DI）-控制反转（依赖注入）</h4><pre><code>所谓的IOC称之为控制反转，简单来说就是将对象的创建的权利及对象的生命周期的管理过程交由Spring框架来处理，从此在开发过程中不再需要关注对象的创建和生命周期的管理，而是在需要时由Spring框架提供，这个由Spring框架管理对象创建和生命周期的机制称之为控制反转。
+而在创建对象的过程中Spring可以配置对对象的属性进行设置，这个过程称之为依赖注入也即DI</code></pre><h4 id="set方法注入"><a href="#set方法注入" class="headerlink" title="set方法注入"></a>set方法注入</h4><pre><code>通常的javabean属性都会私有化，而对外暴露setXxx（）getXxx方法，此时Spring可以通过这样的setXxx（）方法将属性的值注入对象</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"亚索"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"18"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"job"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>程序员<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>架构师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>大数据工程师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"set"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>40000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>30000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"亚索"</span> <span class="attr">value</span>=<span class="string">"德玛西亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"刀妹"</span> <span class="attr">value</span>=<span class="string">"艾欧尼亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>亚索<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>刀妹<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="自定义bean的注入"><a href="#自定义bean的注入" class="headerlink" title="自定义bean的注入"></a>自定义bean的注入</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"亚索"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"18"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"job"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>程序员<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>架构师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>大数据工程师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"set"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>40000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>30000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"亚索"</span> <span class="attr">value</span>=<span class="string">"德玛西亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"刀妹"</span> <span class="attr">value</span>=<span class="string">"艾欧尼亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>亚索<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>刀妹<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dog"</span> <span class="attr">ref</span>=<span class="string">"dog"</span> &gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cat"</span> <span class="attr">ref</span>=<span class="string">"cat"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"snake"</span> <span class="attr">ref</span>=<span class="string">"snake"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Dog"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"jobs"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"11"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Cat"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"tom"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"snake"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Snake"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小白"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"1000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h3><h4 id="在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的进行设置，从而省去依次配置的过程，简化了配置"><a href="#在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的进行设置，从而省去依次配置的过程，简化了配置" class="headerlink" title="在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的进行设置，从而省去依次配置的过程，简化了配置"></a>在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的<bean>进行设置，从而省去依次配置的过程，简化了配置</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    autowire="byName" 根据javabean中需要注入属性的名字，在Spring容器中找到对应类型的id进行自动装配</span></span><br><span class="line"><span class="comment">    autowire="byType" 根据javabean中需要注入属性的类型，在Spring容器中找到对应的class类型进行配置</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span> <span class="attr">autowire</span>=<span class="string">"byName"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Dog"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"jobs"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"11"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Cat"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"tom"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"snake"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Snake"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小白"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"1000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="基于构造方法的注入"><a href="#基于构造方法的注入" class="headerlink" title="基于构造方法的注入"></a>基于构造方法的注入</h3><h4 id="对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。"><a href="#对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。" class="headerlink" title="对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。"></a>对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"1"</span> <span class="attr">value</span>=<span class="string">"旺财"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"2"</span> <span class="attr">ref</span>=<span class="string">"dog"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Dog"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小白"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2045,46 +2246,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringDay02</title>
-    <url>/2020/01/29/SpringDay02/</url>
-    <content><![CDATA[<h2 id="单例和多例"><a href="#单例和多例" class="headerlink" title="单例和多例"></a>单例和多例</h2><pre><code>Spring容器管理的bean在默认情况下是单例，也就是一个bean创建一个对象，存在内置Map集合中，之后无论获取多少次该bean，都返回的同一个对象。</code></pre><h3 id="bean在单例模式的生命周期："><a href="#bean在单例模式的生命周期：" class="headerlink" title="bean在单例模式的生命周期："></a>bean在单例模式的生命周期：</h3><pre><code>bean在单例模式下，Spring容器启动时解析xml发现该bean标签后，直接创建该bean的对象存入内部map中保存，此后无论调用多少次getBean（）都是从map中获取该对象返回，一直是一个对象，次对象一直被Spring容器持有，知道容器退出时，随着容器的退出对象被销毁</code></pre><h3 id="案例-单例"><a href="#案例-单例" class="headerlink" title="案例-单例"></a>案例-单例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"singelton"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试单例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//初始化Spring容器</span></span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        <span class="comment">//获取bean对象</span></span><br><span class="line">        Person person1 = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        Person person2 = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        System.out.println(person1);<span class="comment">//cn.tedu.domain.Person@2df3b89c</span></span><br><span class="line">        System.out.println(person2);<span class="comment">//cn.tedu.domain.Person@2df3b89c</span></span><br><span class="line">        <span class="comment">//关闭容器</span></span><br><span class="line">        ((ClassPathXmlApplicationContext) context).close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="bean在多例模式下的生命周期："><a href="#bean在多例模式下的生命周期：" class="headerlink" title="bean在多例模式下的生命周期："></a>bean在多例模式下的生命周期：</h3><pre><code>bean在多例模式下，Spring容器启动时解析xml时发现bean标签后，只是将该bean进行管理，并不会创建对象，此后每次使用getBean（）获取该bean时，Spring都会重新创建该对象返回，每次都是一个新的对象。这个对象Spring容器不会持有，什么时候销毁取绝于使用对象自己销毁。</code></pre><h2 id="案例-多例"><a href="#案例-多例" class="headerlink" title="案例-多例"></a>案例-多例</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="懒加载机制"><a href="#懒加载机制" class="headerlink" title="懒加载机制"></a>懒加载机制</h2><pre><code>Spring默认在容器初始化的过程中，解析xml，并且创建单例的bean保存到map中，这样的机制在bean较少时问题不大，但一旦bean非常多时，Spring需要在启动的过程中花费大量的时间来创建bean花费大量的空间来存储bean，但这些bean可能很就都用不上，这种在启动时在时间和空间上的浪费很不值得。所以spring提供了懒加载机制。所谓的懒加载机制就是可以规定指定的bean不在启动时立刻创建，而是后续在第一次使用到才创建，从而减轻在启动过程中对时间和内存的消耗</code></pre><ol>
-<li><strong>懒加载机制只对单例bean有作用，对于多例bean设置懒加载没有意义</strong></li>
-<li><strong>懒加载只是延后了对象的创建的时机，对象仍然是单例</strong></li>
-</ol>
-<h3 id="懒加载的配置方式"><a href="#懒加载的配置方式" class="headerlink" title="懒加载的配置方式"></a>懒加载的配置方式</h3><h4 id="为指定bean配置懒加载"><a href="#为指定bean配置懒加载" class="headerlink" title="为指定bean配置懒加载"></a>为指定bean配置懒加载</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">      </span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--设置指定bean的懒加载default-lazy-init="true"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">lazy-init</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="为全局配置懒加载"><a href="#为全局配置懒加载" class="headerlink" title="为全局配置懒加载"></a>为全局配置懒加载</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">       <span class="attr">default-lazy-init</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--设置默认全局配置的懒加载default-lazy-init="true"--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="配置初始化和销毁的方法"><a href="#配置初始化和销毁的方法" class="headerlink" title="配置初始化和销毁的方法"></a>配置初始化和销毁的方法</h3><pre><code>在Spring中如果某个bean在初始化之后or销毁之前要做一些额外操作可以为该bean配置厨师化和销毁的方法，在这些方法中完成功能</code></pre><h4 id="Spring约束文件"><a href="#Spring约束文件" class="headerlink" title="Spring约束文件"></a>Spring约束文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置初始化和摧毁的方法--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcUtils"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.JDBCUtils"</span> <span class="attr">init-method</span>=<span class="string">"myInit"</span> <span class="attr">destroy-method</span>=<span class="string">"myDestroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="Spring中关键方法的执行顺序："><a href="#Spring中关键方法的执行顺序：" class="headerlink" title="Spring中关键方法的执行顺序："></a>Spring中关键方法的执行顺序：</h4><p><strong>!!!! 在Spring创建bean对象时，先创建对象（通过无参构造or工厂），之后立即调用init方式来执行初始化操作，之后此bean就可以哪来调用其它普通方法，而在对象销毁之前，Spring容器调用其destroy方法来执行销毁操作</strong></p>
-<h3 id="Spring-DI"><a href="#Spring-DI" class="headerlink" title="Spring DI"></a>Spring DI</h3><h4 id="IOC（DI）-控制反转（依赖注入）"><a href="#IOC（DI）-控制反转（依赖注入）" class="headerlink" title="IOC（DI）-控制反转（依赖注入）"></a>IOC（DI）-控制反转（依赖注入）</h4><pre><code>所谓的IOC称之为控制反转，简单来说就是将对象的创建的权利及对象的生命周期的管理过程交由Spring框架来处理，从此在开发过程中不再需要关注对象的创建和生命周期的管理，而是在需要时由Spring框架提供，这个由Spring框架管理对象创建和生命周期的机制称之为控制反转。
-而在创建对象的过程中Spring可以配置对对象的属性进行设置，这个过程称之为依赖注入也即DI</code></pre><h4 id="set方法注入"><a href="#set方法注入" class="headerlink" title="set方法注入"></a>set方法注入</h4><pre><code>通常的javabean属性都会私有化，而对外暴露setXxx（）getXxx方法，此时Spring可以通过这样的setXxx（）方法将属性的值注入对象</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"亚索"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"18"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"job"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>程序员<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>架构师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>大数据工程师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"set"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>40000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>30000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"亚索"</span> <span class="attr">value</span>=<span class="string">"德玛西亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"刀妹"</span> <span class="attr">value</span>=<span class="string">"艾欧尼亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>亚索<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>刀妹<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="自定义bean的注入"><a href="#自定义bean的注入" class="headerlink" title="自定义bean的注入"></a>自定义bean的注入</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"亚索"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"18"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"job"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>程序员<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>架构师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>大数据工程师<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"set"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>40000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>30000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"亚索"</span> <span class="attr">value</span>=<span class="string">"德玛西亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"刀妹"</span> <span class="attr">value</span>=<span class="string">"艾欧尼亚"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"1"</span>&gt;</span>亚索<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"2"</span>&gt;</span>刀妹<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dog"</span> <span class="attr">ref</span>=<span class="string">"dog"</span> &gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cat"</span> <span class="attr">ref</span>=<span class="string">"cat"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"snake"</span> <span class="attr">ref</span>=<span class="string">"snake"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Dog"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"jobs"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"11"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Cat"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"tom"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"snake"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Snake"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小白"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"1000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h3><h4 id="在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的进行设置，从而省去依次配置的过程，简化了配置"><a href="#在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的进行设置，从而省去依次配置的过程，简化了配置" class="headerlink" title="在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的进行设置，从而省去依次配置的过程，简化了配置"></a>在Spring的set方式实现注入的过程中，支持自动装配机制，所谓的自动装配机制，会根据要设置的javabean属性的名字or类型到Spring中自动寻找对应的idor类型的<bean>进行设置，从而省去依次配置的过程，简化了配置</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    autowire="byName" 根据javabean中需要注入属性的名字，在Spring容器中找到对应类型的id进行自动装配</span></span><br><span class="line"><span class="comment">    autowire="byType" 根据javabean中需要注入属性的类型，在Spring容器中找到对应的class类型进行配置</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span> <span class="attr">autowire</span>=<span class="string">"byName"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Dog"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"jobs"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"11"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"cat"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Cat"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"tom"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"snake"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Snake"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小白"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"1000"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="基于构造方法的注入"><a href="#基于构造方法的注入" class="headerlink" title="基于构造方法的注入"></a>基于构造方法的注入</h3><h4 id="对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。"><a href="#对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。" class="headerlink" title="对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。"></a>对象属性设置的另一种方式是在对象创建的过程中通过构造方法传入参数并且设置对象的属性。</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hero"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Hero"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"1"</span> <span class="attr">value</span>=<span class="string">"旺财"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"2"</span> <span class="attr">ref</span>=<span class="string">"dog"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dog"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Dog"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小白"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -2162,8 +2325,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2215,45 +2378,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringMVCDay01</title>
-    <url>/2020/01/29/SpringMVCDay01/</url>
-    <content><![CDATA[<h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
-<h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
-<li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
-</ol>
-<h2 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-28%E4%B8%8B%E5%8D%8810.54.07.png"  alt=""></p>
-<h3 id="配置前端控制器"><a href="#配置前端控制器" class="headerlink" title="配置前端控制器"></a>配置前端控制器</h3><h4 id="1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet"><a href="#1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet" class="headerlink" title="1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet"></a>1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置servlet的映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="生成SpringMVC核心配置文件"><a href="#生成SpringMVC核心配置文件" class="headerlink" title="生成SpringMVC核心配置文件"></a>生成SpringMVC核心配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系，拼接上前缀后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建类实现controller接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//创建modelAndView</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//封装数据</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"msg1"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"msg2"</span>,<span class="string">"hello springMVC"</span>);</span><br><span class="line">        <span class="comment">//封装视图</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="comment">//返回modelAndView</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="SpringMVC注解方式配置"><a href="#SpringMVC注解方式配置" class="headerlink" title="SpringMVC注解方式配置"></a>SpringMVC注解方式配置</h2><h3 id="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"><a href="#SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式" class="headerlink" title="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"></a>SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式</h3><h3 id="springMVC注解工作原理"><a href="#springMVC注解工作原理" class="headerlink" title="springMVC注解工作原理"></a>springMVC注解工作原理</h3><ol>
-<li>当服务器启动时，会先加载web.xml文件，之后通过引入核心配置文件来加载SpringMVC.xml</li>
-<li>当解析到包扫描时，扫描指定的包，并将含有@Conteoller注解的类解析为处理器</li>
-<li>如果配置过<a href="mvc:annotation-driven">mvc:annotation-driven</a>就会解析Spring-MVC注解</li>
-<li>解析@requestMapping（value=“/test01.action”），将指定的地址和当前方法的映射关系保存</li>
-<li>当客户端发出请求访问时，SpringMVC寻找改地址的映射关系，找到就执行方法，找不到抛出404</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置mvc注解方式的DI--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="test01-jsp"><a href="#test01-jsp" class="headerlink" title="test01.jsp"></a>test01.jsp</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;this is test01.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;$&#123;msg&#125;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="comment">//在类上加上注解指的是在访问的地址上加上前缀</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/my01"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test01"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过value属性指定当前的映射到那些路径,可以映射到多个路径</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/test04.action"</span>,<span class="string">"/test02.action"</span>,<span class="string">"/test03.action"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just do it"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test02"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="SpringMVC获取请求参数"><a href="#SpringMVC获取请求参数" class="headerlink" title="SpringMVC获取请求参数"></a>SpringMVC获取请求参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：日期数据处理</span></span><br><span class="line"><span class="comment">     *  通过注册自定义类型编辑器使SpringMVC支持自定义格式请求参数的处理</span></span><br><span class="line"><span class="comment">     *  此处，SpringMVC为Date类型已经提供了编辑器类，所以直接使用，不用自己写</span></span><br><span class="line"><span class="comment">     * http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01test09.jsp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myInitBinder</span><span class="params">(ServletRequestDataBinder dataBinder)</span></span>&#123;</span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test09.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test09</span><span class="params">(String name, <span class="keyword">int</span> age, Date birthday)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        String format1 = format.format(birthday);</span><br><span class="line">        System.out.println(format1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：中文乱码解决</span></span><br><span class="line"><span class="comment">     *     如果服务器配置的编码是utf-8,且项目采用的也是utf-8则默认请求参数无乱码</span></span><br><span class="line"><span class="comment">     *     tomcat8默认编码为utf-8(可以更改)</span></span><br><span class="line"><span class="comment">     *     tomcat7及更老的版本默认编码为iso8859-1(可以更改)</span></span><br><span class="line"><span class="comment">     *     如果遇到服务器编码和项目编码不一致时会产生乱码</span></span><br><span class="line"><span class="comment">     *     对于POST提交 可以通过request.setCharacterEncoding("utf-8")解决乱码</span></span><br><span class="line"><span class="comment">     *     但此行代码对GET无效，GET提交的请求参数乱码，只能手工编解码来解决</span></span><br><span class="line"><span class="comment">     *     手工编解码解决乱码的方式对POST提交也有效</span></span><br><span class="line"><span class="comment">     *     springmvc提供了过滤器CharacterEncodingFilter来帮助我们解决乱码</span></span><br><span class="line"><span class="comment">     *     但此过滤器本质上就是request.setCharacterEncoing()所以也是只对POST有效</span></span><br><span class="line"><span class="comment">     *     ,即使配置了GET提交乱码也要手动解决</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test08.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test08</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">        <span class="comment">//POST提交</span></span><br><span class="line">        <span class="comment">//request.setCharacterEncoding("utf-8");</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">        <span class="comment">//GET提交</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//byte [] data = uname.getBytes("iso8859-1");</span></span><br><span class="line">        <span class="comment">//uname = new String(data,"utf-8");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    获取请求参数：多个同名请求参数的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test07.action?name=tt&amp;love=bb&amp;love=pp&amp;love=zz</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test07.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">(String name,String [] love)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//封装到数组里</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(Arrays.asList(love));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test06.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1&amp;dog.cat.name=xx&amp;dog.cat.age=3</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test06.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test05.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test05.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test04.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test04.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 通过@RequestParam指定参数赋值,解决请求参数名和方法参数不一致时赋值问题</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test03.action?name=yasuo&amp;uage=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test03.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"uage"</span>)</span> <span class="keyword">int</span> age) </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 直接获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test02.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test02.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：传统方式获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test01.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        <span class="keyword">int</span> age = Integer.parseInt(request.getParameter(<span class="string">"age"</span>));</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -2294,8 +2420,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2331,8 +2457,45 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringMVCDay01</title>
+    <url>/2020/01/29/SpringMVCDay01/</url>
+    <content><![CDATA[<h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
+<h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
+<li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
+</ol>
+<h2 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-28%E4%B8%8B%E5%8D%8810.54.07.png"  alt=""></p>
+<h3 id="配置前端控制器"><a href="#配置前端控制器" class="headerlink" title="配置前端控制器"></a>配置前端控制器</h3><h4 id="1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet"><a href="#1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet" class="headerlink" title="1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet"></a>1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置servlet的映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="生成SpringMVC核心配置文件"><a href="#生成SpringMVC核心配置文件" class="headerlink" title="生成SpringMVC核心配置文件"></a>生成SpringMVC核心配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系，拼接上前缀后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建类实现controller接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//创建modelAndView</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//封装数据</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"msg1"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"msg2"</span>,<span class="string">"hello springMVC"</span>);</span><br><span class="line">        <span class="comment">//封装视图</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="comment">//返回modelAndView</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC注解方式配置"><a href="#SpringMVC注解方式配置" class="headerlink" title="SpringMVC注解方式配置"></a>SpringMVC注解方式配置</h2><h3 id="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"><a href="#SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式" class="headerlink" title="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"></a>SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式</h3><h3 id="springMVC注解工作原理"><a href="#springMVC注解工作原理" class="headerlink" title="springMVC注解工作原理"></a>springMVC注解工作原理</h3><ol>
+<li>当服务器启动时，会先加载web.xml文件，之后通过引入核心配置文件来加载SpringMVC.xml</li>
+<li>当解析到包扫描时，扫描指定的包，并将含有@Conteoller注解的类解析为处理器</li>
+<li>如果配置过<a href="mvc:annotation-driven">mvc:annotation-driven</a>就会解析Spring-MVC注解</li>
+<li>解析@requestMapping（value=“/test01.action”），将指定的地址和当前方法的映射关系保存</li>
+<li>当客户端发出请求访问时，SpringMVC寻找改地址的映射关系，找到就执行方法，找不到抛出404</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置mvc注解方式的DI--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="test01-jsp"><a href="#test01-jsp" class="headerlink" title="test01.jsp"></a>test01.jsp</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;this is test01.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;$&#123;msg&#125;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="comment">//在类上加上注解指的是在访问的地址上加上前缀</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/my01"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test01"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过value属性指定当前的映射到那些路径,可以映射到多个路径</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/test04.action"</span>,<span class="string">"/test02.action"</span>,<span class="string">"/test03.action"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just do it"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test02"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SpringMVC获取请求参数"><a href="#SpringMVC获取请求参数" class="headerlink" title="SpringMVC获取请求参数"></a>SpringMVC获取请求参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：日期数据处理</span></span><br><span class="line"><span class="comment">     *  通过注册自定义类型编辑器使SpringMVC支持自定义格式请求参数的处理</span></span><br><span class="line"><span class="comment">     *  此处，SpringMVC为Date类型已经提供了编辑器类，所以直接使用，不用自己写</span></span><br><span class="line"><span class="comment">     * http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01test09.jsp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myInitBinder</span><span class="params">(ServletRequestDataBinder dataBinder)</span></span>&#123;</span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test09.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test09</span><span class="params">(String name, <span class="keyword">int</span> age, Date birthday)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        String format1 = format.format(birthday);</span><br><span class="line">        System.out.println(format1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：中文乱码解决</span></span><br><span class="line"><span class="comment">     *     如果服务器配置的编码是utf-8,且项目采用的也是utf-8则默认请求参数无乱码</span></span><br><span class="line"><span class="comment">     *     tomcat8默认编码为utf-8(可以更改)</span></span><br><span class="line"><span class="comment">     *     tomcat7及更老的版本默认编码为iso8859-1(可以更改)</span></span><br><span class="line"><span class="comment">     *     如果遇到服务器编码和项目编码不一致时会产生乱码</span></span><br><span class="line"><span class="comment">     *     对于POST提交 可以通过request.setCharacterEncoding("utf-8")解决乱码</span></span><br><span class="line"><span class="comment">     *     但此行代码对GET无效，GET提交的请求参数乱码，只能手工编解码来解决</span></span><br><span class="line"><span class="comment">     *     手工编解码解决乱码的方式对POST提交也有效</span></span><br><span class="line"><span class="comment">     *     springmvc提供了过滤器CharacterEncodingFilter来帮助我们解决乱码</span></span><br><span class="line"><span class="comment">     *     但此过滤器本质上就是request.setCharacterEncoing()所以也是只对POST有效</span></span><br><span class="line"><span class="comment">     *     ,即使配置了GET提交乱码也要手动解决</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test08.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test08</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">        <span class="comment">//POST提交</span></span><br><span class="line">        <span class="comment">//request.setCharacterEncoding("utf-8");</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">        <span class="comment">//GET提交</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//byte [] data = uname.getBytes("iso8859-1");</span></span><br><span class="line">        <span class="comment">//uname = new String(data,"utf-8");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    获取请求参数：多个同名请求参数的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test07.action?name=tt&amp;love=bb&amp;love=pp&amp;love=zz</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test07.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">(String name,String [] love)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//封装到数组里</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(Arrays.asList(love));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test06.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1&amp;dog.cat.name=xx&amp;dog.cat.age=3</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test06.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test05.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test05.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test04.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test04.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 通过@RequestParam指定参数赋值,解决请求参数名和方法参数不一致时赋值问题</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test03.action?name=yasuo&amp;uage=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test03.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"uage"</span>)</span> <span class="keyword">int</span> age) </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 直接获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test02.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test02.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：传统方式获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test01.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        <span class="keyword">int</span> age = Integer.parseInt(request.getParameter(<span class="string">"age"</span>));</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2349,8 +2512,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>redis</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2370,8 +2533,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2424,8 +2587,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2449,8 +2612,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>文章</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
 </search>

@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/04/29/redis/</loc>
+    
+    <lastmod>2020-04-29T13:01:26.974Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/29/Kafka/</loc>
+    
+    <lastmod>2020-04-29T12:11:01.802Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/28/JVM/</loc>
+    
+    <lastmod>2020-04-29T06:31:46.777Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/25/HBase/</loc>
+    
+    <lastmod>2020-04-29T02:45:24.624Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/17/Mybatis/</loc>
+    
+    <lastmod>2020-04-29T01:08:40.509Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/28/MongoDB/</loc>
+    
+    <lastmod>2020-04-29T00:48:05.741Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/01/29/SpringMVCDay01/</loc>
     
     <lastmod>2020-04-28T14:58:16.072Z</lastmod>
@@ -12,20 +54,6 @@
     <loc>http://yoursite.com/2020/01/29/Spring-Review/</loc>
     
     <lastmod>2020-04-28T12:41:50.294Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/28/MongoDB/</loc>
-    
-    <lastmod>2020-04-28T12:41:11.111Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/25/HBase/</loc>
-    
-    <lastmod>2020-04-28T09:46:20.991Z</lastmod>
     
   </url>
   
@@ -47,13 +75,6 @@
     <loc>http://yoursite.com/2020/02/21/sql-optimize/</loc>
     
     <lastmod>2020-04-24T14:49:50.582Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/28/JVM/</loc>
-    
-    <lastmod>2020-04-24T14:43:03.503Z</lastmod>
     
   </url>
   
@@ -89,13 +110,6 @@
     <loc>http://yoursite.com/2020/02/21/YARN/</loc>
     
     <lastmod>2020-04-20T01:10:05.095Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/17/Mybatis/</loc>
-    
-    <lastmod>2020-04-17T16:16:34.629Z</lastmod>
     
   </url>
   
