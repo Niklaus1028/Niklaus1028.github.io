@@ -3,7 +3,7 @@
   <entry>
     <title>redis</title>
     <url>/2020/04/29/redis/</url>
-    <content><![CDATA[<h2 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis?"></a>什么是 Redis?</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis?"></a>什么是 Redis?</h2><ol>
 <li>redis是由Apache提供的高性能的非关系型数据库</li>
 </ol>
 <h2 id="redis的特点"><a href="#redis的特点" class="headerlink" title="redis的特点"></a>redis的特点</h2><ol>
@@ -53,14 +53,14 @@
         <category>面试</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Kafka</title>
     <url>/2020/04/29/Kafka/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
 <li>Kafka是LinkedIn（领英）公司开发后来贡献给了Apache提供的一套分布式的消息系统（message system），是一个分布式流平台</li>
 <li>流平台具有三个关键功能：</li>
 </ol>
@@ -80,6 +80,9 @@
 <li>Kafka本身是由Scala来完成的，所以Kafka天然支持高并发和分布式</li>
 <li>Kafka会将生产者添加的数据放到磁盘存储，但是Kafka的读写速度在60-80M/S，Kafka底层采用了0拷贝 —指的是没有状态的转换</li>
 <li>Kafka是纯粹的发布订阅的消息队列，数据可以被重复的消费</li>
+<li>实际开发中，Kafka节点的数量一般是3-5个。以3个为例，Kafka集群的读写速度150-220M/S；如果是5个节点，那么集群的读写速度</li>
+<li>offset机制的作用就是未来防止数据被同一个消费者重复读取</li>
+<li>Kafka会把收集的数据放在log文件中记录，同时会建立index文件构成索引目录，使用的是稀疏索引（从log文件中随机选择数据建立索引），正因为这个样子。一般索引文件只能确定范围。在Kafka中一个log文件必定对应一个索引文件，log+index=segment 在查询index文件的时候，会利用二分查找快速锁定要查询的索引的所在范围</li>
 </ol>
 <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
 <li>broker：经纪人<ul>
@@ -123,6 +126,30 @@
 <li>在Kafka中，可以将一个消费者和多个消费者绑定在同一个组中，如果不指定，一个消费者就是一个消费者组,</li>
 <li>数据在消费者组之间是共享的，在组内是竞争的</li>
 </ul>
+<ol start="8">
+<li>leader和follower</li>
+</ol>
+<ul>
+<li>leader和follower指的不是节点，而是副本关系</li>
+<li>一个Kafka节点既可以有leader副本，也可以有follower副本</li>
+<li>在Kafka启动的时候，会在zookeeper的控制喜爱来自动选举出leader副本</li>
+<li>producer和consumer只会与leader副本交互</li>
+<li>当producer向leader副本写入数据之后，leader副本写完之后就会等待，等待follower的询问，follower会不断的给leader副本发信息来询问是否有新数据需要同步；如果leader有新数据需要同步，那么leader就会将数据返回给follower；当follower同步完成之后，会给leader返回一个ack信号表示同步成功</li>
+<li>leader在收到ack信号之后，会将返回ack的follower的brokerid放入队列中存储到zookeeper上，这个过程称之为ISR</li>
+</ul>
+<ol start="9">
+<li>controller</li>
+</ol>
+<ul>
+<li>当Kafka集群启动的时候，zookeeper会在某一个Kafka节点来启动一个进程controller</li>
+<li>controller负责对副本进行选举，在副本中选择出一个leader副本</li>
+<li>在选举leader的时候controller会遵循：<ul>
+<li>1.如果集群是刚刚启动或者是重新启动，controller会优先选择先恢复过来的副本</li>
+<li>2.当leader所在的节点宕机的时候，controller会优先从ISR中选择节点成为leader</li>
+<li>3.如果ISR中存在多个节点，那么会从ISR中获取队头的节点上的副本切换为leader</li>
+</ul>
+</li>
+</ul>
 <h2 id="消息队列-系统概述"><a href="#消息队列-系统概述" class="headerlink" title="消息队列/系统概述"></a>消息队列/系统概述</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
 <li>Poll to Poll  –&gt; p2p - 点对点模式<ul>
 <li>消息队列中的数据可以被每一个消费者消费</li>
@@ -140,19 +167,37 @@
 <li>在分布式系统下具备异步,削峰,负载均衡等一系列高级功能</li>
 <li>拥有持久化的机制，进程消息，队列中的信息也可以保存下来。</li>
 </ol>
+<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><ol>
+<li>Consistency  - 一致性  当访问集群时，能够获取到最新的数据</li>
+</ol>
+<ul>
+<li>强一致性 在集群中，一个节点产生变化，其他节点会立即感知器变化，并随之改变</li>
+<li>弱一致性  在集群中，一个节点产生变化 ，其他节点感知到部分变化或者没有感知</li>
+<li>最终一致性：在集群中，无论各个节点怎么变化，处理完成后最终的数据是一样的</li>
+</ul>
+<ol start="2">
+<li>A - availability  可用性 ：在集群节点存活的情况下，访问集群能够立即获取有效的结果</li>
+<li>P - Partition tolerance  - 分区容忍性 在集群中，不会因为一个或者几个节点的宕机导致整个集群不对外提供服务</li>
+</ol>
+<p><font color = red>在分布式系统中，首先要考虑满足P，无法同时满足C和A，最多只能满足两个无法满足三个，所以分布式系统要么AP要么CP</font></p>
+<h3 id="Consistency的方案："><a href="#Consistency的方案：" class="headerlink" title="Consistency的方案："></a>Consistency的方案：</h3><ol>
+<li>M/S - Master/Slave，例如Hadoop、HBase等</li>
+<li>PAXOS算法及其变种，例如Zookeeper等</li>
+<li>WNR策略，例如Cassandra等</li>
+</ol>
 ]]></content>
       <categories>
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>MongoDB</title>
     <url>/2020/04/28/MongoDB/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
 <li>MongoDB是为快速开发互联网Web应用而设计的数据库系统</li>
 <li>MongoDB的设计目标时极简、灵活、作为Web应用栈的一部分</li>
 <li>MongoDB的数据模型是面向文档的，所谓的文档是一种类似JSON的结构，简单理解MongoDB这个数据库中存的是各种各样的JSON。<font color =red>（BSON ）-&gt;binary json 二进制的JSON</font></li>
@@ -175,14 +220,14 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>HBase</title>
     <url>/2020/04/25/HBase/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
 <li>HBase是有Apache提供的基于Hadoop的分布式，可扩展的非关系型数据库</li>
 <li>HBase可以管理很大的数据的表 -  billions of rows X millions of columns</li>
 <li>HBase是Doug Cutting根据Google的BigTable来实现，所以HBase和BigTable的原理一模一样，只是BigTable是用C语言实现的，HBase是Java语言实现的</li>
@@ -475,14 +520,14 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Hive</title>
     <url>/2020/04/21/Hive/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
 <li>Apache Hive™数据仓库软件有助于使用SQL读取，写入和管理驻留在分布式存储中的大型数据集。可以将结构投影到已经存储的数据上。提供了命令行工具和JDBC驱动程序以将用户连接到Hive。</li>
 <li>提供了类SQL（HQL）语言来管理HDFS上的数据，底层会将sql转化为MapReduce执行，Hive适用于离线分析</li>
 <li>在Hive中，每一个database在HDFS上对应一个目录</li>
@@ -615,14 +660,14 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Flume</title>
     <url>/2020/04/18/Flume/</url>
-    <content><![CDATA[<h2 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
 <li>Flume是一种分布式，可靠且可用的服务，用于有效地<strong>收集，聚合和移动大量日志数据</strong>。它具有基于流数据流的简单灵活的体系结构。它具有可调整的可靠性机制以及许多故障转移和恢复机制，具有强大的功能和容错能力。它使用一个简单的可扩展数据模型，允许在线分析应用程序。</li>
 <li>Flume最主要的作用就是，实时读取服务器本地磁盘的数据，将数据写到HDFS中 </li>
 <li>Flume的版本更新相对稳定：</li>
@@ -724,14 +769,14 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Mybatis</title>
     <url>/2020/04/17/Mybatis/</url>
-    <content><![CDATA[<h2 id="什么是-Mybatis"><a href="#什么是-Mybatis" class="headerlink" title="什么是 Mybatis?"></a>什么是 Mybatis?</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="什么是-Mybatis"><a href="#什么是-Mybatis" class="headerlink" title="什么是 Mybatis?"></a>什么是 Mybatis?</h2><ol>
 <li>Mybatis是一个半ORM（对象关系映射）的框架，它内部封装了JDBC，开发时只需要关注sql语句本身，不需要花费精力去处理加载驱动、创建连接，创建statement等复杂过程。程序员直接编写原生态的sql，严格控制sql的执行性能，灵活度高。</li>
 <li>Mybatis可以通过xml和注解的方式来配置和映射原生信息，将普通JavaBeans映射成数据库中的记录，避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。</li>
 <li>通过xml文件或者注解的方式执行各种statement配置起来，并通过java对象和statement中的sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）</li>
@@ -848,14 +893,14 @@
         <category>面试</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>MapReduce</title>
     <url>/2020/04/11/MapReduce/</url>
-    <content><![CDATA[<h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="MapReduce定义"><a href="#MapReduce定义" class="headerlink" title="MapReduce定义"></a>MapReduce定义</h2><ol>
 <li>MapReduce是一个分布式运算程序放入编程框架，是用户开发“基于Hadoop的数据分析应用”的核心框架。</li>
 <li>MapReduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</li>
 </ol>
@@ -971,14 +1016,14 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Dubbo</title>
     <url>/2020/04/08/Dubbo/</url>
-    <content><![CDATA[<h2 id="一、分布式系统"><a href="#一、分布式系统" class="headerlink" title="一、分布式系统"></a>一、分布式系统</h2><pre><code>分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统，分布式系统（distributed system）是建立在网络之上的软件系统。</code></pre><h3 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h3><pre><code>1. 做不到界面+业务逻辑实现分离
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="一、分布式系统"><a href="#一、分布式系统" class="headerlink" title="一、分布式系统"></a>一、分布式系统</h2><pre><code>分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统，分布式系统（distributed system）是建立在网络之上的软件系统。</code></pre><h3 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h3><pre><code>1. 做不到界面+业务逻辑实现分离
 2. 应用不可能完全独立，大量的应用之间需要交互</code></pre><h3 id="分布式应用架构"><a href="#分布式应用架构" class="headerlink" title="分布式应用架构"></a>分布式应用架构</h3><pre><code>1. 可以做到点后端分离
 2. 应用之间的相互调用</code></pre><h2 id="二、RPC（远程过程调用）"><a href="#二、RPC（远程过程调用）" class="headerlink" title="二、RPC（远程过程调用）"></a>二、RPC（远程过程调用）</h2><h3 id="什么叫RPC"><a href="#什么叫RPC" class="headerlink" title="什么叫RPC"></a>什么叫RPC</h3><pre><code>RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</code></pre><h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/1.png"  alt="截屏2020-04-12上午10.31.38"></p>
 <h3 id="Dubbo中的序列化"><a href="#Dubbo中的序列化" class="headerlink" title="Dubbo中的序列化"></a>Dubbo中的序列化</h3><ol>
@@ -1019,14 +1064,14 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Gateway</title>
     <url>/2020/04/08/Gateway/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
 <li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p>
 </li>
 <li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p>
@@ -1061,14 +1106,14 @@
         <category>Springcloud</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>HDFS</title>
     <url>/2020/04/08/HDFS/</url>
-    <content><![CDATA[<h2 id="大数据简介"><a href="#大数据简介" class="headerlink" title="大数据简介"></a>大数据简介</h2><h3 id="一、大数据特征-6V"><a href="#一、大数据特征-6V" class="headerlink" title="一、大数据特征 - 6V"></a>一、大数据特征 - 6V</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="大数据简介"><a href="#大数据简介" class="headerlink" title="大数据简介"></a>大数据简介</h2><h3 id="一、大数据特征-6V"><a href="#一、大数据特征-6V" class="headerlink" title="一、大数据特征 - 6V"></a>一、大数据特征 - 6V</h3><ol>
 <li>数据体量大，一般从TB级别开始计算</li>
 <li>数据种类和来源多</li>
 <li>数据的增长速度越来越快</li>
@@ -1268,14 +1313,14 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>ZooKeeper</title>
     <url>/2020/04/07/ZooKeeper/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
 <li>ZooKeeper是由Yahoo（雅虎）开发的，后来提供给Apache管理的一套开源的，用于进行分布式的框架</li>
 <li>Zookeeper是根据Google的关于Chubby Lock来设计实现的</li>
 <li>Zookeeper是是一个中心化分布式框架的管理框架</li>
@@ -1425,14 +1470,14 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>JUC</title>
     <url>/2020/03/31/JUC/</url>
-    <content><![CDATA[<h2 id="原子性操作–Atomic-原子性"><a href="#原子性操作–Atomic-原子性" class="headerlink" title="原子性操作–Atomic 原子性"></a>原子性操作–Atomic 原子性</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="原子性操作–Atomic-原子性"><a href="#原子性操作–Atomic-原子性" class="headerlink" title="原子性操作–Atomic 原子性"></a>原子性操作–Atomic 原子性</h2><ol>
 <li>原子性操作实际上就是针对属性来提供线程安全的方法，在底层会自动采用CAS来保证线程安全。</li>
 <li>volatile是Java提供的轻量级的线程同步机制</li>
 </ol>
@@ -1581,14 +1626,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>JUC</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>高并发基础</title>
     <url>/2020/03/31/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>a. 同步：一个对象或者一段逻辑在一段时间只允许被一个线程访问<br>b. 异步：一个对象或者一段逻辑在一段时间只允许被多个线程访问<br>c. 阻塞：一个线程只要没有拿到想要的结果就会一直等在这儿<br>d. 非阻塞：一个线程不管有没有拿到结果，都会继续执行下面的程序，不会在那边的等待</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>a. 同步：一个对象或者一段逻辑在一段时间只允许被一个线程访问<br>b. 异步：一个对象或者一段逻辑在一段时间只允许被多个线程访问<br>c. 阻塞：一个线程只要没有拿到想要的结果就会一直等在这儿<br>d. 非阻塞：一个线程不管有没有拿到结果，都会继续执行下面的程序，不会在那边的等待</p>
 <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>a. BIO ： 同步式阻塞线程<br>b. NIO ： 同步式非阻塞式线程 JDK1.4<br>c. AIO ： 异步式非阻塞式线程 JDK1.8，目前没有成熟的框架</p>
 <h3 id="BIO的缺点"><a href="#BIO的缺点" class="headerlink" title="BIO的缺点"></a>BIO的缺点</h3><ol>
 <li>一对一连接：每次有一个客户端发起连接，服务端就要产生一个线程来处理这个连接；如果有大量的客户端发起连接，就会产生大量的线程，可能导致服务端崩溃。</li>
@@ -1609,14 +1654,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>高并发</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>InterviewDay01</title>
     <url>/2020/03/18/interview/</url>
-    <content><![CDATA[<h2 id="1-volatile是什么？"><a href="#1-volatile是什么？" class="headerlink" title="1.volatile是什么？"></a>1.volatile是什么？</h2><h3 id="volatile是一种轻量级的同步机制"><a href="#volatile是一种轻量级的同步机制" class="headerlink" title="volatile是一种轻量级的同步机制"></a>volatile是一种轻量级的同步机制</h3><h3 id="volatile有三个特性："><a href="#volatile有三个特性：" class="headerlink" title="volatile有三个特性："></a>volatile有三个特性：</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-volatile是什么？"><a href="#1-volatile是什么？" class="headerlink" title="1.volatile是什么？"></a>1.volatile是什么？</h2><h3 id="volatile是一种轻量级的同步机制"><a href="#volatile是一种轻量级的同步机制" class="headerlink" title="volatile是一种轻量级的同步机制"></a>volatile是一种轻量级的同步机制</h3><h3 id="volatile有三个特性："><a href="#volatile有三个特性：" class="headerlink" title="volatile有三个特性："></a>volatile有三个特性：</h3><ol>
 <li><p>可见性<br>当多线程修改物理内存种的变量值时，会把内存中的变量值拷贝到各自的工作内存中，用volatile关键字修饰的变量，当一个线程在自己的工作内存中修改完成，写入物理内存后会通知其他线程数据已经修改，这就是可见性</p>
 </li>
 <li><p>不保证原子性<br>在多线程都在实现如num++；可能回导致运算时加塞的情况，导致最后数据的不一致，这类可以用atomicInteger.getAndIncrement()实现原子性</p>
@@ -1653,14 +1698,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Interview</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>事务</title>
     <url>/2020/02/29/%E4%BA%8B%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>逻辑上的一组操作，要么同时成功，要么同时失败</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>逻辑上的一组操作，要么同时成功，要么同时失败</p>
 <h2 id="事务的四大特性（ACID）"><a href="#事务的四大特性（ACID）" class="headerlink" title="事务的四大特性（ACID）"></a>事务的四大特性（ACID）</h2><ol>
 <li>原子性<br>一个事务是一个不可分割的整体，要么同时成功，要么同时失败</li>
 <li>一致性<br>一个事务执行之前和之后数据也应该是完整的</li>
@@ -1672,14 +1717,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Web</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaSE04</title>
     <url>/2020/02/28/JavaSE04/</url>
-    <content><![CDATA[<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
 <p>title: 线程<br>date: 2020-02-28<br>tags:<br>    - 分享<br>    - 导航<br>categories: Java基础<br>–</p>
 <h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><p>为完成特定的任务，用某种语言编写一组指令的集合。一段静态的代码，静态对象</p>
 <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>正在运行的程序</p>
@@ -1690,7 +1735,7 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
   <entry>
     <title>JavaSE03</title>
     <url>/2020/02/28/JavaSE03/</url>
-    <content><![CDATA[<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
 <p>title: Collection(集合)<br>date: 2020-02-28<br>tags:<br>    - 分享<br>    - 导航<br>categories: Java基础<br>–</p>
 <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型的本质是数据类型的参数化，在编译器阶段处理</p>
 <p>-</p>
@@ -1699,19 +1744,20 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
   <entry>
     <title>JVM</title>
     <url>/2020/02/28/JVM/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="JVM体系结构概览"><a href="#JVM体系结构概览" class="headerlink" title="JVM体系结构概览"></a>JVM体系结构概览</h2><p><img src="/" class="lazyload" data-src="https://pics7.baidu.com/feed/1c950a7b02087bf4600fcdb16c143b2a13dfcfd1.jpeg?token=1b629473555dd856ff2d9ca3301b37ea"  alt=""></p>
+]]></content>
       <categories>
-        <category>JVM虚拟机</category>
+        <category>面试</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaSE01</title>
     <url>/2020/02/26/JavaSE01/</url>
-    <content><![CDATA[<h2 id="1-简单说一下什么是跨平台"><a href="#1-简单说一下什么是跨平台" class="headerlink" title="1. 简单说一下什么是跨平台"></a>1. 简单说一下什么是跨平台</h2><p>由于各种系统所支持的指令集不是完全一致，所以在操作系统上加个虚拟机可以来提供统一的接口，屏蔽系统之间的差异。<br>2.Java有几种基本数据类型<br>8种基本数据类型<br>数据类型    字节    默认值<br> byte        1     0<br> short        2    0<br> int        4    0<br> long        8    0<br> double        4    0.0d<br> float        8       0.0f<br> char        2       ‘\u0000’<br> boolean    1    false</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-简单说一下什么是跨平台"><a href="#1-简单说一下什么是跨平台" class="headerlink" title="1. 简单说一下什么是跨平台"></a>1. 简单说一下什么是跨平台</h2><p>由于各种系统所支持的指令集不是完全一致，所以在操作系统上加个虚拟机可以来提供统一的接口，屏蔽系统之间的差异。<br>2.Java有几种基本数据类型<br>8种基本数据类型<br>数据类型    字节    默认值<br> byte        1     0<br> short        2    0<br> int        4    0<br> long        8    0<br> double        4    0.0d<br> float        8       0.0f<br> char        2       ‘\u0000’<br> boolean    1    false</p>
 <h2 id="3-面向对象的特征"><a href="#3-面向对象的特征" class="headerlink" title="3.面向对象的特征"></a>3.面向对象的特征</h2><ol>
 <li><p>封装 把描述一个对象的属性和行为封装在一个模块中，也就是封装到一个类中，用变量来定义对象的属性，用方法来定义对象的行为，方法可以直接访问同一对象的属性</p>
 </li>
@@ -1736,14 +1782,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Interface(接口）</title>
     <url>/2020/02/26/JavaSE02/</url>
-    <content><![CDATA[<h2 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h2><h3 id="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"><a href="#抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。" class="headerlink" title="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"></a>抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h2><h3 id="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"><a href="#抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。" class="headerlink" title="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"></a>抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。</h3><ol>
 <li>抽象类不能创建对象，因为抽象类创建对象没有意义,但可以创建抽象类的子类对象</li>
 <li>子类继承抽象类需要重写抽象类中的抽象方法，如果不重写这个类必须是抽象类，否则会产生编译时异常</li>
 <li>抽象类中可以没有抽象方法,</li>
@@ -1758,14 +1804,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>LinuxDay03</title>
     <url>/2020/02/25/LinuxDay03/</url>
-    <content><![CDATA[<h2 id="网络地址"><a href="#网络地址" class="headerlink" title="网络地址"></a>网络地址</h2><h3 id="配置网络的时候需要配置下面的信息"><a href="#配置网络的时候需要配置下面的信息" class="headerlink" title="配置网络的时候需要配置下面的信息"></a>配置网络的时候需要配置下面的信息</h3><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络地址"><a href="#网络地址" class="headerlink" title="网络地址"></a>网络地址</h2><h3 id="配置网络的时候需要配置下面的信息"><a href="#配置网络的时候需要配置下面的信息" class="headerlink" title="配置网络的时候需要配置下面的信息"></a>配置网络的时候需要配置下面的信息</h3><ol>
 <li>IP地址：PC在网络中的通信地址</li>
 <li>子网掩码: 子网掩码用于划分网络，将一个IP地址中的网络位和主机位进行划分。是一个32位的地址。</li>
 <li>网关： 网络的关口，用于数据转发，通常理解为路由器的地址，大部分硬件厂家默认地址，192.168.0.1 |192.168.1.1</li>
@@ -1776,14 +1822,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>LinuxDay02</title>
     <url>/2020/02/24/LinuxDay02/</url>
-    <content><![CDATA[<h2 id="用户、用户组概念"><a href="#用户、用户组概念" class="headerlink" title="用户、用户组概念"></a>用户、用户组概念</h2><h2 id="Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。"><a href="#Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。" class="headerlink" title="Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。"></a>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。</h2><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h2 id="gt-gt-gt-用法"><a href="#gt-gt-gt-用法" class="headerlink" title="&gt; &gt;&gt; 用法"></a>&gt; &gt;&gt; 用法</h2><p>ls -l &gt; a.txt 把显示的内容覆盖写入a.txt，如果没有这个文件则创建此文件</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="用户、用户组概念"><a href="#用户、用户组概念" class="headerlink" title="用户、用户组概念"></a>用户、用户组概念</h2><h2 id="Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。"><a href="#Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。" class="headerlink" title="Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。"></a>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户都必须首先向系统管理员申请账号，然后以这个账号的身份进入系统。用户在登陆时建入正确的用户名和口令后，就能够进入系统和自己的主目录。</h2><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h2 id="gt-gt-gt-用法"><a href="#gt-gt-gt-用法" class="headerlink" title="&gt; &gt;&gt; 用法"></a>&gt; &gt;&gt; 用法</h2><p>ls -l &gt; a.txt 把显示的内容覆盖写入a.txt，如果没有这个文件则创建此文件</p>
 <blockquote>
 <blockquote>
 <p>追加，例如ls -l &gt;&gt; a.txt把当前显示的内容追加到a.txt的末尾。</p>
@@ -1800,14 +1846,58 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web总结</title>
+    <url>/2020/02/21/Web/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
+<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
+</ol>
+<hr>
+<ol start="2">
+<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
+</ol>
+<hr>
+<ol start="3">
+<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
+<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
+<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
+GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
+POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
+使用的协议版本
+1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
+1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
+Accept：浏览器可以接受的MIME类型
+Accept-Charset：浏览器可接受的字符集
+Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
+Connection：表示是否需要持久连接，HTTP默认KeepAlive
+Content-Length：表示请求消息正文的长度
+Cookie：存放缓存信息
+Host：初始URL中的主机和端口
+If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
+</ol>
+<hr>
+<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>YARN</title>
     <url>/2020/02/21/YARN/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
 <li>YARN（Yet Another Resource Negotiator，迄今另一个资源调度器）是Hadoop提供的一套用于进行资源管理和任务调度的框架</li>
 <li>YARN是Hadoop2.0中最重要的特性之一</li>
 <li>YARN产生的原因：</li>
@@ -1856,14 +1946,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>sql优化</title>
     <url>/2020/02/21/sql-optimize/</url>
-    <content><![CDATA[<h2 id="mysql的数据引擎"><a href="#mysql的数据引擎" class="headerlink" title="mysql的数据引擎"></a>mysql的数据引擎</h2><h3 id="主流数据引擎（MyISAM、InnoDB）的对比"><a href="#主流数据引擎（MyISAM、InnoDB）的对比" class="headerlink" title="主流数据引擎（MyISAM、InnoDB）的对比"></a>主流数据引擎（MyISAM、InnoDB）的对比</h3><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-13%E4%B8%8A%E5%8D%8812.15.22.png"  alt="截屏2020-04-13上午12.15.22"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="mysql的数据引擎"><a href="#mysql的数据引擎" class="headerlink" title="mysql的数据引擎"></a>mysql的数据引擎</h2><h3 id="主流数据引擎（MyISAM、InnoDB）的对比"><a href="#主流数据引擎（MyISAM、InnoDB）的对比" class="headerlink" title="主流数据引擎（MyISAM、InnoDB）的对比"></a>主流数据引擎（MyISAM、InnoDB）的对比</h3><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-13%E4%B8%8A%E5%8D%8812.15.22.png"  alt="截屏2020-04-13上午12.15.22"></p>
 <h3 id="性能下降SQL慢分析"><a href="#性能下降SQL慢分析" class="headerlink" title="性能下降SQL慢分析"></a>性能下降SQL慢分析</h3><ol>
 <li>导致执行时间过长</li>
 <li>导致等待时间过长<h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4></li>
@@ -1935,58 +2025,14 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Mysql</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web总结</title>
-    <url>/2020/02/21/Web/</url>
-    <content><![CDATA[<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
-<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
-</ol>
-<hr>
-<ol start="2">
-<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
-</ol>
-<hr>
-<ol start="3">
-<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
-<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
-<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
-GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
-POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
-使用的协议版本
-1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
-1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
-Accept：浏览器可以接受的MIME类型
-Accept-Charset：浏览器可接受的字符集
-Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
-Connection：表示是否需要持久连接，HTTP默认KeepAlive
-Content-Length：表示请求消息正文的长度
-Cookie：存放缓存信息
-Host：初始URL中的主机和端口
-If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
-</ol>
-<hr>
-<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
         <tag>导航</tag>
-        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
     <title>LinuxDay01</title>
     <url>/2020/02/20/LinuxDay01/</url>
-    <content><![CDATA[<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><pre><code>Linux是一款操作系统，它是由unix演变而来的，创始人是芬兰当时的大学生肯.汤</code></pre><p>普森写的一款操作系统，Linux具有开源免费的特点，现在广泛运用于服务器端。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><pre><code>Linux是一款操作系统，它是由unix演变而来的，创始人是芬兰当时的大学生肯.汤</code></pre><p>普森写的一款操作系统，Linux具有开源免费的特点，现在广泛运用于服务器端。</p>
 <h3 id="Linux的优势"><a href="#Linux的优势" class="headerlink" title="Linux的优势"></a>Linux的优势</h3><pre><code>相较于Windows而言Linux更加的安全，更加的高效,对网络有良好的支持性，稳定，低成本，可以很好的解决多并发的问题。</code></pre><hr>
 <h3 id="2-创建虚拟机（空间）"><a href="#2-创建虚拟机（空间）" class="headerlink" title="2.创建虚拟机（空间）"></a>2.创建虚拟机（空间）</h3><pre><code>#### 配置网络连接时有三种形式：</code></pre><ul>
 <li>1.桥连接：Linux可以和任意系统进行通信，但是可能造成ip冲突的问题</li>
@@ -2000,40 +2046,40 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>MyBatisDay01</title>
     <url>/2020/02/06/MyBatisDay01/</url>
-    <content><![CDATA[<h2 id="mybatis的概述"><a href="#mybatis的概述" class="headerlink" title="mybatis的概述"></a>mybatis的概述</h2><pre><code>mybatis是一个数据访问层的框架，用java编写的。
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="mybatis的概述"><a href="#mybatis的概述" class="headerlink" title="mybatis的概述"></a>mybatis的概述</h2><pre><code>mybatis是一个数据访问层的框架，用java编写的。
 它封装了jdbc操作的很多细节，使开发者只需要关注sql语句本身，而无需关注注册驱动，创建连接等复杂过程，是一种半自动对象表的Dao层框架
 它使用了ORM思想实现了结果集的封装。</code></pre><h3 id="优点可以手写sql灵活实现数据访问，自动封装数据，减少代码的冗余"><a href="#优点可以手写sql灵活实现数据访问，自动封装数据，减少代码的冗余" class="headerlink" title="优点可以手写sql灵活实现数据访问，自动封装数据，减少代码的冗余"></a>优点可以手写sql灵活实现数据访问，自动封装数据，减少代码的冗余</h3><h2 id="ORM思想："><a href="#ORM思想：" class="headerlink" title="ORM思想："></a>ORM思想：</h2><h3 id="Object-Relational-Mapping-（对象关系映射）"><a href="#Object-Relational-Mapping-（对象关系映射）" class="headerlink" title="Object Relational Mapping （对象关系映射）"></a>Object Relational Mapping （对象关系映射）</h3>]]></content>
       <categories>
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>工厂模式</title>
     <url>/2020/02/01/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><h3 id="定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）"><a href="#定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）" class="headerlink" title="定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）"></a>定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）</h3><h4 id="简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例"><a href="#简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例" class="headerlink" title="简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例"></a>简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例</h4>]]></content>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><h3 id="定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）"><a href="#定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）" class="headerlink" title="定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）"></a>定义：定义了一个创建对象的类，由这个类来封装实例化对象的行为（代码）</h3><h4 id="简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例"><a href="#简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例" class="headerlink" title="简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例"></a>简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例</h4>]]></content>
       <categories>
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Design Patterns</title>
     <url>/2020/01/31/Design-Patterns/</url>
-    <content><![CDATA[<h2 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h2><h3 id="设计模式分为三种类型，共23种"><a href="#设计模式分为三种类型，共23种" class="headerlink" title="设计模式分为三种类型，共23种"></a>设计模式分为三种类型，共23种</h3><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h2><h3 id="设计模式分为三种类型，共23种"><a href="#设计模式分为三种类型，共23种" class="headerlink" title="设计模式分为三种类型，共23种"></a>设计模式分为三种类型，共23种</h3><ul>
 <li>创建型模式：单例模式，抽象工厂模式，工厂模式，原型模式，建造者模式。</li>
 <li>结构型模式：适配器模式，装饰者模式，桥接模式，组合模式，外观模式，享元模式，代理模式</li>
 <li>行为型模式：模版方法模式，命令模式，访问者模式，迭代器模式，观察者模式，备忘录模式，解释器模式（interpreter模式），状态模式，策略模式，职责链模式（责任链）模式。<h2 id="设计模式常用的七大原则"><a href="#设计模式常用的七大原则" class="headerlink" title="设计模式常用的七大原则"></a>设计模式常用的七大原则</h2><h3 id="1-单一职责原则"><a href="#1-单一职责原则" class="headerlink" title="1.单一职责原则"></a>1.单一职责原则</h3></li>
@@ -2069,29 +2115,14 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Shell</title>
-    <url>/2020/01/29/Shell/</url>
-    <content><![CDATA[<h2 id="Shell传递参数值"><a href="#Shell传递参数值" class="headerlink" title="Shell传递参数值"></a>Shell传递参数值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Shell 传递参数实例&quot;</span><br><span class="line">echo &quot;执行的文件名：$0&quot;</span><br><span class="line">echo &quot;第一个参数为：$1&quot;</span><br><span class="line">echo &quot;第二个参数为：$2&quot;</span><br><span class="line">echo &quot;第三个参数为：$3&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Shell-和-的演示"><a href="#Shell-和-的演示" class="headerlink" title="Shell $*和$@的演示"></a>Shell $*和$@的演示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;--\$*演示---&quot;</span><br><span class="line">for i in &quot;$*&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br><span class="line">echo &quot;--\$@演示---&quot;</span><br><span class="line">for i in &quot;$@&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<h2 id="Shell的基础命令（find）"><a href="#Shell的基础命令（find）" class="headerlink" title="Shell的基础命令（find）"></a>Shell的基础命令（find）</h2><p>查找文件的位置 find 位置 选项 参数<br> 例如：按文件名进行查询 find / -name java<br>  查找当前系统中所有的.log后缀名的文件  find / -name “*.log”<br>  查找系统中/home目录下的非普通文件 find /home ! -type f<br>  查找/home目录下权限为700的文件 find /home -perm 700<br>  查找/dev目录下的块设备文件  find /dev -type b</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
         <tag>导航</tag>
-        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringMVCDay01</title>
     <url>/2020/01/29/MyBatisday02/</url>
-    <content><![CDATA[<h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
 <h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
 <li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应<h3 id="生成SpringMvc的核心配置文件"><a href="#生成SpringMvc的核心配置文件" class="headerlink" title="生成SpringMvc的核心配置文件"></a>生成SpringMvc的核心配置文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -2116,14 +2147,29 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Shell</title>
+    <url>/2020/01/29/Shell/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Shell传递参数值"><a href="#Shell传递参数值" class="headerlink" title="Shell传递参数值"></a>Shell传递参数值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Shell 传递参数实例&quot;</span><br><span class="line">echo &quot;执行的文件名：$0&quot;</span><br><span class="line">echo &quot;第一个参数为：$1&quot;</span><br><span class="line">echo &quot;第二个参数为：$2&quot;</span><br><span class="line">echo &quot;第三个参数为：$3&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Shell-和-的演示"><a href="#Shell-和-的演示" class="headerlink" title="Shell $*和$@的演示"></a>Shell $*和$@的演示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;--\$*演示---&quot;</span><br><span class="line">for i in &quot;$*&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br><span class="line">echo &quot;--\$@演示---&quot;</span><br><span class="line">for i in &quot;$@&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h2 id="Shell的基础命令（find）"><a href="#Shell的基础命令（find）" class="headerlink" title="Shell的基础命令（find）"></a>Shell的基础命令（find）</h2><p>查找文件的位置 find 位置 选项 参数<br> 例如：按文件名进行查询 find / -name java<br>  查找当前系统中所有的.log后缀名的文件  find / -name “*.log”<br>  查找系统中/home目录下的非普通文件 find /home ! -type f<br>  查找/home目录下权限为700的文件 find /home -perm 700<br>  查找/dev目录下的块设备文件  find /dev -type b</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>Spring-Review</title>
     <url>/2020/01/29/Spring-Review/</url>
-    <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ol>
 <li>Spring是一个用于service（控制层）的框架，可以整合其他框架一起来进行工作，提高了开发效率</li>
 <li>Spring的两大核心<ul>
 <li>IOC/DI（控制反转）/依赖注入</li>
@@ -2150,14 +2196,14 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>面试</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringCloud</title>
     <url>/2020/01/29/SpringCloud/</url>
-    <content><![CDATA[<h2 id="1-微服务"><a href="#1-微服务" class="headerlink" title="1.微服务"></a>1.微服务</h2><p>1.1 单体项目：所有的功能都集中在一个web项目中。容易造成功能的强耦合<br>1.2 由于单体项目本身具有强耦合的问题，所以需要对项目进行拆分</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-微服务"><a href="#1-微服务" class="headerlink" title="1.微服务"></a>1.微服务</h2><p>1.1 单体项目：所有的功能都集中在一个web项目中。容易造成功能的强耦合<br>1.2 由于单体项目本身具有强耦合的问题，所以需要对项目进行拆分</p>
 <h3 id="a-横向拆分"><a href="#a-横向拆分" class="headerlink" title="a.横向拆分"></a>a.横向拆分</h3><pre><code>目的：仅仅解决了一个项目的分布式，并行开发的问题，必能解决单体项目的各种问题</code></pre><h3 id="b-纵向拆分"><a href="#b-纵向拆分" class="headerlink" title="b.纵向拆分"></a>b.纵向拆分</h3><pre><code>目的：将一个运行的系统，变成多个独立运行的系统，可以解觉单体项目的问题？按照业务功能，领域不同，进行的划分，每一个划分出来的系统都可以独立运行</code></pre><h2 id="Springcloud组件功能"><a href="#Springcloud组件功能" class="headerlink" title="Springcloud组件功能"></a>Springcloud组件功能</h2><ol>
 <li>springcloud概括<br>是spring家族的一员，本身也是一批不同组件的集合框架。在微服务发展过程中，不同的公司，团队各自开发了不同的小的功能。spring创建框架时，采用一种整合的方式，将一些成熟的技术，兼容到框架来，行程一个庞大的集体<br> 1.1组件<br> eureka:服务治理(动态微服务信息维护组件）<br> ribbon：负载均衡客户端（负载均衡调用微服务组件）<br> zuul:网关组件（每一个微服务不能提供对外暴露的接口）<br>上述这3个组件就能开发出一个基本的微服务框架的项目<br> config：分布式配置中心<br> feign:负载均衡客户端</li>
 <li>eureka服务治理组件<br> 2.1eureka概括<br> 作为服务治理组件，是每个微服务框架必备的组件。实现动态管理和维护所有微服    务信息。springcloud只能使用eureka作为服务治理组件，通过http协议的REST风        格实现通信过程（已经定义好了所有访问这个组件的接口地址，url：/hello/ /abc/cs）。</li>
@@ -2167,14 +2213,14 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>微服务</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringDay02</title>
     <url>/2020/01/29/SpringDay02/</url>
-    <content><![CDATA[<h2 id="单例和多例"><a href="#单例和多例" class="headerlink" title="单例和多例"></a>单例和多例</h2><pre><code>Spring容器管理的bean在默认情况下是单例，也就是一个bean创建一个对象，存在内置Map集合中，之后无论获取多少次该bean，都返回的同一个对象。</code></pre><h3 id="bean在单例模式的生命周期："><a href="#bean在单例模式的生命周期：" class="headerlink" title="bean在单例模式的生命周期："></a>bean在单例模式的生命周期：</h3><pre><code>bean在单例模式下，Spring容器启动时解析xml发现该bean标签后，直接创建该bean的对象存入内部map中保存，此后无论调用多少次getBean（）都是从map中获取该对象返回，一直是一个对象，次对象一直被Spring容器持有，知道容器退出时，随着容器的退出对象被销毁</code></pre><h3 id="案例-单例"><a href="#案例-单例" class="headerlink" title="案例-单例"></a>案例-单例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"singelton"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="单例和多例"><a href="#单例和多例" class="headerlink" title="单例和多例"></a>单例和多例</h2><pre><code>Spring容器管理的bean在默认情况下是单例，也就是一个bean创建一个对象，存在内置Map集合中，之后无论获取多少次该bean，都返回的同一个对象。</code></pre><h3 id="bean在单例模式的生命周期："><a href="#bean在单例模式的生命周期：" class="headerlink" title="bean在单例模式的生命周期："></a>bean在单例模式的生命周期：</h3><pre><code>bean在单例模式下，Spring容器启动时解析xml发现该bean标签后，直接创建该bean的对象存入内部map中保存，此后无论调用多少次getBean（）都是从map中获取该对象返回，一直是一个对象，次对象一直被Spring容器持有，知道容器退出时，随着容器的退出对象被销毁</code></pre><h3 id="案例-单例"><a href="#案例-单例" class="headerlink" title="案例-单例"></a>案例-单例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"singelton"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试单例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//初始化Spring容器</span></span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br><span class="line">        <span class="comment">//获取bean对象</span></span><br><span class="line">        Person person1 = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        Person person2 = (Person) context.getBean(<span class="string">"person"</span>);</span><br><span class="line">        System.out.println(person1);<span class="comment">//cn.tedu.domain.Person@2df3b89c</span></span><br><span class="line">        System.out.println(person2);<span class="comment">//cn.tedu.domain.Person@2df3b89c</span></span><br><span class="line">        <span class="comment">//关闭容器</span></span><br><span class="line">        ((ClassPathXmlApplicationContext) context).close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="bean在多例模式下的生命周期："><a href="#bean在多例模式下的生命周期：" class="headerlink" title="bean在多例模式下的生命周期："></a>bean在多例模式下的生命周期：</h3><pre><code>bean在多例模式下，Spring容器启动时解析xml时发现bean标签后，只是将该bean进行管理，并不会创建对象，此后每次使用getBean（）获取该bean时，Spring都会重新创建该对象返回，每次都是一个新的对象。这个对象Spring容器不会持有，什么时候销毁取绝于使用对象自己销毁。</code></pre><h2 id="案例-多例"><a href="#案例-多例" class="headerlink" title="案例-多例"></a>案例-多例</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置约束条件可以设置从bean中获取对象是单例还是多例</span></span><br><span class="line"><span class="comment">        scope="prototype"是多例</span></span><br><span class="line"><span class="comment">        scope="singleton"是单例</span></span><br><span class="line"><span class="comment">        Spring容器默认配置是单例</span></span><br><span class="line"><span class="comment">        所以不配置是单例</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.domain.Person"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="懒加载机制"><a href="#懒加载机制" class="headerlink" title="懒加载机制"></a>懒加载机制</h2><pre><code>Spring默认在容器初始化的过程中，解析xml，并且创建单例的bean保存到map中，这样的机制在bean较少时问题不大，但一旦bean非常多时，Spring需要在启动的过程中花费大量的时间来创建bean花费大量的空间来存储bean，但这些bean可能很就都用不上，这种在启动时在时间和空间上的浪费很不值得。所以spring提供了懒加载机制。所谓的懒加载机制就是可以规定指定的bean不在启动时立刻创建，而是后续在第一次使用到才创建，从而减轻在启动过程中对时间和内存的消耗</code></pre><ol>
@@ -2205,14 +2251,14 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringDay01</title>
     <url>/2020/01/29/SpringDay01/</url>
-    <content><![CDATA[<h2 id="框架（半成品软件）"><a href="#框架（半成品软件）" class="headerlink" title="框架（半成品软件）"></a>框架（半成品软件）</h2><pre><code>高度抽取可重用代码的一种设计，高度的通用性;
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="框架（半成品软件）"><a href="#框架（半成品软件）" class="headerlink" title="框架（半成品软件）"></a>框架（半成品软件）</h2><pre><code>高度抽取可重用代码的一种设计，高度的通用性;
 框架：抽取成一种高度可重用的；事务控制，强大的servlet，项目中的一些工具。
     框架：多个可重用模块的集合，形成一个某个领域的整体解决方案；</code></pre><h2 id="常见的框架"><a href="#常见的框架" class="headerlink" title="常见的框架"></a>常见的框架</h2><h3 id="SSH（老三大框架）"><a href="#SSH（老三大框架）" class="headerlink" title="SSH（老三大框架）"></a>SSH（老三大框架）</h3><pre><code>Struts2
 Spring
@@ -2246,14 +2292,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringDay03</title>
     <url>/2020/01/29/SpringDay03/</url>
-    <content><![CDATA[<h2 id="Spring注解方式实现IOC和DI"><a href="#Spring注解方式实现IOC和DI" class="headerlink" title="Spring注解方式实现IOC和DI"></a>Spring注解方式实现IOC和DI</h2><h3 id="1-Spring注解"><a href="#1-Spring注解" class="headerlink" title="1.Spring注解"></a>1.Spring注解</h3><pre><code>Spring除了默认的使用xml配置&lt;bean&gt;标签的方式实现配置外，也可以通过注解的方式来实现配置，这种方式效率更高，配置信息清晰，代码在哪对应的配置也在哪儿。</code></pre><p><strong>所谓注解就是程序看的提示信息，很多时候都用来作为轻量级配置方式</strong></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Spring注解方式实现IOC和DI"><a href="#Spring注解方式实现IOC和DI" class="headerlink" title="Spring注解方式实现IOC和DI"></a>Spring注解方式实现IOC和DI</h2><h3 id="1-Spring注解"><a href="#1-Spring注解" class="headerlink" title="1.Spring注解"></a>1.Spring注解</h3><pre><code>Spring除了默认的使用xml配置&lt;bean&gt;标签的方式实现配置外，也可以通过注解的方式来实现配置，这种方式效率更高，配置信息清晰，代码在哪对应的配置也在哪儿。</code></pre><p><strong>所谓注解就是程序看的提示信息，很多时候都用来作为轻量级配置方式</strong></p>
 <h3 id="Spring注解方式实现IOC"><a href="#Spring注解方式实现IOC" class="headerlink" title="Spring注解方式实现IOC"></a>Spring注解方式实现IOC</h3><p>a. 导入开发jar包<br>b. 编写配置文件，并导入context约束</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>c. 开启包扫描</p>
@@ -2325,14 +2371,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringDay04</title>
     <url>/2020/01/29/SpringDay04/</url>
-    <content><![CDATA[<h2 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h2><h3 id="1-Spring-aop的基本概念"><a href="#1-Spring-aop的基本概念" class="headerlink" title="1. Spring aop的基本概念"></a>1. Spring aop的基本概念</h3><h4 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h4><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h2><h3 id="1-Spring-aop的基本概念"><a href="#1-Spring-aop的基本概念" class="headerlink" title="1. Spring aop的基本概念"></a>1. Spring aop的基本概念</h3><h4 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h4><ul>
 <li>连接点（Joinpoint）：在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。<ul>
 <li>通俗讲：<ul>
 <li>层与层之间方法调用的过程称之为连接点</li>
@@ -2378,14 +2424,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringDay05</title>
     <url>/2020/01/29/SpringDay05/</url>
-    <content><![CDATA[<h2 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h2><h3 id="within表达式"><a href="#within表达式" class="headerlink" title="within表达式"></a>within表达式</h3><pre><code>通过类名进行匹配，是一种粗粒度的切入点表达式，不可以指定某个方法进行增强，以类作为基本的单位</code></pre><h3 id="在Spring的约束文件中配置切入点和切面（within切入点表达式）"><a href="#在Spring的约束文件中配置切入点和切面（within切入点表达式）" class="headerlink" title="在Spring的约束文件中配置切入点和切面（within切入点表达式）"></a>在Spring的约束文件中配置切入点和切面（within切入点表达式）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">    <span class="comment">&lt;!--添加Spring AOP相关的约束</span></span><br><span class="line"><span class="comment">    xmlns:aop="http://www.springframework.org/schema/aop"</span></span><br><span class="line"><span class="comment">    http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注释配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定切入点规则,通知方法--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h2><h3 id="within表达式"><a href="#within表达式" class="headerlink" title="within表达式"></a>within表达式</h3><pre><code>通过类名进行匹配，是一种粗粒度的切入点表达式，不可以指定某个方法进行增强，以类作为基本的单位</code></pre><h3 id="在Spring的约束文件中配置切入点和切面（within切入点表达式）"><a href="#在Spring的约束文件中配置切入点和切面（within切入点表达式）" class="headerlink" title="在Spring的约束文件中配置切入点和切面（within切入点表达式）"></a>在Spring的约束文件中配置切入点和切面（within切入点表达式）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">    <span class="comment">&lt;!--添加Spring AOP相关的约束</span></span><br><span class="line"><span class="comment">    xmlns:aop="http://www.springframework.org/schema/aop"</span></span><br><span class="line"><span class="comment">    http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注释配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定切入点规则,通知方法--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="execution表达式"><a href="#execution表达式" class="headerlink" title="execution表达式"></a>execution表达式</h3><pre><code>通过方法进行匹配，是一种细粒度的切入点表达式，以方法作为基本的单元</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..*(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="Spring的五大通知类型"><a href="#Spring的五大通知类型" class="headerlink" title="Spring的五大通知类型"></a>Spring的五大通知类型</h2><h3 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h3><ol>
 <li>在目标方法执行之前执行的通知<h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3></li>
@@ -2420,14 +2466,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringDay06</title>
     <url>/2020/01/29/SpringDay06/</url>
-    <content><![CDATA[<h2 id="1-通过aop进行权限的控制"><a href="#1-通过aop进行权限的控制" class="headerlink" title="1.通过aop进行权限的控制"></a>1.通过aop进行权限的控制</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-通过aop进行权限的控制"><a href="#1-通过aop进行权限的控制" class="headerlink" title="1.通过aop进行权限的控制"></a>1.通过aop进行权限的控制</h2><ol>
 <li>通过自定义注解声明业务方法是否需要权限控制</li>
 <li>通过权限注解上的属性声明需要什么样的权限</li>
 <li>通过切面拦截业务的方法，根据是否需要权限，是否具有权限，控制目标方法的执行<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//切面代码</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrivAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* cn.tedu.servive..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//1.获取目标对象</span></span><br><span class="line">        Object target = pjp.getTarget();</span><br><span class="line">        <span class="comment">//2.获取目标方法</span></span><br><span class="line">        MethodSignature signature = (MethodSignature) pjp.getSignature();</span><br><span class="line">        Method method = signature.getMethod();<span class="comment">//接口上的方法</span></span><br><span class="line">        <span class="comment">//3.获取实现类上的目标方法</span></span><br><span class="line">        Method methodInstance = target.getClass().getMethod(method.getName(), method.getParameterTypes());</span><br><span class="line">        <span class="comment">//4.判断是否有注解</span></span><br><span class="line">        <span class="keyword">if</span> (methodInstance.isAnnotationPresent(PrivAnno<span class="class">.<span class="keyword">class</span>))</span>&#123;</span><br><span class="line">            PrivAnno annotation = methodInstance.getAnnotation(PrivAnno<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            PrivEnum[] privEnums = annotation.value();</span><br><span class="line">            <span class="keyword">if</span> (Arrays.asList(privEnums).contains(Test01.priv)) &#123;</span><br><span class="line">                 <span class="keyword">return</span> pjp.proceed();</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"权限不够"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> pjp.proceed();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2457,14 +2503,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringMVCDay01</title>
     <url>/2020/01/29/SpringMVCDay01/</url>
-    <content><![CDATA[<h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
 <h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
 <li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
 </ol>
@@ -2494,14 +2540,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>redis-cluster</title>
     <url>/2020/01/29/redis-cluster/</url>
-    <content><![CDATA[<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ol>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ol>
 <li>两两互联，任意节点和其他节点通信，底层使用二进制协议优化传输速度</li>
 <li></li>
 <li></li>
@@ -2512,14 +2558,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>redis</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>单例模式</title>
     <url>/2020/01/28/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
 <h2 id="单例设计模式（饿汉式静态变量）"><a href="#单例设计模式（饿汉式静态变量）" class="headerlink" title="单例设计模式（饿汉式静态变量）"></a>单例设计模式（饿汉式静态变量）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTest1</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//通过调用静态方法来创建实例</span></span><br><span class="line">        Singleton instance = Singleton.getInstance();</span><br><span class="line">        Singleton instance1 = Singleton.getInstance();</span><br><span class="line">        <span class="comment">//证明不管多少次调用Singleton类同一个实例</span></span><br><span class="line">        System.out.println(instance==instance1);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//饿汉式（静态变量）</span></span><br><span class="line"><span class="comment">//优点：这种写法比较简单，在类装载的时候就完成了实例化，避免了线程同步的问题</span></span><br><span class="line"><span class="comment">//缺点：没有实现lazy loading的效果，实例创建可能不会被使用，导致内存的浪费</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="comment">//私有化构造方法，目的：不让外界随便创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//本类部自己创建实例</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    <span class="comment">//对外界提供公共的静态方法，返回实例的对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="饿汉式（静态代码块）"><a href="#饿汉式（静态代码块）" class="headerlink" title="饿汉式（静态代码块）"></a>饿汉式（静态代码块）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleTest2</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//通过调用静态方法来创建实例</span></span><br><span class="line">        Singleton2 instance = Singleton2.getInstance();</span><br><span class="line">        Singleton2 instance1 = Singleton2.getInstance();</span><br><span class="line">        <span class="comment">//证明不管多少次调用Singleton类同一个实例</span></span><br><span class="line">        System.out.println(instance == instance1);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//饿汉式（静态代码块）</span></span><br><span class="line"><span class="comment">//优点：这种写法比较简单，在类装载的时候就完成了实例化，避免了线程同步的问题</span></span><br><span class="line"><span class="comment">//缺点：没有实现lazy loading的效果，实例创建可能不会被使用，导致内存的浪费</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton2</span> </span>&#123;</span><br><span class="line">    <span class="comment">//私有化构造方法，目的：不让外界随便创建实例</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在本类中声明实例</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton2 instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">//在静态代码块中实例化对象</span></span><br><span class="line">        instance = <span class="keyword">new</span> Singleton2();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对外界提供公共的静态方法，返回实例的对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton2 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
@@ -2533,14 +2579,14 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
+        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
     <title>My-first-blog</title>
     <url>/2020/01/28/My-first-blog/</url>
-    <content><![CDATA[<h1 id="Mac下-hexo博客的搭建"><a href="#Mac下-hexo博客的搭建" class="headerlink" title="Mac下 hexo博客的搭建"></a>Mac下 hexo博客的搭建</h1><h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><h3 id="这里可以去Nodejs的官网去下载安装"><a href="#这里可以去Nodejs的官网去下载安装" class="headerlink" title="这里可以去Nodejs的官网去下载安装"></a>这里可以去Nodejs的官网去下载安装</h3><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Mac下-hexo博客的搭建"><a href="#Mac下-hexo博客的搭建" class="headerlink" title="Mac下 hexo博客的搭建"></a>Mac下 hexo博客的搭建</h1><h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><h3 id="这里可以去Nodejs的官网去下载安装"><a href="#这里可以去Nodejs的官网去下载安装" class="headerlink" title="这里可以去Nodejs的官网去下载安装"></a>这里可以去Nodejs的官网去下载安装</h3><ul>
 <li>[hyperlink]（<a href="https://nodejs.org/en/）" target="_blank" rel="noopener">https://nodejs.org/en/）</a></li>
 <li>点击downloads 选择合适的版本下载</li>
 </ul>
@@ -2587,33 +2633,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>前端</category>
       </categories>
       <tags>
-        <tag>导航</tag>
         <tag>分享</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/01/27/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>文章</category>
-      </categories>
-      <tags>
         <tag>导航</tag>
-        <tag>分享</tag>
       </tags>
   </entry>
 </search>
