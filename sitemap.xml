@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/05/08/Spark/</loc>
+    
+    <lastmod>2020-05-08T15:12:53.822Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/28/JVM/</loc>
+    
+    <lastmod>2020-05-06T15:08:05.328Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/31/JUC/</loc>
+    
+    <lastmod>2020-05-01T11:33:57.036Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2020-04-30T16:13:48.413Z</lastmod>
@@ -19,13 +40,6 @@
     <loc>http://yoursite.com/2020/04/29/Kafka/</loc>
     
     <lastmod>2020-04-30T12:16:12.183Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/28/JVM/</loc>
-    
-    <lastmod>2020-04-29T14:43:51.498Z</lastmod>
     
   </url>
   
@@ -166,13 +180,6 @@
     <loc>http://yoursite.com/2020/01/29/Shell/</loc>
     
     <lastmod>2020-04-07T01:42:33.317Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/31/JUC/</loc>
-    
-    <lastmod>2020-04-02T15:36:45.595Z</lastmod>
     
   </url>
   
