@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-08T15:12:53.822Z</updated>
+  <updated>2020-05-11T10:22:34.762Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2020/05/08/Spark/"/>
     <id>http://yoursite.com/2020/05/08/Spark/</id>
     <published>2020-05-08T04:22:20.000Z</published>
-    <updated>2020-05-08T15:12:53.822Z</updated>
+    <updated>2020-05-11T10:22:34.762Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>spark是一个开源免费的，通用的，可靠性的分布式计算框架，可用于处理海量的数据<br><font color=red><strong>Apache Spark™是用于大规模数据处理的统一分析引擎。</strong></font></p><h3 id="常见的计算框架"><a href="#常见的计算框架" class="headerlink" title="常见的计算框架"></a>常见的计算框架</h3><ol><li>MapReduce -&gt; 离线批处理</li><li>Spark -&gt;离线批处理+实时处理</li><li>Storm -&gt;实时处理</li><li>Flink -&gt;实时处理</li></ol><h3 id="Hadoop-MapReduce-存在问题"><a href="#Hadoop-MapReduce-存在问题" class="headerlink" title="Hadoop MapReduce 存在问题"></a>Hadoop MapReduce 存在问题</h3><p>当发生shuffle时底层会产生大量的磁盘I/O，会降低整体的性能。此外还会产生大量的排序操作，耗费cpu，并且不能做到对中间结果集的服用，导致大量的重新计算，也会降低整体性能</p><p>所以spark在设计时，吸取了MapReduce的经验教训，做出相应的改进和优化，比如尽量减少shuffle的产生，减少不必要的排序，以及支持对结果集的复用</p><h3 id="spark的模块构成"><a href="#spark的模块构成" class="headerlink" title="spark的模块构成"></a>spark的模块构成</h3><p><img src="/" class="lazyload" data-src="http://spark.apache.org/images/spark-stack.png"  alt=""></p><p>从上面可以看出，spark团队的目标是能够一栈式处理大数据所有场景：</p><ol><li>离线批处理</li><li>数据交互式查询以及数据仓库</li><li>实时计算</li><li>复杂的数据分析</li></ol><h3 id="spark的使用模式"><a href="#spark的使用模式" class="headerlink" title="spark的使用模式"></a>spark的使用模式</h3><p>常见的有三种</p><ol><li>local模式：本地单机模式。一般用于练习或测试</li><li>Standlone模式：Spark集群模式。集群的资源管理由spark自身来管理</li><li>On Yarn模式：spark集群模式。集群的资源由yarn管理</li></ol><h3 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h3><p>弹性分布式数据集。初学时，把RDD看做是一种集合，用于存储数据，类比于Array或List。RDD的特点在于：</p><ul><li>RDD有分区机制：可以分布式并行的处理同一个RDD数据集，从而极大提高处理效率。RDD分区数量由程序员自己定</li><li>RDD有容错机制，分区数据丢失可以进行恢复 </li></ul><p>RDD是Spark最核心的概念，需要把数据封装到RDD中，然后通过spark计算引擎进行处理<br>创建RDD的两种途径：</p><ol><li>将一个普通的集合（Array或List）转变成RDD<br> val r1=sc.parallelize(a1,2)</li></ol><ul><li>sc：spark context</li><li>a1 ：普通集合</li><li>2:RDD的分区数<br>r1.partitions.size  查看分区数<br>r1.glom.collect :查看每个分区的数据</li></ul><p>val r2 =sc.makeRDD(List(1,2,3,4),2)<br>2. 读取外部存储系统文件（Linux，windows，hdfs等等）将整个文件的数据变为RDD以性为单位进行处理，即一行是一条数据<br>3. 读取本地文件 val r4 = sc.textFile(“file:///home/1.txt”,2)<br>4. 读取hdfs文件：val r5 = sc.textFile(“hdfs://hadoop01:9000/1.txt”,2)</p><h3 id="RDD的操作"><a href="#RDD的操作" class="headerlink" title="RDD的操作"></a>RDD的操作</h3><p>RDD的操作总分有三种</p><ol><li>Transformation 变换操作，变换操作都是懒操作（懒方法），即调用方法后，不是马上执行，当触发某一个Action方法时才会真正执行，比如textFile就是一个懒方法。此外，每当调用一个懒方法，就会返回一个新的RDD</li><li>Action执行操作</li><li>Controller控制操作</li></ol>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>spark是一个开源免费的，通用的，可靠性的分布式计算框架，可用于处理海量的数据<br><font color=red><strong>Apache Spark™是用于大规模数据处理的统一分析引擎。</strong></font></p><h3 id="常见的计算框架"><a href="#常见的计算框架" class="headerlink" title="常见的计算框架"></a>常见的计算框架</h3><ol><li>MapReduce -&gt; 离线批处理</li><li>Spark -&gt;离线批处理+实时处理</li><li>Storm -&gt;实时处理</li><li>Flink -&gt;实时处理</li></ol><h3 id="Hadoop-MapReduce-存在问题"><a href="#Hadoop-MapReduce-存在问题" class="headerlink" title="Hadoop MapReduce 存在问题"></a>Hadoop MapReduce 存在问题</h3><p>当发生shuffle时底层会产生大量的磁盘I/O，会降低整体的性能。此外还会产生大量的排序操作，耗费cpu，并且不能做到对中间结果集的服用，导致大量的重新计算，也会降低整体性能</p><p>所以spark在设计时，吸取了MapReduce的经验教训，做出相应的改进和优化，比如尽量减少shuffle的产生，减少不必要的排序，以及支持对结果集的复用</p><h3 id="spark的模块构成"><a href="#spark的模块构成" class="headerlink" title="spark的模块构成"></a>spark的模块构成</h3><p><img src="/" class="lazyload" data-src="http://spark.apache.org/images/spark-stack.png"  alt=""></p><p>从上面可以看出，spark团队的目标是能够一栈式处理大数据所有场景：</p><ol><li>离线批处理</li><li>数据交互式查询以及数据仓库</li><li>实时计算</li><li>复杂的数据分析</li></ol><h3 id="spark的使用模式"><a href="#spark的使用模式" class="headerlink" title="spark的使用模式"></a>spark的使用模式</h3><p>常见的有三种</p><ol><li>local模式：本地单机模式。一般用于练习或测试</li><li>Standlone模式：Spark集群模式。集群的资源管理由spark自身来管理</li><li>On Yarn模式：spark集群模式。集群的资源由yarn管理</li></ol><h3 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h3><p>弹性分布式数据集。初学时，把RDD看做是一种集合，用于存储数据，类比于Array或List。RDD的特点在于：</p><ul><li>RDD有分区机制：可以分布式并行的处理同一个RDD数据集，从而极大提高处理效率。RDD分区数量由程序员自己定</li><li>RDD有容错机制，分区数据丢失可以进行恢复 </li></ul><p>RDD是Spark最核心的概念，需要把数据封装到RDD中，然后通过spark计算引擎进行处理<br>创建RDD的两种途径：</p><ol><li>将一个普通的集合（Array或List）转变成RDD<br> val r1=sc.parallelize(a1,2)</li></ol><ul><li>sc：spark context</li><li>a1 ：普通集合</li><li>2:RDD的分区数<br>r1.partitions.size  查看分区数<br>r1.glom.collect :查看每个分区的数据</li></ul><p>val r2 =sc.makeRDD(List(1,2,3,4),2)<br>2. 读取外部存储系统文件（Linux，windows，hdfs等等）将整个文件的数据变为RDD以性为单位进行处理，即一行是一条数据<br>3. 读取本地文件 val r4 = sc.textFile(“file:///home/1.txt”,2)<br>4. 读取hdfs文件：val r5 = sc.textFile(“hdfs://hadoop01:9000/1.txt”,2)</p><h3 id="RDD的操作"><a href="#RDD的操作" class="headerlink" title="RDD的操作"></a>RDD的操作</h3><p>RDD的操作总分有三种</p><ol><li>Transformation 变换操作，变换操作都是懒操作（懒方法），即调用方法后，不是马上执行，当触发某一个Action方法时才会真正执行，比如textFile就是一个懒方法。此外，每当调用一个懒方法，就会返回一个新的RDD</li><li>Action执行操作</li><li>Controller控制操作</li></ol><h3 id="Spark的DAG（有向无环图）"><a href="#Spark的DAG（有向无环图）" class="headerlink" title="Spark的DAG（有向无环图）"></a>Spark的DAG（有向无环图）</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单词统计</span></span><br><span class="line">data.flatMap(_.split(<span class="string">" "</span>)).map((_,<span class="number">1</span>)).reduceByKey(_+_)</span><br></pre></td></tr></table></figure><p>DAG中记录了RDD之间的依赖关系，借助RDD之间的依赖关系可以实现数据容错，即某一个子分区<br>数据丢失时，找他对应的父分区结合依赖关系进行恢复</p><h3 id="RDD的依赖关系"><a href="#RDD的依赖关系" class="headerlink" title="RDD的依赖关系"></a>RDD的依赖关系</h3><ul><li>窄依赖 ：对于窄依赖操作，它们只是将Partition的数据根据转换的规则进行转化，并不涉及其他的处理，可以简单地认为只是将数据从一个形式转换到另一个形式。<br>所以对于窄依赖，并不会引入昂贵的Shuffle。所以执行效率非常高。如果整个DAG中存在多个连续的窄依赖，则可以将这些连续的窄依赖整合到一起连续执行，中间不执行shuffle 从而提高效率，这样的优化方式称之为流水线优化。<br>此外，针对窄依赖，如果子RDD某个分区数据丢失，只需要找到父RDD对应依赖的分区，恢复即可。但如果是宽依赖，当分区丢失时，最糟糕的情况是要重算所有父RDD的所有分区。</li><li>宽依赖，对于groupByKey这样的操作，子RDD的所有Partition（s）会依赖于parent RDD的所有Partition（s），子RDD的Partition是parent RDD的所有Partition Shuffle的结果。<br>宽依赖会产生shuffle，底层会发生磁盘I/O以及网络数据通信较为复杂过程，所以性能上会降低，spark也是会产生shuffle，窄依赖就没有shuffle，所以会提高整体的执行效率</li></ul><h3 id="shuffle（洗牌）"><a href="#shuffle（洗牌）" class="headerlink" title="shuffle（洗牌）"></a>shuffle（洗牌）</h3><ol><li>即按照分组（分区条件）将数据分发到正确分区</li></ol><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-05-09%E4%B8%8B%E5%8D%883.36.02.png"  alt="截屏2020-05-09下午3.36.02"></p><h3 id="Stage的划分"><a href="#Stage的划分" class="headerlink" title="Stage的划分"></a>Stage的划分</h3><p>1）Spark在执行Transformation类型操作时都不会立即执行，而是懒执行（计算）<br>2）执行若干步的Transformation类型的操作后，一旦遇到Action类型操作时，才会真正触发执行（计算）<br>3）执行时，从当前Action方法向前回溯，如果遇到的是窄依赖则应用流水线优化，继续向前找，直到碰到某一个宽依赖<br>4）因为宽依赖必须要进行shuffle，无法实现优化，所以将这一次段执行过程组装为一个stage<br>5）再从当前宽依赖开始继续向前找。重复刚才的步骤，从而将整个DAG还分为若干的stage</p><p>stage（阶段），本质上一组task的集合，一个分区对应一个task，连续窄依赖会出现流水线优化<br>一个分区对应一个task，一个action执行对应一个job<br>一个app（Application）应用程序，一个Ap至少有一个job</p><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-05-09%E4%B8%8B%E5%8D%884.21.53.png"  alt="截屏2020-05-09下午4.21.53"></p><h3 id="spark集群搭建"><a href="#spark集群搭建" class="headerlink" title="spark集群搭建"></a>spark集群搭建</h3><h4 id="修改conf下的spark-env-sh"><a href="#修改conf下的spark-env-sh" class="headerlink" title="修改conf下的spark-env.sh"></a>修改conf下的spark-env.sh<img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-05-09%E4%B8%8B%E5%8D%884.48.59.png"  alt="截屏2020-05-09下午4.48.59"></h4><h3 id="Spark集群提交jar包以及运行的流程"><a href="#Spark集群提交jar包以及运行的流程" class="headerlink" title="Spark集群提交jar包以及运行的流程"></a>Spark集群提交jar包以及运行的流程</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.14.51.png"  alt="截屏2020-05-11 下午2.14.51" style="zoom:150%;" /><h3 id="Spark集群架构"><a href="#Spark集群架构" class="headerlink" title="Spark集群架构"></a>Spark集群架构</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.16.11.png"  alt="截屏2020-05-11 下午2.16.11" style="zoom:150%;" /><h3 id="Spark-Context底层任务调度管理模块"><a href="#Spark-Context底层任务调度管理模块" class="headerlink" title="Spark Context底层任务调度管理模块"></a>Spark Context底层任务调度管理模块</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.16.59.png"  alt="截屏2020-05-11 下午2.16.59" style="zoom:150%;" /><h3 id="Spark集群架构图细节补充"><a href="#Spark集群架构图细节补充" class="headerlink" title="Spark集群架构图细节补充"></a>Spark集群架构图细节补充</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.17.46.png"  alt="截屏2020-05-11 下午2.17.46" style="zoom:150%;" /><h3 id="Spark-Shuffle-Manager"><a href="#Spark-Shuffle-Manager" class="headerlink" title="Spark Shuffle Manager"></a>Spark Shuffle Manager</h3><p>![截屏2020-05-11 下午6.16.56](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.16.56.png)</p><h4 id="一、Hash-Based-Shuffle-Manager"><a href="#一、Hash-Based-Shuffle-Manager" class="headerlink" title="一、Hash Based Shuffle Manager"></a>一、Hash Based Shuffle Manager</h4><p>![截屏2020-05-11 下午6.18.38](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.18.38.png)</p><h4 id="二、Sort-Based-Shuffle-Manager"><a href="#二、Sort-Based-Shuffle-Manager" class="headerlink" title="二、Sort Based Shuffle Manager"></a>二、Sort Based Shuffle Manager</h4><p>![截屏2020-05-11 下午6.18.58](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.18.58.png)</p><h3 id="RDD的持久化机制"><a href="#RDD的持久化机制" class="headerlink" title="RDD的持久化机制"></a>RDD的持久化机制</h3><p>![截屏2020-05-11 下午6.19.06](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.19.06.png)</p><h3 id="Spark的Checkpoint机制"><a href="#Spark的Checkpoint机制" class="headerlink" title="Spark的Checkpoint机制"></a>Spark的Checkpoint机制</h3><p>![截屏2020-05-11 下午6.19.26](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.19.26.png)</p>]]></content>
     
     <summary type="html">
     
@@ -38,9 +38,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -66,9 +66,9 @@
       <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -94,9 +94,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -122,9 +122,9 @@
       <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -150,9 +150,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -178,9 +178,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -206,9 +206,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -234,9 +234,9 @@
       <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -262,9 +262,9 @@
       <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -290,9 +290,9 @@
       <category term="分布式" scheme="http://yoursite.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -318,9 +318,9 @@
       <category term="Springcloud" scheme="http://yoursite.com/categories/Springcloud/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
       <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -374,9 +374,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -402,9 +402,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -430,9 +430,9 @@
       <category term="高并发" scheme="http://yoursite.com/categories/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -458,9 +458,9 @@
       <category term="Interview" scheme="http://yoursite.com/categories/Interview/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -486,9 +486,9 @@
       <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -558,9 +558,9 @@
       <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   

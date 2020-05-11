@@ -47,13 +47,41 @@
 <li>Action执行操作</li>
 <li>Controller控制操作</li>
 </ol>
+<h3 id="Spark的DAG（有向无环图）"><a href="#Spark的DAG（有向无环图）" class="headerlink" title="Spark的DAG（有向无环图）"></a>Spark的DAG（有向无环图）</h3><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="comment">//单词统计</span></span><br><span class="line">data.flatMap(_.split(<span class="string">" "</span>)).map((_,<span class="number">1</span>)).reduceByKey(_+_)</span><br></pre></td></tr></table></figure>
+<p>DAG中记录了RDD之间的依赖关系，借助RDD之间的依赖关系可以实现数据容错，即某一个子分区<br>数据丢失时，找他对应的父分区结合依赖关系进行恢复</p>
+<h3 id="RDD的依赖关系"><a href="#RDD的依赖关系" class="headerlink" title="RDD的依赖关系"></a>RDD的依赖关系</h3><ul>
+<li>窄依赖 ：对于窄依赖操作，它们只是将Partition的数据根据转换的规则进行转化，并不涉及其他的处理，可以简单地认为只是将数据从一个形式转换到另一个形式。<br>所以对于窄依赖，并不会引入昂贵的Shuffle。所以执行效率非常高。如果整个DAG中存在多个连续的窄依赖，则可以将这些连续的窄依赖整合到一起连续执行，中间不执行shuffle 从而提高效率，这样的优化方式称之为流水线优化。<br>此外，针对窄依赖，如果子RDD某个分区数据丢失，只需要找到父RDD对应依赖的分区，恢复即可。但如果是宽依赖，当分区丢失时，最糟糕的情况是要重算所有父RDD的所有分区。</li>
+<li>宽依赖，对于groupByKey这样的操作，子RDD的所有Partition（s）会依赖于parent RDD的所有Partition（s），子RDD的Partition是parent RDD的所有Partition Shuffle的结果。<br>宽依赖会产生shuffle，底层会发生磁盘I/O以及网络数据通信较为复杂过程，所以性能上会降低，spark也是会产生shuffle，窄依赖就没有shuffle，所以会提高整体的执行效率</li>
+</ul>
+<h3 id="shuffle（洗牌）"><a href="#shuffle（洗牌）" class="headerlink" title="shuffle（洗牌）"></a>shuffle（洗牌）</h3><ol>
+<li>即按照分组（分区条件）将数据分发到正确分区</li>
+</ol>
+<p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-05-09%E4%B8%8B%E5%8D%883.36.02.png"  alt="截屏2020-05-09下午3.36.02"></p>
+<h3 id="Stage的划分"><a href="#Stage的划分" class="headerlink" title="Stage的划分"></a>Stage的划分</h3><p>1）Spark在执行Transformation类型操作时都不会立即执行，而是懒执行（计算）<br>2）执行若干步的Transformation类型的操作后，一旦遇到Action类型操作时，才会真正触发执行（计算）<br>3）执行时，从当前Action方法向前回溯，如果遇到的是窄依赖则应用流水线优化，继续向前找，直到碰到某一个宽依赖<br>4）因为宽依赖必须要进行shuffle，无法实现优化，所以将这一次段执行过程组装为一个stage<br>5）再从当前宽依赖开始继续向前找。重复刚才的步骤，从而将整个DAG还分为若干的stage</p>
+<p>stage（阶段），本质上一组task的集合，一个分区对应一个task，连续窄依赖会出现流水线优化<br>一个分区对应一个task，一个action执行对应一个job<br>一个app（Application）应用程序，一个Ap至少有一个job</p>
+<p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-05-09%E4%B8%8B%E5%8D%884.21.53.png"  alt="截屏2020-05-09下午4.21.53"></p>
+<h3 id="spark集群搭建"><a href="#spark集群搭建" class="headerlink" title="spark集群搭建"></a>spark集群搭建</h3><h4 id="修改conf下的spark-env-sh"><a href="#修改conf下的spark-env-sh" class="headerlink" title="修改conf下的spark-env.sh"></a>修改conf下的spark-env.sh<img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-05-09%E4%B8%8B%E5%8D%884.48.59.png"  alt="截屏2020-05-09下午4.48.59"></h4><h3 id="Spark集群提交jar包以及运行的流程"><a href="#Spark集群提交jar包以及运行的流程" class="headerlink" title="Spark集群提交jar包以及运行的流程"></a>Spark集群提交jar包以及运行的流程</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.14.51.png"  alt="截屏2020-05-11 下午2.14.51" style="zoom:150%;" />
+
+
+
+<h3 id="Spark集群架构"><a href="#Spark集群架构" class="headerlink" title="Spark集群架构"></a>Spark集群架构</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.16.11.png"  alt="截屏2020-05-11 下午2.16.11" style="zoom:150%;" />
+
+<h3 id="Spark-Context底层任务调度管理模块"><a href="#Spark-Context底层任务调度管理模块" class="headerlink" title="Spark Context底层任务调度管理模块"></a>Spark Context底层任务调度管理模块</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.16.59.png"  alt="截屏2020-05-11 下午2.16.59" style="zoom:150%;" />
+
+<h3 id="Spark集群架构图细节补充"><a href="#Spark集群架构图细节补充" class="headerlink" title="Spark集群架构图细节补充"></a>Spark集群架构图细节补充</h3><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午2.17.46.png"  alt="截屏2020-05-11 下午2.17.46" style="zoom:150%;" />
+
+<h3 id="Spark-Shuffle-Manager"><a href="#Spark-Shuffle-Manager" class="headerlink" title="Spark Shuffle Manager"></a>Spark Shuffle Manager</h3><p>![截屏2020-05-11 下午6.16.56](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.16.56.png)</p>
+<h4 id="一、Hash-Based-Shuffle-Manager"><a href="#一、Hash-Based-Shuffle-Manager" class="headerlink" title="一、Hash Based Shuffle Manager"></a>一、Hash Based Shuffle Manager</h4><p>![截屏2020-05-11 下午6.18.38](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.18.38.png)</p>
+<h4 id="二、Sort-Based-Shuffle-Manager"><a href="#二、Sort-Based-Shuffle-Manager" class="headerlink" title="二、Sort Based Shuffle Manager"></a>二、Sort Based Shuffle Manager</h4><p>![截屏2020-05-11 下午6.18.58](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.18.58.png)</p>
+<h3 id="RDD的持久化机制"><a href="#RDD的持久化机制" class="headerlink" title="RDD的持久化机制"></a>RDD的持久化机制</h3><p>![截屏2020-05-11 下午6.19.06](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.19.06.png)</p>
+<h3 id="Spark的Checkpoint机制"><a href="#Spark的Checkpoint机制" class="headerlink" title="Spark的Checkpoint机制"></a>Spark的Checkpoint机制</h3><p>![截屏2020-05-11 下午6.19.26](/Users/yuxiangrui/blog/source/picture/截屏2020-05-11 下午6.19.26.png)</p>
 ]]></content>
       <categories>
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -109,8 +137,8 @@
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -246,8 +274,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -276,8 +304,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -576,8 +604,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -716,8 +744,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -825,8 +853,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -949,8 +977,8 @@
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1072,8 +1100,8 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1120,8 +1148,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1162,8 +1190,8 @@
         <category>Springcloud</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1369,8 +1397,8 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1526,8 +1554,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1682,8 +1710,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1710,8 +1738,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>高并发</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1754,8 +1782,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Interview</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1773,8 +1801,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Web</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1859,8 +1887,30 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Interface(接口）</title>
+    <url>/2020/02/26/JavaSE02/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h2><h3 id="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"><a href="#抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。" class="headerlink" title="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"></a>抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。</h3><ol>
+<li>抽象类不能创建对象，因为抽象类创建对象没有意义,但可以创建抽象类的子类对象</li>
+<li>子类继承抽象类需要重写抽象类中的抽象方法，如果不重写这个类必须是抽象类，否则会产生编译时异常</li>
+<li>抽象类中可以没有抽象方法,</li>
+<li>可以向上造型，引用父类类型创建子类对象，调用子类方法</li>
+<li>abstract和static不能同时使用<br>###抽象方法：没有方法体的方法，用abstract关键字修饰<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2></li>
+<li>interface关键字修饰，产生一个完全的抽象类，接口中的方法都是抽象方法，接口也不能被实例化</li>
+<li>在接口中定义的方法必须被public修饰，而抽象类中的方法可以被其他访问权限修饰符修饰，如果不写java默认会用public修饰 </li>
+<li>接口中的变量默认被static和final关键字修饰，可以直接被接口名调用，不能被修改</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1891,30 +1941,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Interface(接口）</title>
-    <url>/2020/02/26/JavaSE02/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h2><h3 id="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"><a href="#抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。" class="headerlink" title="抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。"></a>抽象类：如果一个类中有一个或多个抽象方法，那么这个类必须是抽象类。</h3><ol>
-<li>抽象类不能创建对象，因为抽象类创建对象没有意义,但可以创建抽象类的子类对象</li>
-<li>子类继承抽象类需要重写抽象类中的抽象方法，如果不重写这个类必须是抽象类，否则会产生编译时异常</li>
-<li>抽象类中可以没有抽象方法,</li>
-<li>可以向上造型，引用父类类型创建子类对象，调用子类方法</li>
-<li>abstract和static不能同时使用<br>###抽象方法：没有方法体的方法，用abstract关键字修饰<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2></li>
-<li>interface关键字修饰，产生一个完全的抽象类，接口中的方法都是抽象方法，接口也不能被实例化</li>
-<li>在接口中定义的方法必须被public修饰，而抽象类中的方法可以被其他访问权限修饰符修饰，如果不写java默认会用public修饰 </li>
-<li>接口中的变量默认被static和final关键字修饰，可以直接被接口名调用，不能被修改</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -1931,8 +1959,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1955,8 +1983,52 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web总结</title>
+    <url>/2020/02/21/Web/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
+<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
+</ol>
+<hr>
+<ol start="2">
+<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
+</ol>
+<hr>
+<ol start="3">
+<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
+<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
+<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
+GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
+POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
+使用的协议版本
+1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
+1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
+Accept：浏览器可以接受的MIME类型
+Accept-Charset：浏览器可接受的字符集
+Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
+Connection：表示是否需要持久连接，HTTP默认KeepAlive
+Content-Length：表示请求消息正文的长度
+Cookie：存放缓存信息
+Host：初始URL中的主机和端口
+If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
+</ol>
+<hr>
+<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2011,52 +2083,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web总结</title>
-    <url>/2020/02/21/Web/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
-<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
-</ol>
-<hr>
-<ol start="2">
-<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
-</ol>
-<hr>
-<ol start="3">
-<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
-<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
-<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
-GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
-POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
-使用的协议版本
-1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
-1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
-Accept：浏览器可以接受的MIME类型
-Accept-Charset：浏览器可接受的字符集
-Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
-Connection：表示是否需要持久连接，HTTP默认KeepAlive
-Content-Length：表示请求消息正文的长度
-Cookie：存放缓存信息
-Host：初始URL中的主机和端口
-If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
-</ol>
-<hr>
-<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -2134,8 +2162,8 @@ If-Modified—Since：只有当所请求的内容在指定的日期之后又经�
         <category>Mysql</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2155,8 +2183,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2169,8 +2197,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2181,8 +2209,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2224,8 +2252,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2256,40 +2284,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Shell</title>
-    <url>/2020/01/29/Shell/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Shell传递参数值"><a href="#Shell传递参数值" class="headerlink" title="Shell传递参数值"></a>Shell传递参数值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Shell 传递参数实例&quot;</span><br><span class="line">echo &quot;执行的文件名：$0&quot;</span><br><span class="line">echo &quot;第一个参数为：$1&quot;</span><br><span class="line">echo &quot;第二个参数为：$2&quot;</span><br><span class="line">echo &quot;第三个参数为：$3&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Shell-和-的演示"><a href="#Shell-和-的演示" class="headerlink" title="Shell $*和$@的演示"></a>Shell $*和$@的演示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;--\$*演示---&quot;</span><br><span class="line">for i in &quot;$*&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br><span class="line">echo &quot;--\$@演示---&quot;</span><br><span class="line">for i in &quot;$@&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<h2 id="Shell的基础命令（find）"><a href="#Shell的基础命令（find）" class="headerlink" title="Shell的基础命令（find）"></a>Shell的基础命令（find）</h2><p>查找文件的位置 find 位置 选项 参数<br> 例如：按文件名进行查询 find / -name java<br>  查找当前系统中所有的.log后缀名的文件  find / -name “*.log”<br>  查找系统中/home目录下的非普通文件 find /home ! -type f<br>  查找/home目录下权限为700的文件 find /home -perm 700<br>  查找/dev目录下的块设备文件  find /dev -type b</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud</title>
-    <url>/2020/01/29/SpringCloud/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-微服务"><a href="#1-微服务" class="headerlink" title="1.微服务"></a>1.微服务</h2><p>1.1 单体项目：所有的功能都集中在一个web项目中。容易造成功能的强耦合<br>1.2 由于单体项目本身具有强耦合的问题，所以需要对项目进行拆分</p>
-<h3 id="a-横向拆分"><a href="#a-横向拆分" class="headerlink" title="a.横向拆分"></a>a.横向拆分</h3><pre><code>目的：仅仅解决了一个项目的分布式，并行开发的问题，必能解决单体项目的各种问题</code></pre><h3 id="b-纵向拆分"><a href="#b-纵向拆分" class="headerlink" title="b.纵向拆分"></a>b.纵向拆分</h3><pre><code>目的：将一个运行的系统，变成多个独立运行的系统，可以解觉单体项目的问题？按照业务功能，领域不同，进行的划分，每一个划分出来的系统都可以独立运行</code></pre><h2 id="Springcloud组件功能"><a href="#Springcloud组件功能" class="headerlink" title="Springcloud组件功能"></a>Springcloud组件功能</h2><ol>
-<li>springcloud概括<br>是spring家族的一员，本身也是一批不同组件的集合框架。在微服务发展过程中，不同的公司，团队各自开发了不同的小的功能。spring创建框架时，采用一种整合的方式，将一些成熟的技术，兼容到框架来，行程一个庞大的集体<br> 1.1组件<br> eureka:服务治理(动态微服务信息维护组件）<br> ribbon：负载均衡客户端（负载均衡调用微服务组件）<br> zuul:网关组件（每一个微服务不能提供对外暴露的接口）<br>上述这3个组件就能开发出一个基本的微服务框架的项目<br> config：分布式配置中心<br> feign:负载均衡客户端</li>
-<li>eureka服务治理组件<br> 2.1eureka概括<br> 作为服务治理组件，是每个微服务框架必备的组件。实现动态管理和维护所有微服    务信息。springcloud只能使用eureka作为服务治理组件，通过http协议的REST风        格实现通信过程（已经定义好了所有访问这个组件的接口地址，url：/hello/ /abc/cs）。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -2322,8 +2318,40 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Shell</title>
+    <url>/2020/01/29/Shell/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Shell传递参数值"><a href="#Shell传递参数值" class="headerlink" title="Shell传递参数值"></a>Shell传递参数值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Shell 传递参数实例&quot;</span><br><span class="line">echo &quot;执行的文件名：$0&quot;</span><br><span class="line">echo &quot;第一个参数为：$1&quot;</span><br><span class="line">echo &quot;第二个参数为：$2&quot;</span><br><span class="line">echo &quot;第三个参数为：$3&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Shell-和-的演示"><a href="#Shell-和-的演示" class="headerlink" title="Shell $*和$@的演示"></a>Shell $*和$@的演示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;--\$*演示---&quot;</span><br><span class="line">for i in &quot;$*&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br><span class="line">echo &quot;--\$@演示---&quot;</span><br><span class="line">for i in &quot;$@&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h2 id="Shell的基础命令（find）"><a href="#Shell的基础命令（find）" class="headerlink" title="Shell的基础命令（find）"></a>Shell的基础命令（find）</h2><p>查找文件的位置 find 位置 选项 参数<br> 例如：按文件名进行查询 find / -name java<br>  查找当前系统中所有的.log后缀名的文件  find / -name “*.log”<br>  查找系统中/home目录下的非普通文件 find /home ! -type f<br>  查找/home目录下权限为700的文件 find /home -perm 700<br>  查找/dev目录下的块设备文件  find /dev -type b</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud</title>
+    <url>/2020/01/29/SpringCloud/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-微服务"><a href="#1-微服务" class="headerlink" title="1.微服务"></a>1.微服务</h2><p>1.1 单体项目：所有的功能都集中在一个web项目中。容易造成功能的强耦合<br>1.2 由于单体项目本身具有强耦合的问题，所以需要对项目进行拆分</p>
+<h3 id="a-横向拆分"><a href="#a-横向拆分" class="headerlink" title="a.横向拆分"></a>a.横向拆分</h3><pre><code>目的：仅仅解决了一个项目的分布式，并行开发的问题，必能解决单体项目的各种问题</code></pre><h3 id="b-纵向拆分"><a href="#b-纵向拆分" class="headerlink" title="b.纵向拆分"></a>b.纵向拆分</h3><pre><code>目的：将一个运行的系统，变成多个独立运行的系统，可以解觉单体项目的问题？按照业务功能，领域不同，进行的划分，每一个划分出来的系统都可以独立运行</code></pre><h2 id="Springcloud组件功能"><a href="#Springcloud组件功能" class="headerlink" title="Springcloud组件功能"></a>Springcloud组件功能</h2><ol>
+<li>springcloud概括<br>是spring家族的一员，本身也是一批不同组件的集合框架。在微服务发展过程中，不同的公司，团队各自开发了不同的小的功能。spring创建框架时，采用一种整合的方式，将一些成熟的技术，兼容到框架来，行程一个庞大的集体<br> 1.1组件<br> eureka:服务治理(动态微服务信息维护组件）<br> ribbon：负载均衡客户端（负载均衡调用微服务组件）<br> zuul:网关组件（每一个微服务不能提供对外暴露的接口）<br>上述这3个组件就能开发出一个基本的微服务框架的项目<br> config：分布式配置中心<br> feign:负载均衡客户端</li>
+<li>eureka服务治理组件<br> 2.1eureka概括<br> 作为服务治理组件，是每个微服务框架必备的组件。实现动态管理和维护所有微服    务信息。springcloud只能使用eureka作为服务治理组件，通过http协议的REST风        格实现通信过程（已经定义好了所有访问这个组件的接口地址，url：/hello/ /abc/cs）。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2363,8 +2391,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2416,8 +2444,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2454,39 +2482,34 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
-    <title>SpringDay05</title>
-    <url>/2020/01/29/SpringDay05/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h2><h3 id="within表达式"><a href="#within表达式" class="headerlink" title="within表达式"></a>within表达式</h3><pre><code>通过类名进行匹配，是一种粗粒度的切入点表达式，不可以指定某个方法进行增强，以类作为基本的单位</code></pre><h3 id="在Spring的约束文件中配置切入点和切面（within切入点表达式）"><a href="#在Spring的约束文件中配置切入点和切面（within切入点表达式）" class="headerlink" title="在Spring的约束文件中配置切入点和切面（within切入点表达式）"></a>在Spring的约束文件中配置切入点和切面（within切入点表达式）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">    <span class="comment">&lt;!--添加Spring AOP相关的约束</span></span><br><span class="line"><span class="comment">    xmlns:aop="http://www.springframework.org/schema/aop"</span></span><br><span class="line"><span class="comment">    http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注释配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定切入点规则,通知方法--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="execution表达式"><a href="#execution表达式" class="headerlink" title="execution表达式"></a>execution表达式</h3><pre><code>通过方法进行匹配，是一种细粒度的切入点表达式，以方法作为基本的单元</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..*(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Spring的五大通知类型"><a href="#Spring的五大通知类型" class="headerlink" title="Spring的五大通知类型"></a>Spring的五大通知类型</h2><h3 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h3><ol>
-<li>在目标方法执行之前执行的通知<h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3></li>
-<li>在目标方法执行之前，执行之后都会执行的通知<h3 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h3></li>
-<li>在目标方法执行之后的通知<h3 id="异常通知"><a href="#异常通知" class="headerlink" title="异常通知"></a>异常通知</h3></li>
-<li>在目标方法抛出异常后执行的通知<h3 id="最终通知"><a href="#最终通知" class="headerlink" title="最终通知"></a>最终通知</h3></li>
-<li>无论如何都会在目标方法调用后执行</li>
+    <title>SpringMVCDay01</title>
+    <url>/2020/01/29/SpringMVCDay01/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
+<h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
+<li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
 </ol>
-<h4 id="多个通知执行顺序"><a href="#多个通知执行顺序" class="headerlink" title="多个通知执行顺序"></a>多个通知执行顺序</h4><h5 id="未出现异常"><a href="#未出现异常" class="headerlink" title="未出现异常"></a>未出现异常</h5><pre><code>前置通知
-环绕通知前
-目标方法（添加用户cn.tedu.domain.User@710f4dc7）
-最终通知
-环绕通知后
-后置通知</code></pre><h5 id="出现异常（）"><a href="#出现异常（）" class="headerlink" title="出现异常（）"></a>出现异常（）</h5><pre><code>前置通知
-环绕通知前
-目标方法（添加用户cn.tedu.domain.User@710f4dc7）
-最终通知
-异常通知</code></pre><h4 id="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："><a href="#出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：" class="headerlink" title="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："></a>出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：</h4><pre><code>web层调用service层目标方法时，会经过第一个切面，执行前置通知和环绕前通知，环绕通知调用proceed（）时进入下一个切面，执行第二个切面的前置通知，和环绕前通知，进入第二个切面的proceed的方法，放行调用目标方法，下面进入第二个切面的环绕后通知，和后置通知，最终通知，在进入第一个切面层，环绕后通知，和后置通知，最终通知，响应给web层</code></pre><h6 id="代码执行结果"><a href="#代码执行结果" class="headerlink" title="代码执行结果"></a>代码执行结果</h6><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">前置通知</span><br><span class="line">环绕通知前</span><br><span class="line">second前置通知</span><br><span class="line">second环绕通知前</span><br><span class="line">添加用户cn.tedu.domain.User@2de23121</span><br><span class="line">second最终通知</span><br><span class="line">second环绕通知后</span><br><span class="line">second后置通知</span><br><span class="line">最终通知</span><br><span class="line">环绕通知后</span><br><span class="line">后置通知</span><br></pre></td></tr></table></figure>
+<h2 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-28%E4%B8%8B%E5%8D%8810.54.07.png"  alt=""></p>
+<h3 id="配置前端控制器"><a href="#配置前端控制器" class="headerlink" title="配置前端控制器"></a>配置前端控制器</h3><h4 id="1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet"><a href="#1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet" class="headerlink" title="1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet"></a>1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置servlet的映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="生成SpringMVC核心配置文件"><a href="#生成SpringMVC核心配置文件" class="headerlink" title="生成SpringMVC核心配置文件"></a>生成SpringMVC核心配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系，拼接上前缀后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建类实现controller接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//创建modelAndView</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//封装数据</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"msg1"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"msg2"</span>,<span class="string">"hello springMVC"</span>);</span><br><span class="line">        <span class="comment">//封装视图</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="comment">//返回modelAndView</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC注解方式配置"><a href="#SpringMVC注解方式配置" class="headerlink" title="SpringMVC注解方式配置"></a>SpringMVC注解方式配置</h2><h3 id="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"><a href="#SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式" class="headerlink" title="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"></a>SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式</h3><h3 id="springMVC注解工作原理"><a href="#springMVC注解工作原理" class="headerlink" title="springMVC注解工作原理"></a>springMVC注解工作原理</h3><ol>
+<li>当服务器启动时，会先加载web.xml文件，之后通过引入核心配置文件来加载SpringMVC.xml</li>
+<li>当解析到包扫描时，扫描指定的包，并将含有@Conteoller注解的类解析为处理器</li>
+<li>如果配置过<a href="mvc:annotation-driven">mvc:annotation-driven</a>就会解析Spring-MVC注解</li>
+<li>解析@requestMapping（value=“/test01.action”），将指定的地址和当前方法的映射关系保存</li>
+<li>当客户端发出请求访问时，SpringMVC寻找改地址的映射关系，找到就执行方法，找不到抛出404</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置mvc注解方式的DI--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="test01-jsp"><a href="#test01-jsp" class="headerlink" title="test01.jsp"></a>test01.jsp</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;this is test01.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;$&#123;msg&#125;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="comment">//在类上加上注解指的是在访问的地址上加上前缀</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/my01"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test01"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过value属性指定当前的映射到那些路径,可以映射到多个路径</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/test04.action"</span>,<span class="string">"/test02.action"</span>,<span class="string">"/test03.action"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just do it"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test02"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
+<h3 id="SpringMVC获取请求参数"><a href="#SpringMVC获取请求参数" class="headerlink" title="SpringMVC获取请求参数"></a>SpringMVC获取请求参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：日期数据处理</span></span><br><span class="line"><span class="comment">     *  通过注册自定义类型编辑器使SpringMVC支持自定义格式请求参数的处理</span></span><br><span class="line"><span class="comment">     *  此处，SpringMVC为Date类型已经提供了编辑器类，所以直接使用，不用自己写</span></span><br><span class="line"><span class="comment">     * http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01test09.jsp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myInitBinder</span><span class="params">(ServletRequestDataBinder dataBinder)</span></span>&#123;</span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test09.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test09</span><span class="params">(String name, <span class="keyword">int</span> age, Date birthday)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        String format1 = format.format(birthday);</span><br><span class="line">        System.out.println(format1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：中文乱码解决</span></span><br><span class="line"><span class="comment">     *     如果服务器配置的编码是utf-8,且项目采用的也是utf-8则默认请求参数无乱码</span></span><br><span class="line"><span class="comment">     *     tomcat8默认编码为utf-8(可以更改)</span></span><br><span class="line"><span class="comment">     *     tomcat7及更老的版本默认编码为iso8859-1(可以更改)</span></span><br><span class="line"><span class="comment">     *     如果遇到服务器编码和项目编码不一致时会产生乱码</span></span><br><span class="line"><span class="comment">     *     对于POST提交 可以通过request.setCharacterEncoding("utf-8")解决乱码</span></span><br><span class="line"><span class="comment">     *     但此行代码对GET无效，GET提交的请求参数乱码，只能手工编解码来解决</span></span><br><span class="line"><span class="comment">     *     手工编解码解决乱码的方式对POST提交也有效</span></span><br><span class="line"><span class="comment">     *     springmvc提供了过滤器CharacterEncodingFilter来帮助我们解决乱码</span></span><br><span class="line"><span class="comment">     *     但此过滤器本质上就是request.setCharacterEncoing()所以也是只对POST有效</span></span><br><span class="line"><span class="comment">     *     ,即使配置了GET提交乱码也要手动解决</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test08.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test08</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">        <span class="comment">//POST提交</span></span><br><span class="line">        <span class="comment">//request.setCharacterEncoding("utf-8");</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">        <span class="comment">//GET提交</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//byte [] data = uname.getBytes("iso8859-1");</span></span><br><span class="line">        <span class="comment">//uname = new String(data,"utf-8");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    获取请求参数：多个同名请求参数的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test07.action?name=tt&amp;love=bb&amp;love=pp&amp;love=zz</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test07.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">(String name,String [] love)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//封装到数组里</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(Arrays.asList(love));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test06.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1&amp;dog.cat.name=xx&amp;dog.cat.age=3</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test06.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test05.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test05.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test04.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test04.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 通过@RequestParam指定参数赋值,解决请求参数名和方法参数不一致时赋值问题</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test03.action?name=yasuo&amp;uage=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test03.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"uage"</span>)</span> <span class="keyword">int</span> age) </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 直接获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test02.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test02.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：传统方式获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test01.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        <span class="keyword">int</span> age = Integer.parseInt(request.getParameter(<span class="string">"age"</span>));</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -2496,8 +2519,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2575,34 +2598,39 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
-    <title>SpringMVCDay01</title>
-    <url>/2020/01/29/SpringMVCDay01/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
-<h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
-<li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
+    <title>SpringDay05</title>
+    <url>/2020/01/29/SpringDay05/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h2><h3 id="within表达式"><a href="#within表达式" class="headerlink" title="within表达式"></a>within表达式</h3><pre><code>通过类名进行匹配，是一种粗粒度的切入点表达式，不可以指定某个方法进行增强，以类作为基本的单位</code></pre><h3 id="在Spring的约束文件中配置切入点和切面（within切入点表达式）"><a href="#在Spring的约束文件中配置切入点和切面（within切入点表达式）" class="headerlink" title="在Spring的约束文件中配置切入点和切面（within切入点表达式）"></a>在Spring的约束文件中配置切入点和切面（within切入点表达式）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">    <span class="comment">&lt;!--添加Spring AOP相关的约束</span></span><br><span class="line"><span class="comment">    xmlns:aop="http://www.springframework.org/schema/aop"</span></span><br><span class="line"><span class="comment">    http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注释配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定切入点规则,通知方法--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="execution表达式"><a href="#execution表达式" class="headerlink" title="execution表达式"></a>execution表达式</h3><pre><code>通过方法进行匹配，是一种细粒度的切入点表达式，以方法作为基本的单元</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..*(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Spring的五大通知类型"><a href="#Spring的五大通知类型" class="headerlink" title="Spring的五大通知类型"></a>Spring的五大通知类型</h2><h3 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h3><ol>
+<li>在目标方法执行之前执行的通知<h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3></li>
+<li>在目标方法执行之前，执行之后都会执行的通知<h3 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h3></li>
+<li>在目标方法执行之后的通知<h3 id="异常通知"><a href="#异常通知" class="headerlink" title="异常通知"></a>异常通知</h3></li>
+<li>在目标方法抛出异常后执行的通知<h3 id="最终通知"><a href="#最终通知" class="headerlink" title="最终通知"></a>最终通知</h3></li>
+<li>无论如何都会在目标方法调用后执行</li>
 </ol>
-<h2 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-28%E4%B8%8B%E5%8D%8810.54.07.png"  alt=""></p>
-<h3 id="配置前端控制器"><a href="#配置前端控制器" class="headerlink" title="配置前端控制器"></a>配置前端控制器</h3><h4 id="1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet"><a href="#1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet" class="headerlink" title="1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet"></a>1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置servlet的映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="生成SpringMVC核心配置文件"><a href="#生成SpringMVC核心配置文件" class="headerlink" title="生成SpringMVC核心配置文件"></a>生成SpringMVC核心配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系，拼接上前缀后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建类实现controller接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//创建modelAndView</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//封装数据</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"msg1"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"msg2"</span>,<span class="string">"hello springMVC"</span>);</span><br><span class="line">        <span class="comment">//封装视图</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="comment">//返回modelAndView</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="SpringMVC注解方式配置"><a href="#SpringMVC注解方式配置" class="headerlink" title="SpringMVC注解方式配置"></a>SpringMVC注解方式配置</h2><h3 id="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"><a href="#SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式" class="headerlink" title="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"></a>SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式</h3><h3 id="springMVC注解工作原理"><a href="#springMVC注解工作原理" class="headerlink" title="springMVC注解工作原理"></a>springMVC注解工作原理</h3><ol>
-<li>当服务器启动时，会先加载web.xml文件，之后通过引入核心配置文件来加载SpringMVC.xml</li>
-<li>当解析到包扫描时，扫描指定的包，并将含有@Conteoller注解的类解析为处理器</li>
-<li>如果配置过<a href="mvc:annotation-driven">mvc:annotation-driven</a>就会解析Spring-MVC注解</li>
-<li>解析@requestMapping（value=“/test01.action”），将指定的地址和当前方法的映射关系保存</li>
-<li>当客户端发出请求访问时，SpringMVC寻找改地址的映射关系，找到就执行方法，找不到抛出404</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置mvc注解方式的DI--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="test01-jsp"><a href="#test01-jsp" class="headerlink" title="test01.jsp"></a>test01.jsp</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;this is test01.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;$&#123;msg&#125;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="comment">//在类上加上注解指的是在访问的地址上加上前缀</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/my01"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test01"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过value属性指定当前的映射到那些路径,可以映射到多个路径</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/test04.action"</span>,<span class="string">"/test02.action"</span>,<span class="string">"/test03.action"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just do it"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test02"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="多个通知执行顺序"><a href="#多个通知执行顺序" class="headerlink" title="多个通知执行顺序"></a>多个通知执行顺序</h4><h5 id="未出现异常"><a href="#未出现异常" class="headerlink" title="未出现异常"></a>未出现异常</h5><pre><code>前置通知
+环绕通知前
+目标方法（添加用户cn.tedu.domain.User@710f4dc7）
+最终通知
+环绕通知后
+后置通知</code></pre><h5 id="出现异常（）"><a href="#出现异常（）" class="headerlink" title="出现异常（）"></a>出现异常（）</h5><pre><code>前置通知
+环绕通知前
+目标方法（添加用户cn.tedu.domain.User@710f4dc7）
+最终通知
+异常通知</code></pre><h4 id="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："><a href="#出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：" class="headerlink" title="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："></a>出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：</h4><pre><code>web层调用service层目标方法时，会经过第一个切面，执行前置通知和环绕前通知，环绕通知调用proceed（）时进入下一个切面，执行第二个切面的前置通知，和环绕前通知，进入第二个切面的proceed的方法，放行调用目标方法，下面进入第二个切面的环绕后通知，和后置通知，最终通知，在进入第一个切面层，环绕后通知，和后置通知，最终通知，响应给web层</code></pre><h6 id="代码执行结果"><a href="#代码执行结果" class="headerlink" title="代码执行结果"></a>代码执行结果</h6><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">前置通知</span><br><span class="line">环绕通知前</span><br><span class="line">second前置通知</span><br><span class="line">second环绕通知前</span><br><span class="line">添加用户cn.tedu.domain.User@2de23121</span><br><span class="line">second最终通知</span><br><span class="line">second环绕通知后</span><br><span class="line">second后置通知</span><br><span class="line">最终通知</span><br><span class="line">环绕通知后</span><br><span class="line">后置通知</span><br></pre></td></tr></table></figure>
 
-<h3 id="SpringMVC获取请求参数"><a href="#SpringMVC获取请求参数" class="headerlink" title="SpringMVC获取请求参数"></a>SpringMVC获取请求参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：日期数据处理</span></span><br><span class="line"><span class="comment">     *  通过注册自定义类型编辑器使SpringMVC支持自定义格式请求参数的处理</span></span><br><span class="line"><span class="comment">     *  此处，SpringMVC为Date类型已经提供了编辑器类，所以直接使用，不用自己写</span></span><br><span class="line"><span class="comment">     * http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01test09.jsp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myInitBinder</span><span class="params">(ServletRequestDataBinder dataBinder)</span></span>&#123;</span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test09.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test09</span><span class="params">(String name, <span class="keyword">int</span> age, Date birthday)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        String format1 = format.format(birthday);</span><br><span class="line">        System.out.println(format1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：中文乱码解决</span></span><br><span class="line"><span class="comment">     *     如果服务器配置的编码是utf-8,且项目采用的也是utf-8则默认请求参数无乱码</span></span><br><span class="line"><span class="comment">     *     tomcat8默认编码为utf-8(可以更改)</span></span><br><span class="line"><span class="comment">     *     tomcat7及更老的版本默认编码为iso8859-1(可以更改)</span></span><br><span class="line"><span class="comment">     *     如果遇到服务器编码和项目编码不一致时会产生乱码</span></span><br><span class="line"><span class="comment">     *     对于POST提交 可以通过request.setCharacterEncoding("utf-8")解决乱码</span></span><br><span class="line"><span class="comment">     *     但此行代码对GET无效，GET提交的请求参数乱码，只能手工编解码来解决</span></span><br><span class="line"><span class="comment">     *     手工编解码解决乱码的方式对POST提交也有效</span></span><br><span class="line"><span class="comment">     *     springmvc提供了过滤器CharacterEncodingFilter来帮助我们解决乱码</span></span><br><span class="line"><span class="comment">     *     但此过滤器本质上就是request.setCharacterEncoing()所以也是只对POST有效</span></span><br><span class="line"><span class="comment">     *     ,即使配置了GET提交乱码也要手动解决</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test08.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test08</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">        <span class="comment">//POST提交</span></span><br><span class="line">        <span class="comment">//request.setCharacterEncoding("utf-8");</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">        <span class="comment">//GET提交</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//byte [] data = uname.getBytes("iso8859-1");</span></span><br><span class="line">        <span class="comment">//uname = new String(data,"utf-8");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    获取请求参数：多个同名请求参数的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test07.action?name=tt&amp;love=bb&amp;love=pp&amp;love=zz</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test07.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">(String name,String [] love)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//封装到数组里</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(Arrays.asList(love));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test06.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1&amp;dog.cat.name=xx&amp;dog.cat.age=3</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test06.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test05.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test05.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test04.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test04.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 通过@RequestParam指定参数赋值,解决请求参数名和方法参数不一致时赋值问题</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test03.action?name=yasuo&amp;uage=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test03.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"uage"</span>)</span> <span class="keyword">int</span> age) </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 直接获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test02.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test02.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：传统方式获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test01.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        <span class="keyword">int</span> age = Integer.parseInt(request.getParameter(<span class="string">"age"</span>));</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 
 
 
@@ -2612,8 +2640,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2649,8 +2677,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2667,8 +2695,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>redis</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2688,8 +2716,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2742,8 +2770,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
 </search>
