@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-11T10:22:34.762Z</updated>
+  <updated>2020-05-13T12:32:52.063Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Machine Learning</title>
+    <link href="http://yoursite.com/2020/05/13/MachineLearning/"/>
+    <id>http://yoursite.com/2020/05/13/MachineLearning/</id>
+    <published>2020-05-13T12:28:37.316Z</published>
+    <updated>2020-05-13T12:32:52.063Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习<img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/Spark05%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark05知识点"></h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GC</title>
+    <link href="http://yoursite.com/2020/05/12/GC/"/>
+    <id>http://yoursite.com/2020/05/12/GC/</id>
+    <published>2020-05-12T03:12:09.000Z</published>
+    <updated>2020-05-12T12:25:31.657Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Garbage-Collection"><a href="#Garbage-Collection" class="headerlink" title="Garbage Collection"></a>Garbage Collection</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/Spark04%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark04知识点"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法</title>
+    <link href="http://yoursite.com/2020/05/12/arithmetic/"/>
+    <id>http://yoursite.com/2020/05/12/arithmetic/</id>
+    <published>2020-05-12T00:27:00.000Z</published>
+    <updated>2020-05-13T14:38:20.655Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>排序是将一组数据，依指定的顺序进行排列的过程。<br>排序的分类：</p><ol><li>内部排序<br>指将需要处理的所有数据都加载到内部存储器中进行排序</li><li>外部排序法<br>数据量过大，无法全部加载到内存中，需要借助外部存储进行排序<h3 id="算法的时间复杂度"><a href="#算法的时间复杂度" class="headerlink" title="算法的时间复杂度"></a>算法的时间复杂度</h3><h4 id="度量一个程序（算法）执行时间的两种方法"><a href="#度量一个程序（算法）执行时间的两种方法" class="headerlink" title="度量一个程序（算法）执行时间的两种方法"></a>度量一个程序（算法）执行时间的两种方法</h4></li><li>事后统计的方法</li><li>事前估算的方法<br>通过分析某个算法的时间复杂度来判断哪个算法更优   </li></ol><h3 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h3><h4 id="常数阶O（1）"><a href="#常数阶O（1）" class="headerlink" title="常数阶O（1）"></a>常数阶O（1）</h4><p>无论代码执行了多少行，只要没有循环等复杂结构，那这个代码的时间复杂度就是O（1）</p><h3 id="冒泡排序（BubbleSort）（O（n-2））"><a href="#冒泡排序（BubbleSort）（O（n-2））" class="headerlink" title="冒泡排序（BubbleSort）（O（n^2））"></a>冒泡排序（BubbleSort）（O（n^2））</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;<span class="comment">//标记是否执行</span></span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">3</span>, <span class="number">9</span>, -<span class="number">1</span>, <span class="number">10</span>, -<span class="number">2</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.length -  <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                    flag=<span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">int</span> tmp = arr[j];</span><br><span class="line">                    arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">                    arr[j + <span class="number">1</span>] = tmp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (flag==<span class="keyword">false</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                flag=<span class="keyword">false</span>;<span class="comment">//重置false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="选择排序（O（n-2））"><a href="#选择排序（O（n-2））" class="headerlink" title="选择排序（O（n^2））"></a>选择排序（O（n^2））</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//选择排序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SelectSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">3</span>, <span class="number">9</span>, -<span class="number">1</span>, <span class="number">10</span>, -<span class="number">2</span>&#125;;</span><br><span class="line">        SelectSort.selectSort(arr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> minIndex = i;</span><br><span class="line">            <span class="keyword">int</span> min = arr[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (min &gt; arr[j]) &#123;</span><br><span class="line">                    min = arr[j];</span><br><span class="line">                    minIndex = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[minIndex] = arr[i];</span><br><span class="line">            arr[i] = min;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="插入排序（Insertion-Sorting）的思想："><a href="#插入排序（Insertion-Sorting）的思想：" class="headerlink" title="插入排序（Insertion Sorting）的思想："></a>插入排序（Insertion Sorting）的思想：</h4><p>把n个待排序的元素看成为一个有序表和一个无序表，开始时有序表中只包含一个元素，无序表包含n-1个元素，排序过程中每次从无序中取出第一个元素，把它的排序码依次与有序表元素的排序码进行比较，将它插入到有序表中的适当位置，使之成为新的有序表。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">101</span>, <span class="number">34</span>, <span class="number">119</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        insertSort(arr);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="comment">//定义带插入的数</span></span><br><span class="line">            <span class="keyword">int</span> insertVal = arr[i];</span><br><span class="line">            <span class="keyword">int</span> insertIndex = i - <span class="number">1</span>;</span><br><span class="line">            <span class="comment">//给insertVal找到插入位置</span></span><br><span class="line">            <span class="keyword">while</span> (insertIndex &gt;= <span class="number">0</span> &amp;&amp; insertVal &lt; arr[insertIndex]) &#123;</span><br><span class="line">                arr[insertIndex + <span class="number">1</span>] = arr[insertIndex];</span><br><span class="line">                insertIndex--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//当退出while循环时，说明</span></span><br><span class="line">            arr[insertIndex + <span class="number">1</span>] = insertVal;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Spark</title>
@@ -297,34 +381,6 @@
   </entry>
   
   <entry>
-    <title>Gateway</title>
-    <link href="http://yoursite.com/2020/04/08/Gateway/"/>
-    <id>http://yoursite.com/2020/04/08/Gateway/</id>
-    <published>2020-04-08T06:23:09.000Z</published>
-    <updated>2020-04-10T11:53:58.924Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol><li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p></li><li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p></li><li><p>SpringCloud Gateway作为Spring cloud 生态系统中的网关，目标是替代zuul，在Springcloud2.0以上的版本中，没有对新版本的zuul2.0一盒收纳柜最新高性能版本进行集成，仍然还是使用的是Zuul1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于WebFlux框架实现的，而WebFlux框架使用了高性能的Reactor模式通信框架Netty。</p></li><li><p>Spring Cloud Gateway的目标提供统一的路由方式且基于Filter链的方式提供网关的基本功能，例如：安全，监控/指标，和限流。</p></li></ol><h2 id="Spring-Cloud架构亮点"><a href="#Spring-Cloud架构亮点" class="headerlink" title="Spring Cloud架构亮点"></a>Spring Cloud架构亮点</h2><p><img src="/" class="lazyload" data-src="https://spring.io/images/cloud-diagram-1a4cad7294b4452864b5ff57175dd983.svg"  alt="SpringCloud架构图"></p><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="Spring-Cloud-Gateway功能："><a href="#Spring-Cloud-Gateway功能：" class="headerlink" title="Spring Cloud Gateway功能："></a>Spring Cloud Gateway功能：</h3><ul><li>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</li><li>能够匹配任何请求属性上的路由。</li><li>谓词和过滤器特定于路由。</li><li>Hystrix断路器集成。</li><li>Spring Cloud DiscoveryClient集成</li><li>易于编写的谓词和过滤器</li><li>请求速率限制</li><li>路径改写</li></ul><h2 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h2><h3 id="Route（-路由）"><a href="#Route（-路由）" class="headerlink" title="Route（ 路由）"></a>Route（ 路由）</h3><pre><code>路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true则匹配该路由。</code></pre><h3 id="Predicate（断言）"><a href="#Predicate（断言）" class="headerlink" title="Predicate（断言）"></a>Predicate（断言）</h3><pre><code>开发人员可以匹配HTTP请求中的所有内容（例如请求头或请求参数），如果请求与断言相匹配则进行路由。</code></pre><h3 id="Filter（过滤）"><a href="#Filter（过滤）" class="headerlink" title="Filter（过滤）"></a>Filter（过滤）</h3><pre><code>值得是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或者之后对请求进行修改。</code></pre><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/" class="lazyload" data-src="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/images/spring_cloud_gateway_diagram.png"  alt=""></p><pre><code>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.</code></pre><ol><li>客户端向Spring Cloud Gateway发出请求。然后在Gate Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web Handler。</li><li>Handler再通过指定的过滤器来讲请求发送到实际的服务执行业务逻辑，然后返回。</li><li>过滤器之间用虚线分开是因为过滤器可能会在发送代理之前（“pre”）或之后（”post“）执行业务逻辑。</li><li>Filter在”pre“类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等</li><li>在”post“类型的过滤器中可以做响应内容、响应头修改，日志输出，流量监控等有着非常重要的作用。</li><li>核心逻辑：<strong>路由转发+执行过滤器链</strong></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Springcloud" scheme="http://yoursite.com/categories/Springcloud/"/>
-    
-    
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>HDFS</title>
     <link href="http://yoursite.com/2020/04/08/HDFS/"/>
     <id>http://yoursite.com/2020/04/08/HDFS/</id>
@@ -344,6 +400,34 @@
     
     
       <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
+    
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gateway</title>
+    <link href="http://yoursite.com/2020/04/08/Gateway/"/>
+    <id>http://yoursite.com/2020/04/08/Gateway/</id>
+    <published>2020-04-08T06:23:09.000Z</published>
+    <updated>2020-04-10T11:53:58.924Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol><li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p></li><li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p></li><li><p>SpringCloud Gateway作为Spring cloud 生态系统中的网关，目标是替代zuul，在Springcloud2.0以上的版本中，没有对新版本的zuul2.0一盒收纳柜最新高性能版本进行集成，仍然还是使用的是Zuul1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于WebFlux框架实现的，而WebFlux框架使用了高性能的Reactor模式通信框架Netty。</p></li><li><p>Spring Cloud Gateway的目标提供统一的路由方式且基于Filter链的方式提供网关的基本功能，例如：安全，监控/指标，和限流。</p></li></ol><h2 id="Spring-Cloud架构亮点"><a href="#Spring-Cloud架构亮点" class="headerlink" title="Spring Cloud架构亮点"></a>Spring Cloud架构亮点</h2><p><img src="/" class="lazyload" data-src="https://spring.io/images/cloud-diagram-1a4cad7294b4452864b5ff57175dd983.svg"  alt="SpringCloud架构图"></p><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="Spring-Cloud-Gateway功能："><a href="#Spring-Cloud-Gateway功能：" class="headerlink" title="Spring Cloud Gateway功能："></a>Spring Cloud Gateway功能：</h3><ul><li>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</li><li>能够匹配任何请求属性上的路由。</li><li>谓词和过滤器特定于路由。</li><li>Hystrix断路器集成。</li><li>Spring Cloud DiscoveryClient集成</li><li>易于编写的谓词和过滤器</li><li>请求速率限制</li><li>路径改写</li></ul><h2 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h2><h3 id="Route（-路由）"><a href="#Route（-路由）" class="headerlink" title="Route（ 路由）"></a>Route（ 路由）</h3><pre><code>路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true则匹配该路由。</code></pre><h3 id="Predicate（断言）"><a href="#Predicate（断言）" class="headerlink" title="Predicate（断言）"></a>Predicate（断言）</h3><pre><code>开发人员可以匹配HTTP请求中的所有内容（例如请求头或请求参数），如果请求与断言相匹配则进行路由。</code></pre><h3 id="Filter（过滤）"><a href="#Filter（过滤）" class="headerlink" title="Filter（过滤）"></a>Filter（过滤）</h3><pre><code>值得是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或者之后对请求进行修改。</code></pre><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/" class="lazyload" data-src="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/images/spring_cloud_gateway_diagram.png"  alt=""></p><pre><code>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.</code></pre><ol><li>客户端向Spring Cloud Gateway发出请求。然后在Gate Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web Handler。</li><li>Handler再通过指定的过滤器来讲请求发送到实际的服务执行业务逻辑，然后返回。</li><li>过滤器之间用虚线分开是因为过滤器可能会在发送代理之前（“pre”）或之后（”post“）执行业务逻辑。</li><li>Filter在”pre“类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等</li><li>在”post“类型的过滤器中可以做响应内容、响应头修改，日志输出，流量监控等有着非常重要的作用。</li><li>核心逻辑：<strong>路由转发+执行过滤器链</strong></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Springcloud" scheme="http://yoursite.com/categories/Springcloud/"/>
     
     
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
@@ -484,78 +568,6 @@
     
     
       <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaSE04</title>
-    <link href="http://yoursite.com/2020/02/28/JavaSE04/"/>
-    <id>http://yoursite.com/2020/02/28/JavaSE04/</id>
-    <published>2020-02-28T14:59:51.201Z</published>
-    <updated>2020-02-28T14:59:51.201Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p>title: 线程<br>date: 2020-02-28<br>tags:<br>    - 分享<br>    - 导航<br>categories: Java基础<br>–</p><h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><p>为完成特定的任务，用某种语言编写一组指令的集合。一段静态的代码，静态对象</p><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>正在运行的程序</p><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>进程可以进一步细化为线程，是一个程序内部的执行路径</p><p>-</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaSE03</title>
-    <link href="http://yoursite.com/2020/02/28/JavaSE03/"/>
-    <id>http://yoursite.com/2020/02/28/JavaSE03/</id>
-    <published>2020-02-28T13:02:22.563Z</published>
-    <updated>2020-02-28T13:02:22.563Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p>title: Collection(集合)<br>date: 2020-02-28<br>tags:<br>    - 分享<br>    - 导航<br>categories: Java基础<br>–</p><h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型的本质是数据类型的参数化，在编译器阶段处理</p><p>-</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JVM</title>
-    <link href="http://yoursite.com/2020/02/28/JVM/"/>
-    <id>http://yoursite.com/2020/02/28/JVM/</id>
-    <published>2020-02-27T16:00:00.000Z</published>
-    <updated>2020-05-06T15:08:05.328Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="JVM体系结构概览"><a href="#JVM体系结构概览" class="headerlink" title="JVM体系结构概览"></a>JVM体系结构概览</h2><p><img src="/" class="lazyload" data-src="https://pics7.baidu.com/feed/1c950a7b02087bf4600fcdb16c143b2a13dfcfd1.jpeg?token=1b629473555dd856ff2d9ca3301b37ea"  alt=""></p><h2 id="类装载器（ClassLoader）"><a href="#类装载器（ClassLoader）" class="headerlink" title="类装载器（ClassLoader）"></a>类装载器（ClassLoader）</h2><pre><code>负责加载class文件，class文件在文件开头有特定的文件标示，将class文件字节码内容加载到内存中，并将这些内容转换成方法区中的运行时数据结构并且ClassLoader只负责class文件的加载，至于他是否可以运行，则由Execution Engine决定</code></pre><h3 id="虚拟机自带的加载器"><a href="#虚拟机自带的加载器" class="headerlink" title="虚拟机自带的加载器"></a>虚拟机自带的加载器</h3><ul><li>启动类加载器/根加载器（Bootstrap）C++  <font color = red> 如果是系统原生的类调用getclass.classloader调用的是原生的bootstrap根加载器</font></li><li>扩展类加载器（Extension）Java</li><li>应用程序类加载器（AppClassLoader）Java也叫系统类加载器，加载当前应用的classpath的所有类  <font color=red>如果是自定义的类获得的加载器就是应用程序类加载器</font></li></ul><h3 id="用户自定义加载器"><a href="#用户自定义加载器" class="headerlink" title="用户自定义加载器"></a>用户自定义加载器</h3><p>Java.lang.ClassLoader的字类，用户可以定制类的加载方式</p><h3 id="双亲委派"><a href="#双亲委派" class="headerlink" title="双亲委派"></a>双亲委派</h3><p>当一个类收到类加载请求，他首先不回自己去尝试这个类，而是把这个请求委派给父类去完成，每一个层次的类加载器都是如此，因此所有的加载请求都应该传送到启动类加载其中，只有当父类加载器反馈自己无法完成这个请求的时候（在它的加载路径下没有找到所需加载的class），字类加载器才会尝试自己去加载</p><p>采用双亲委派的一个好处是比如加载位于rt.jar包中的类java.lang.object,不管是哪个加载器加载这个类，最终都委托给最顶层的启动类加载器进行加载，这样就保证了使用不同的类加载器最终得到的都是同样一个object对象</p><h2 id="Execution-Engine-（执行引擎）"><a href="#Execution-Engine-（执行引擎）" class="headerlink" title="Execution Engine （执行引擎）"></a>Execution Engine （执行引擎）</h2><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><ol><li>负责解释命令，提交操作系统执行</li></ol><h2 id="Native-Interface（本地接口）"><a href="#Native-Interface（本地接口）" class="headerlink" title="Native Interface（本地接口）"></a>Native Interface（本地接口）</h2><ol><li>本地接口的作用是融合不同的编程语言为Java所用，他的初衷是融合C/C++程序，Java诞生的时候是C/C++横行的时候，要想立足，必须要调用C/C++程序，于是就在内存中专门开辟了一块区域处理标记为native的代码，他的具体做法是在Native Method Stack 中登记native方法，在Execution Engine 执行时加载native libraries</li><li>目前该方法使用的越来越少了，除非是与硬件有关的应用，比如荣国Java程序驱动打印机或者Java系统管理生产设备，在企业级应用中已经比较少见。因为现在的异构领域间的通信很发达，比如可以使用socket通信，也可以使用Web Service 等等。</li></ol><h2 id="Native-Method-Stack（本地方法栈）"><a href="#Native-Method-Stack（本地方法栈）" class="headerlink" title="Native Method Stack（本地方法栈）"></a>Native Method Stack（本地方法栈）</h2><ol><li>他的具体做法是Native Method Stack 中登记native 方法，在Execution Engine 执行时加载本地方法库</li></ol><h2 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h2><ol><li>每一个线程都有一个程序计数器，是线程私有的，就是一个指针，指向方法区中的方法字节码（<font color =red>用来存储指向下一条指令的地址，也即将要执行的指令代码</font>),由执行引擎读取下一条指令，是一个非常小的内存空间，几乎可以忽略不计</li><li>这一块内存区域很小，<font color=red>它是当前线程所执行的字节码的行号指示器</font>，字节码解释器通过改变这个计数器的值来选取下一条需要执行的字节码指令</li><li>如果执行的是一个native方法，那么这个计数器是空的。</li><li>用以完成分支、循环、跳转、异常处理、线程恢复等基础功能。不会发生内存溢出（outofmemory=oom）错误</li></ol><h2 id="Method-Area-方法区"><a href="#Method-Area-方法区" class="headerlink" title="Method Area (方法区)"></a>Method Area (方法区)</h2><p>供各线程共享的运行时内存区域。<font color=red> 它存储了每一个类的结构信息</font>,例如运行时常量池（Runtime Constant Pool），字段和方法数据，构造函数和普通方法的字节码内容。</p><p><font color = blue><strong>实例变量存在对内存中，和方法区无关</strong></font></p><h3 id="栈管运行，堆管存储-程序-算法-数据结构"><a href="#栈管运行，堆管存储-程序-算法-数据结构" class="headerlink" title="栈管运行，堆管存储  程序=算法+数据结构"></a>栈管运行，堆管存储  程序=算法+数据结构</h3><h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ol><li>队列（FIFO）先进先出</li><li>栈（stack）先进后出（子弹夹）</li></ol><h2 id="Stack栈"><a href="#Stack栈" class="headerlink" title="Stack栈"></a>Stack栈</h2><p>栈也叫栈内存，主管Java程序的运行，是在线程创建时创建，它的生命周期是跟随线程的生命周期，线程结束栈内存也就释放，<font color =blue> 对于栈来说不存在垃圾回收问题</font>，只要线程已结束该栈就over，生命周期和线程一致，是线程私有的。8种<font color=red>基本类型的变量+对象的引用变量+实例方法都是在函数的栈内存中分配。</font></p><h3 id="栈存储什么？"><a href="#栈存储什么？" class="headerlink" title="栈存储什么？"></a>栈存储什么？</h3><ol><li>本地变量：输入参数和输出参数以及方法内的变量</li><li>栈操作：记录出栈，入栈的操作</li><li>栈帧数据：包括类文件，方法等等。</li></ol><h3 id="栈-堆-方法区的交互关系"><a href="#栈-堆-方法区的交互关系" class="headerlink" title="栈+堆+方法区的交互关系"></a>栈+堆+方法区的交互关系</h3><ol><li>HotSpot是使用指针的方式来访问对象</li><li>Java堆中会存放访问类元数据的地址</li><li>reference存储的就直接是对象的地址</li></ol><h2 id="堆（heap）"><a href="#堆（heap）" class="headerlink" title="堆（heap）"></a>堆（heap）</h2><ol><li>一个JVM实例只存在一个对内存，堆内存的大小可以调节的。类加载器读取类文件后，需要把类、方法、常变量放到对内存中，保存所有引用类型的真实信息，以方便执行器执行，堆内存分为三个部分：</li></ol><ul><li>Young Generation Space 新生区  Young/New</li><li>Tenure generation space 老年代  old/Tenure</li><li>Permanent Space             永久区     Perm</li></ul><h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>实际而言，方法区（Method Area）和堆一样，是各个线程共享的内存区域，它用于存储虚拟机加载的：类信息+普通常量+静态常量+编译器编译后的代码等等，虽然JVM规范将方法区描述为堆的一个逻辑部分，但它却还有一个别名叫做Non-HeapZ（非堆），目的就是要和堆分开。</p><p>对于HotSpot虚拟机，很多开发者习惯将方法区称之为“永久代”但严格本质上说两者不同，或者说永久代来实现方法区而已，，jdk1.7的版本中，已经将原来放在永久代的字符串常量池移走</p><h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>在Java8中，永久代已经被移除，被一个称为元空间的区域所取代。元空间的本质和永久代类似。</p><h3 id="元空间和永久代之间的区别："><a href="#元空间和永久代之间的区别：" class="headerlink" title="元空间和永久代之间的区别："></a>元空间和永久代之间的区别：</h3><p>永久代使用的JVM的对内存，但是Java8以后的元空间并不在虚拟机中而是使用本机物理内存。<br>因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入native memory ，字符串池和类的静态变量放入Java堆中，这样可以加载多少类的元数据就不再由MaxPermSize控制，而由系统的实际可用空间来控制。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
