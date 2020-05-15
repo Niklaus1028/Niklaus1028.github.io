@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-15T14:59:06.901Z</updated>
+  <updated>2020-05-15T15:04:13.336Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2020/05/15/RecommendedSystem/"/>
     <id>http://yoursite.com/2020/05/15/RecommendedSystem/</id>
     <published>2020-05-15T11:38:20.000Z</published>
-    <updated>2020-05-15T14:59:06.901Z</updated>
+    <updated>2020-05-15T15:04:13.336Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/%E6%96%87%E4%BB%B6/%E5%A4%A7%E6%95%B0%E6%8D%AE/Spark/Spark06/Spark06%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark06知识点"></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/" class="lazyload" data-src="/images/Spark06%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark06知识点"></p>]]></content>
     
     <summary type="html">
     
@@ -38,9 +38,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -49,9 +49,9 @@
     <link href="http://yoursite.com/2020/05/13/MachineLearning/"/>
     <id>http://yoursite.com/2020/05/13/MachineLearning/</id>
     <published>2020-05-13T12:28:37.316Z</published>
-    <updated>2020-05-13T12:32:52.063Z</updated>
+    <updated>2020-05-15T15:07:13.155Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习<img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/Spark05%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark05知识点"></h2>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p><img src="/" class="lazyload" data-src="/images/Spark05%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark05知识点"></p>]]></content>
     
     <summary type="html">
     
@@ -66,9 +66,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -77,9 +77,9 @@
     <link href="http://yoursite.com/2020/05/12/GC/"/>
     <id>http://yoursite.com/2020/05/12/GC/</id>
     <published>2020-05-12T03:12:09.000Z</published>
-    <updated>2020-05-12T12:25:31.657Z</updated>
+    <updated>2020-05-15T15:06:13.307Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Garbage-Collection"><a href="#Garbage-Collection" class="headerlink" title="Garbage Collection"></a>Garbage Collection</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/Spark04%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark04知识点"></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Garbage-Collection"><a href="#Garbage-Collection" class="headerlink" title="Garbage Collection"></a>Garbage Collection</h2><p><img src="/" class="lazyload" data-src="/images/Spark04%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark04知识点"></p>]]></content>
     
     <summary type="html">
     
@@ -94,9 +94,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -122,9 +122,9 @@
       <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -150,9 +150,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -178,9 +178,9 @@
       <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -206,9 +206,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -234,9 +234,9 @@
       <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -262,9 +262,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -290,9 +290,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -318,9 +318,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
       <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -374,9 +374,9 @@
       <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -402,37 +402,9 @@
       <category term="分布式" scheme="http://yoursite.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Gateway</title>
-    <link href="http://yoursite.com/2020/04/08/Gateway/"/>
-    <id>http://yoursite.com/2020/04/08/Gateway/</id>
-    <published>2020-04-08T06:23:09.000Z</published>
-    <updated>2020-04-10T11:53:58.924Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol><li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p></li><li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p></li><li><p>SpringCloud Gateway作为Spring cloud 生态系统中的网关，目标是替代zuul，在Springcloud2.0以上的版本中，没有对新版本的zuul2.0一盒收纳柜最新高性能版本进行集成，仍然还是使用的是Zuul1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于WebFlux框架实现的，而WebFlux框架使用了高性能的Reactor模式通信框架Netty。</p></li><li><p>Spring Cloud Gateway的目标提供统一的路由方式且基于Filter链的方式提供网关的基本功能，例如：安全，监控/指标，和限流。</p></li></ol><h2 id="Spring-Cloud架构亮点"><a href="#Spring-Cloud架构亮点" class="headerlink" title="Spring Cloud架构亮点"></a>Spring Cloud架构亮点</h2><p><img src="/" class="lazyload" data-src="https://spring.io/images/cloud-diagram-1a4cad7294b4452864b5ff57175dd983.svg"  alt="SpringCloud架构图"></p><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="Spring-Cloud-Gateway功能："><a href="#Spring-Cloud-Gateway功能：" class="headerlink" title="Spring Cloud Gateway功能："></a>Spring Cloud Gateway功能：</h3><ul><li>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</li><li>能够匹配任何请求属性上的路由。</li><li>谓词和过滤器特定于路由。</li><li>Hystrix断路器集成。</li><li>Spring Cloud DiscoveryClient集成</li><li>易于编写的谓词和过滤器</li><li>请求速率限制</li><li>路径改写</li></ul><h2 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h2><h3 id="Route（-路由）"><a href="#Route（-路由）" class="headerlink" title="Route（ 路由）"></a>Route（ 路由）</h3><pre><code>路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true则匹配该路由。</code></pre><h3 id="Predicate（断言）"><a href="#Predicate（断言）" class="headerlink" title="Predicate（断言）"></a>Predicate（断言）</h3><pre><code>开发人员可以匹配HTTP请求中的所有内容（例如请求头或请求参数），如果请求与断言相匹配则进行路由。</code></pre><h3 id="Filter（过滤）"><a href="#Filter（过滤）" class="headerlink" title="Filter（过滤）"></a>Filter（过滤）</h3><pre><code>值得是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或者之后对请求进行修改。</code></pre><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/" class="lazyload" data-src="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/images/spring_cloud_gateway_diagram.png"  alt=""></p><pre><code>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.</code></pre><ol><li>客户端向Spring Cloud Gateway发出请求。然后在Gate Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web Handler。</li><li>Handler再通过指定的过滤器来讲请求发送到实际的服务执行业务逻辑，然后返回。</li><li>过滤器之间用虚线分开是因为过滤器可能会在发送代理之前（“pre”）或之后（”post“）执行业务逻辑。</li><li>Filter在”pre“类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等</li><li>在”post“类型的过滤器中可以做响应内容、响应头修改，日志输出，流量监控等有着非常重要的作用。</li><li>核心逻辑：<strong>路由转发+执行过滤器链</strong></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Springcloud" scheme="http://yoursite.com/categories/Springcloud/"/>
-    
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
@@ -458,9 +430,37 @@
       <category term="Hadoop" scheme="http://yoursite.com/categories/Hadoop/"/>
     
     
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
+  </entry>
+  
+  <entry>
+    <title>Gateway</title>
+    <link href="http://yoursite.com/2020/04/08/Gateway/"/>
+    <id>http://yoursite.com/2020/04/08/Gateway/</id>
+    <published>2020-04-08T06:23:09.000Z</published>
+    <updated>2020-04-10T11:53:58.924Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol><li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p></li><li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p></li><li><p>SpringCloud Gateway作为Spring cloud 生态系统中的网关，目标是替代zuul，在Springcloud2.0以上的版本中，没有对新版本的zuul2.0一盒收纳柜最新高性能版本进行集成，仍然还是使用的是Zuul1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于WebFlux框架实现的，而WebFlux框架使用了高性能的Reactor模式通信框架Netty。</p></li><li><p>Spring Cloud Gateway的目标提供统一的路由方式且基于Filter链的方式提供网关的基本功能，例如：安全，监控/指标，和限流。</p></li></ol><h2 id="Spring-Cloud架构亮点"><a href="#Spring-Cloud架构亮点" class="headerlink" title="Spring Cloud架构亮点"></a>Spring Cloud架构亮点</h2><p><img src="/" class="lazyload" data-src="https://spring.io/images/cloud-diagram-1a4cad7294b4452864b5ff57175dd983.svg"  alt="SpringCloud架构图"></p><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="Spring-Cloud-Gateway功能："><a href="#Spring-Cloud-Gateway功能：" class="headerlink" title="Spring Cloud Gateway功能："></a>Spring Cloud Gateway功能：</h3><ul><li>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</li><li>能够匹配任何请求属性上的路由。</li><li>谓词和过滤器特定于路由。</li><li>Hystrix断路器集成。</li><li>Spring Cloud DiscoveryClient集成</li><li>易于编写的谓词和过滤器</li><li>请求速率限制</li><li>路径改写</li></ul><h2 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h2><h3 id="Route（-路由）"><a href="#Route（-路由）" class="headerlink" title="Route（ 路由）"></a>Route（ 路由）</h3><pre><code>路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true则匹配该路由。</code></pre><h3 id="Predicate（断言）"><a href="#Predicate（断言）" class="headerlink" title="Predicate（断言）"></a>Predicate（断言）</h3><pre><code>开发人员可以匹配HTTP请求中的所有内容（例如请求头或请求参数），如果请求与断言相匹配则进行路由。</code></pre><h3 id="Filter（过滤）"><a href="#Filter（过滤）" class="headerlink" title="Filter（过滤）"></a>Filter（过滤）</h3><pre><code>值得是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或者之后对请求进行修改。</code></pre><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/" class="lazyload" data-src="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/images/spring_cloud_gateway_diagram.png"  alt=""></p><pre><code>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.</code></pre><ol><li>客户端向Spring Cloud Gateway发出请求。然后在Gate Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web Handler。</li><li>Handler再通过指定的过滤器来讲请求发送到实际的服务执行业务逻辑，然后返回。</li><li>过滤器之间用虚线分开是因为过滤器可能会在发送代理之前（“pre”）或之后（”post“）执行业务逻辑。</li><li>Filter在”pre“类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等</li><li>在”post“类型的过滤器中可以做响应内容、响应头修改，日志输出，流量监控等有着非常重要的作用。</li><li>核心逻辑：<strong>路由转发+执行过滤器链</strong></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Springcloud" scheme="http://yoursite.com/categories/Springcloud/"/>
+    
+    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -486,9 +486,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -514,9 +514,9 @@
       <category term="大数据" scheme="http://yoursite.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -542,9 +542,9 @@
       <category term="高并发" scheme="http://yoursite.com/categories/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
@@ -570,9 +570,9 @@
       <category term="Interview" scheme="http://yoursite.com/categories/Interview/"/>
     
     
-      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
-    
       <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
     
   </entry>
   
