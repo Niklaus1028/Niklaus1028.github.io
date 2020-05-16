@@ -14,11 +14,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Untitled</title>
-    <url>/2020/05/16/Untitled/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-  </entry>
-  <entry>
     <title>SparkSql</title>
     <url>/2020/05/16/SparkSql/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/" class="lazyload" data-src="/images/Spark07%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="Spark07知识点"></p>
@@ -2081,6 +2076,50 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
       </tags>
   </entry>
   <entry>
+    <title>Web总结</title>
+    <url>/2020/02/21/Web/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
+<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
+</ol>
+<hr>
+<ol start="2">
+<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
+</ol>
+<hr>
+<ol start="3">
+<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
+<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
+<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
+GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
+POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
+使用的协议版本
+1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
+1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
+Accept：浏览器可以接受的MIME类型
+Accept-Charset：浏览器可接受的字符集
+Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
+Connection：表示是否需要持久连接，HTTP默认KeepAlive
+Content-Length：表示请求消息正文的长度
+Cookie：存放缓存信息
+Host：初始URL中的主机和端口
+If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
+</ol>
+<hr>
+<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>YARN</title>
     <url>/2020/02/21/YARN/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
@@ -2130,50 +2169,6 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
 ]]></content>
       <categories>
         <category>Hadoop</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web总结</title>
-    <url>/2020/02/21/Web/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
-<li>背景<br> web开发是通过HTTP协议实现的<br> Http协议的特点：<br> a. 基于请求相应模型<br> b. 一次请求对应一次响应<br> c. 请求只能由客户端发出，服务器端只能被动等待请求作出响应<br>基于这样的特点，网站只能实现同步请求，全部刷新的效果，但实际生活中需要在不影响正在展示的内容的情况下还要保证服务器不停的向客户端发送最新的数据，这只靠HTTP协议无法完成，所以AJAX的技术应运而生。</li>
-</ol>
-<hr>
-<ol start="2">
-<li>特点<br> AJAX技术实现：异步请求，局部刷新。<br>AJAX不是一项新的技术，而是多个已有的技术整合实现的，其原理就是在页面的js中通过代码在不影响当前页面的情况下向服务器发送请求，得到服务器传递的最新数据后再通过js更新当前页面的局部内容。<br> AJAX仍然是基于HTTP协议，没有违背HTTP协议的原理</li>
-</ol>
-<hr>
-<ol start="3">
-<li>jquery方式实现AJAX<br> a. 通用方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getTime() &#123;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                type:&quot;post&quot;,</span><br><span class="line">                url:&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,</span><br><span class="line">                data:&quot;&quot;,</span><br><span class="line">                success: function (msg) &#123;</span><br><span class="line">                    $(&quot;#d01&quot;).text(msg)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- b. get方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*get方式*&#x2F;</span><br><span class="line">        function getTime1()&#123;</span><br><span class="line">            $.get(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- c. post方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*post方式*&#x2F;</span><br><span class="line">        function getTime2()&#123;</span><br><span class="line">            $.post(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (msg) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(msg)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
- d. getJSON方式<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;*getJSON方式*&#x2F;</span><br><span class="line">        function getTime3()&#123;</span><br><span class="line">            $.getJSON(&quot;&#x2F;ExecDemo01_war_exploded&#x2F;TimeServlet&quot;,function (obj) &#123;</span><br><span class="line">                $(&quot;#d01&quot;).text(obj.time)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2></li>
-<li>概述<br> 基于TCP协议的应用层协议。<br> 是客户端的和服务器通信的常用协议。</li>
-<li>规则<br> a. 基本规则<br> 基于请求响应模型<br> 一次请求对应一次响应<br> 请求只能由客户端发出，服务器端被动接受请求作出响应<br> 请求：<br> 一个请求行<br> GET /index.html HTTP/1.1<br> 请求方式<br> 请求方式（8种），最常见的是GET和POST请求<pre><code>        8种请求方式：opions get post put head delete trace connect
-GET请求：请求参数在地址栏上拼接，相对安全性较差传输的数据量有限
-POST请求：请求参数在实体内容中传输，相对安全性较高，传输的数据量理论上没</code></pre>有限制。<pre><code>请求的资源地址
-使用的协议版本
-1.0 每次请求都要重新创建连接，完成请求响应断开连接，效率低
-1.1 在一次请求响应结束后，可以选择保持底层连接，如果后续请求到来可以复用</code></pre>底层连接，效率高<pre><code>请求头：
-Accept：浏览器可以接受的MIME类型
-Accept-Charset：浏览器可接受的字符集
-Accept-Encoding：浏览器能够进行解码的数据编码方式，比如说gzip，Servlet能</code></pre>够向支持的gzip的浏览器返回经gzip编码的HTML页面。许多情形下这可以减少5到10被的下&gt;载的时间<pre><code>Accept-Language:浏览器可以接受的语言种类
-Connection：表示是否需要持久连接，HTTP默认KeepAlive
-Content-Length：表示请求消息正文的长度
-Cookie：存放缓存信息
-Host：初始URL中的主机和端口
-If-Modified—Since：只有当所请求的内容在指定的日期之后又经过修改才返回他&gt;，否则返回304NotModified</code></pre> Pragma：指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝<br> Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。<br> User-Agent：浏览器类型，如果Servlet返回的内容与浏览器类型有关则该值非常有用；</li>
-</ol>
-<hr>
-<p>一个空白行<br>    存在的目的是将请求头和实体内容分割开<br>实体内容<br>    要向服务器传递数据<br>    GET提交时，实体内容为空，post提交时，请求参数在实体内容中传输HTTP协议只支持ISO8859-1（Latin1）编码，此编码集只有英文数字常见的符号，所以必须要通过URL解决乱码问题<br>    c.响应<br>    一个状态行<br>    HTTP/1.1200 ok<br>    使用的协议<br>    状态码<br>    1XX 临时响应<br>    2XX 成功 200成功<br>    3XX 重定向 302重定向304/307使用缓存<br>    4XX 请求错误 找不到资源<br>    5XX 服务器错误 500服务器错误</p>
-]]></content>
-      <categories>
-        <category>Web</category>
       </categories>
       <tags>
         <tag>分享</tag>
@@ -2527,59 +2522,6 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
       </tags>
   </entry>
   <entry>
-    <title>SpringDay04</title>
-    <url>/2020/01/29/SpringDay04/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h2><h3 id="1-Spring-aop的基本概念"><a href="#1-Spring-aop的基本概念" class="headerlink" title="1. Spring aop的基本概念"></a>1. Spring aop的基本概念</h3><h4 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h4><ul>
-<li>连接点（Joinpoint）：在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。<ul>
-<li>通俗讲：<ul>
-<li>层与层之间方法调用的过程称之为连接点</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>切入点（Pointcut）：匹配连接点的断言。通知和一个切入点表达式关联，并在满足这个切入点的连接点上运行（例如，当执行某个特定名称的方法时）。切入点表达式如何和连接点匹配是AOP的核心。核心：Spring缺省使用AspectJ切入点语法。<ul>
-<li>通俗讲<ul>
-<li>在连接点的基础上 增加上切入规则 选择出需要进行增强的连接点 这些基于切入规则选出来的<br>连接点 就称之为切入点。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="切面"><a href="#切面" class="headerlink" title="切面"></a>切面</h4><ul>
-<li>切面（Aspect）：一个关注点的模块化，这个关注点可能会横切多个对象。事务管理是J2EE应用<br>中一个关于横切关注点的很好的例子。在Spring AOP中，切面可以使用基于模式）或者基于<br>@Aspect注解的方式来实现。</li>
-</ul>
-<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
-<li>通知（Advice）：在切面的某个特定的连接点上执行的动作。其中包括了 “around”、“before”和“after”等不同类型的通知（通知的类型将在后面部分进行讨论）。许多AOP框架（包括Spring）都是以拦截器做通知模型，并维护一个以连接点为中心的拦截器链。<ul>
-<li>通俗讲：<ul>
-<li>在spring底层的代理拦截下切入点后，将切入点交给切面类，切面类中就要有处理这些切入点的方法，这些方法就称之为通知（也叫增强 增强方法）。针对于切入点执行的过程，通知还分为不同的类型，分别关注切入点在执行过程中的不同的时机。<h4 id="目标对象"><a href="#目标对象" class="headerlink" title="目标对象"></a>目标对象</h4></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>目标对象（Target Object）： 被一个或者多个切面所通知的对象。也被称做被通知（advised）对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个被代理（proxied）对象<ul>
-<li>通俗讲：就是真正希望被访问到的对象。spring底层的动态代理对他进行了代理，具体能不能真的访问到目标对象，或在目标对象真正执行之前和之后是否做一些额外的操作，取决于切面。<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切面--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置通知方法--&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"myBefore"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myBefore</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"记录日志"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringDay03</title>
     <url>/2020/01/29/SpringDay03/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Spring注解方式实现IOC和DI"><a href="#Spring注解方式实现IOC和DI" class="headerlink" title="Spring注解方式实现IOC和DI"></a>Spring注解方式实现IOC和DI</h2><h3 id="1-Spring注解"><a href="#1-Spring注解" class="headerlink" title="1.Spring注解"></a>1.Spring注解</h3><pre><code>Spring除了默认的使用xml配置&lt;bean&gt;标签的方式实现配置外，也可以通过注解的方式来实现配置，这种方式效率更高，配置信息清晰，代码在哪对应的配置也在哪儿。</code></pre><p><strong>所谓注解就是程序看的提示信息，很多时候都用来作为轻量级配置方式</strong></p>
@@ -2649,6 +2591,59 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
 
 
 
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>导航</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringDay04</title>
+    <url>/2020/01/29/SpringDay04/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h2><h3 id="1-Spring-aop的基本概念"><a href="#1-Spring-aop的基本概念" class="headerlink" title="1. Spring aop的基本概念"></a>1. Spring aop的基本概念</h3><h4 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h4><ul>
+<li>连接点（Joinpoint）：在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。<ul>
+<li>通俗讲：<ul>
+<li>层与层之间方法调用的过程称之为连接点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>切入点（Pointcut）：匹配连接点的断言。通知和一个切入点表达式关联，并在满足这个切入点的连接点上运行（例如，当执行某个特定名称的方法时）。切入点表达式如何和连接点匹配是AOP的核心。核心：Spring缺省使用AspectJ切入点语法。<ul>
+<li>通俗讲<ul>
+<li>在连接点的基础上 增加上切入规则 选择出需要进行增强的连接点 这些基于切入规则选出来的<br>连接点 就称之为切入点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="切面"><a href="#切面" class="headerlink" title="切面"></a>切面</h4><ul>
+<li>切面（Aspect）：一个关注点的模块化，这个关注点可能会横切多个对象。事务管理是J2EE应用<br>中一个关于横切关注点的很好的例子。在Spring AOP中，切面可以使用基于模式）或者基于<br>@Aspect注解的方式来实现。</li>
+</ul>
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
+<li>通知（Advice）：在切面的某个特定的连接点上执行的动作。其中包括了 “around”、“before”和“after”等不同类型的通知（通知的类型将在后面部分进行讨论）。许多AOP框架（包括Spring）都是以拦截器做通知模型，并维护一个以连接点为中心的拦截器链。<ul>
+<li>通俗讲：<ul>
+<li>在spring底层的代理拦截下切入点后，将切入点交给切面类，切面类中就要有处理这些切入点的方法，这些方法就称之为通知（也叫增强 增强方法）。针对于切入点执行的过程，通知还分为不同的类型，分别关注切入点在执行过程中的不同的时机。<h4 id="目标对象"><a href="#目标对象" class="headerlink" title="目标对象"></a>目标对象</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>目标对象（Target Object）： 被一个或者多个切面所通知的对象。也被称做被通知（advised）对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个被代理（proxied）对象<ul>
+<li>通俗讲：就是真正希望被访问到的对象。spring底层的动态代理对他进行了代理，具体能不能真的访问到目标对象，或在目标对象真正执行之前和之后是否做一些额外的操作，取决于切面。<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切面--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置通知方法--&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"myBefore"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myBefore</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"记录日志"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>框架</category>
