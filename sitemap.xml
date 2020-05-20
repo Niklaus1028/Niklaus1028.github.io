@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/05/19/FluxDay02/</loc>
+    
+    <lastmod>2020-05-19T14:21:16.768Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/18/WebFlux/</loc>
+    
+    <lastmod>2020-05-18T15:14:17.253Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/02/21/Web/</loc>
     
     <lastmod>2020-05-16T14:46:48.477Z</lastmod>

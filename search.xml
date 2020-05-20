@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flux</title>
+    <url>/2020/05/19/FluxDay02/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/" class="lazyload" data-src="/images/%E9%A1%B9%E7%9B%AE02%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="项目02知识点"></p>
+]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网站流量统计项目</title>
+    <url>/2020/05/18/WebFlux/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/" class="lazyload" data-src="/images/%E9%A1%B9%E7%9B%AE01%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="项目01知识点"></p>
+]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>纠删码技术</title>
     <url>/2020/05/16/ErasureCodes/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/" class="lazyload" data-src="/images/%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86%E7%82%B9.png"  alt="扩展知识点"></p>
@@ -9,8 +35,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -22,8 +48,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -35,8 +61,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -48,8 +74,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -61,8 +87,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -84,8 +110,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -168,8 +194,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -225,8 +251,8 @@
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -362,8 +388,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -392,8 +418,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -692,8 +718,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -832,8 +858,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -941,8 +967,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1065,8 +1091,8 @@
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1188,98 +1214,8 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Dubbo</title>
-    <url>/2020/04/08/Dubbo/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="一、分布式系统"><a href="#一、分布式系统" class="headerlink" title="一、分布式系统"></a>一、分布式系统</h2><pre><code>分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统，分布式系统（distributed system）是建立在网络之上的软件系统。</code></pre><h3 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h3><pre><code>1. 做不到界面+业务逻辑实现分离
-2. 应用不可能完全独立，大量的应用之间需要交互</code></pre><h3 id="分布式应用架构"><a href="#分布式应用架构" class="headerlink" title="分布式应用架构"></a>分布式应用架构</h3><pre><code>1. 可以做到点后端分离
-2. 应用之间的相互调用</code></pre><h2 id="二、RPC（远程过程调用）"><a href="#二、RPC（远程过程调用）" class="headerlink" title="二、RPC（远程过程调用）"></a>二、RPC（远程过程调用）</h2><h3 id="什么叫RPC"><a href="#什么叫RPC" class="headerlink" title="什么叫RPC"></a>什么叫RPC</h3><pre><code>RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</code></pre><h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/1.png"  alt="截屏2020-04-12上午10.31.38"></p>
-<h3 id="Dubbo中的序列化"><a href="#Dubbo中的序列化" class="headerlink" title="Dubbo中的序列化"></a>Dubbo中的序列化</h3><ol>
-<li>Dubbo RPC是Dubbo体系最核心的一种高性能，高吞吐量的远程调用方式，可以称之为多路复用的TCP长连接调用<ul>
-<li>长连接：避免了每次调用新建TCP连接，提高了调用的响应速度</li>
-<li>多路复用：单个TCP连接可以交替传输多个请求和响应的消息，降低了连接的等待闲置时间从而减少了同样并发数下的网络连接数，提高了系统吞吐量</li>
-<li>Dubbo RPC 主要用于两个 Dubbo 系统之间的远程调用，特别适合高并发、小数据的互联网场景。而序列化对于远程调用的响应速度、吞吐量、网络带宽消耗等同样也起着至关重要的作用，是我们提升分布式系统性能的最关键因素之一。</li>
-</ul>
-</li>
-</ol>
-<h3 id="Dubbo-中支持的序列化方式："><a href="#Dubbo-中支持的序列化方式：" class="headerlink" title="Dubbo 中支持的序列化方式："></a>Dubbo 中支持的序列化方式：</h3><ul>
-<li><p>dubbo 序列化：阿里尚未开发成熟的高效 java 序列化实现，阿里不建议在生产环境使用它</p>
-</li>
-<li><p>hessian2 序列化：hessian 是一种跨语言的高效二进制序列化方式。但这里实际不是原生的hessian2 序列化，而是阿里修改过的 hessian lite，它是 dubbo RPC 默认启用的序列化方式</p>
-</li>
-<li><p>json 序列化：目前有两种实现，一种是采用的阿里的 fastjson 库，另一种是采用 dubbo 中自己实现的简单 json 库，但其实现都不是特别成熟，而且 json 这种文本序列化性能一般不如上面两种二进制序列化。</p>
-</li>
-<li><p>java 序列化：主要是采用 JDK 自带的 Java 序列化实现，性能很不理想。</p>
-<p>  在通常情况下，这四种主要序列化方式的性能从上到下依次递减。对于 dubbo RPC 这种追求高性能的远程调用方式来说，实际上只有 1、2 两种高效序列化方式比较般配，而第 1 个 dubbo 序列化由于还不成熟，所以实际只剩下 2 可用，所以 dubbo RPC 默认采用 hessian2 序列化。</p>
-<p>  但 hessian 是一个比较老的序列化实现了，而且它是跨语言的，所以不是单独针对 Java 进行优化的。而 dubbo RPC 实际上完全是一种 Java to Java 的远程调用，其实没有必要采用跨语言的序列化方式（当然肯定也不排斥跨语言的序列化）。</p>
-<p>  最近几年，各种新的高效序列化方式层出不穷，不断刷新序列化性能的上限，最典型的包括：</p>
-</li>
-<li><p>专门针对 Java 语言的：Kryo，FST 等等</p>
-</li>
-<li><p>跨语言的：Protostuff，ProtoBuf，Thrift，Avro，MsgPack 等等<br>这些序列化方式的性能多数都显著优于 hessian2（甚至包括尚未成熟的 dubbo 序列化）</p>
-<p>  有鉴于此，我们为 dubbo 引入 Kryo 和 FST 这两种高效 Java 序列化实现，来逐步取代 hessian2。</p>
-<p>  其中，Kryo 是一种非常成熟的序列化实现，已经在 Twitter、Groupon、Yahoo 以及多个著名开源项目（如 Hive、Storm）中广泛的使用。而 FST 是一种较新的序列化实现，目前还缺乏足够多的成熟使用案例。</p>
-</li>
-</ul>
-<p><strong>吞吐量：吞吐量是指对网络、设备、端口、虚电路或其他设施，单位时间内成功地传送数据的数量（以比特、字节、分组等测量）。</strong></p>
-<p><strong>在面向生产环境的应用中，目前更优先选择 Kryo。</strong></p>
-<h2 id="Dubbo-Hystrix-实现服务熔断"><a href="#Dubbo-Hystrix-实现服务熔断" class="headerlink" title="Dubbo + Hystrix 实现服务熔断"></a>Dubbo + Hystrix 实现服务熔断</h2><h3 id="熔断器简介"><a href="#熔断器简介" class="headerlink" title="熔断器简介"></a>熔断器简介</h3><pre><code>在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以通过 RPC 相互调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证 100% 可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet 容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的 “雪崩” 效应。
-
-为了解决这个问题，业界提出了熔断器模型。</code></pre><p>Netflix 开源了 Hystrix 组件，实现了熔断器模式，Spring Cloud 对这一组件进行了整合。在微服务架构中，一个请求需要调用多个服务是非常常见的，如下图：<br><img src="/" class="lazyload" data-src="https://www.funtl.com/assets/Lusifer201805292246007.png"  alt=""></p>
-<p>较底层的服务如果出现故障，会导致连锁故障。当对特定的服务的调用的不可用达到一个阀值（Hystrix 是 5 秒 20 次） 熔断器将会被打开。<br><img src="/" class="lazyload" data-src="https://www.funtl.com/assets/Lusifer201805292246008.png"  alt=""><br>熔断器打开后，为了避免连锁故障，通过 fallback 方法可以直接返回一个固定值。</p>
-]]></content>
-      <categories>
-        <category>分布式</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gateway</title>
-    <url>/2020/04/08/Gateway/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
-<li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p>
-</li>
-<li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p>
-</li>
-<li><p>SpringCloud Gateway作为Spring cloud 生态系统中的网关，目标是替代zuul，在Springcloud2.0以上的版本中，没有对新版本的zuul2.0一盒收纳柜最新高性能版本进行集成，仍然还是使用的是Zuul1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于WebFlux框架实现的，而WebFlux框架使用了高性能的Reactor模式通信框架Netty。</p>
-</li>
-<li><p>Spring Cloud Gateway的目标提供统一的路由方式且基于Filter链的方式提供网关的基本功能，例如：安全，监控/指标，和限流。</p>
-</li>
-</ol>
-<h2 id="Spring-Cloud架构亮点"><a href="#Spring-Cloud架构亮点" class="headerlink" title="Spring Cloud架构亮点"></a>Spring Cloud架构亮点</h2><p><img src="/" class="lazyload" data-src="https://spring.io/images/cloud-diagram-1a4cad7294b4452864b5ff57175dd983.svg"  alt="SpringCloud架构图"></p>
-<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="Spring-Cloud-Gateway功能："><a href="#Spring-Cloud-Gateway功能：" class="headerlink" title="Spring Cloud Gateway功能："></a>Spring Cloud Gateway功能：</h3><ul>
-<li>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</li>
-<li>能够匹配任何请求属性上的路由。</li>
-<li>谓词和过滤器特定于路由。</li>
-<li>Hystrix断路器集成。</li>
-<li>Spring Cloud DiscoveryClient集成</li>
-<li>易于编写的谓词和过滤器</li>
-<li>请求速率限制</li>
-<li>路径改写</li>
-</ul>
-<h2 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h2><h3 id="Route（-路由）"><a href="#Route（-路由）" class="headerlink" title="Route（ 路由）"></a>Route（ 路由）</h3><pre><code>路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true则匹配该路由。</code></pre><h3 id="Predicate（断言）"><a href="#Predicate（断言）" class="headerlink" title="Predicate（断言）"></a>Predicate（断言）</h3><pre><code>开发人员可以匹配HTTP请求中的所有内容（例如请求头或请求参数），如果请求与断言相匹配则进行路由。</code></pre><h3 id="Filter（过滤）"><a href="#Filter（过滤）" class="headerlink" title="Filter（过滤）"></a>Filter（过滤）</h3><pre><code>值得是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或者之后对请求进行修改。</code></pre><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/" class="lazyload" data-src="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/images/spring_cloud_gateway_diagram.png"  alt=""></p>
-<pre><code>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.</code></pre><ol>
-<li>客户端向Spring Cloud Gateway发出请求。然后在Gate Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web Handler。</li>
-<li>Handler再通过指定的过滤器来讲请求发送到实际的服务执行业务逻辑，然后返回。</li>
-<li>过滤器之间用虚线分开是因为过滤器可能会在发送代理之前（“pre”）或之后（”post“）执行业务逻辑。</li>
-<li>Filter在”pre“类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等</li>
-<li>在”post“类型的过滤器中可以做响应内容、响应头修改，日志输出，流量监控等有着非常重要的作用。</li>
-<li>核心逻辑：<strong>路由转发+执行过滤器链</strong></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Springcloud</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -1485,8 +1421,98 @@
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gateway</title>
+    <url>/2020/04/08/Gateway/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+<li><p>由于有如此众多的客户端和服务器，在云体系结构中包括一个API网关通常会很有帮助。网关可以负责保护和路由消息，隐藏服务，限制负载以及许多其他有用的事情。Spring Cloud Gateway为您提供对API层的精确控制，集成了Spring Cloud服务发现和客户端负载平衡解决方案，以简化配置和维护。</p>
+</li>
+<li><p>SpringCloud Gateway 是Spring cloud的一个全新的项目，基于Spring Framework 5，Project Reactor和Spring Boot 2.0等技术开发的网关，它旨在为为微服务架构提供简单有效的统一的API路由管理方式。</p>
+</li>
+<li><p>SpringCloud Gateway作为Spring cloud 生态系统中的网关，目标是替代zuul，在Springcloud2.0以上的版本中，没有对新版本的zuul2.0一盒收纳柜最新高性能版本进行集成，仍然还是使用的是Zuul1.x非Reactor模式的老版本。而为了提升网关的性能，SpringCloud Gateway 是基于WebFlux框架实现的，而WebFlux框架使用了高性能的Reactor模式通信框架Netty。</p>
+</li>
+<li><p>Spring Cloud Gateway的目标提供统一的路由方式且基于Filter链的方式提供网关的基本功能，例如：安全，监控/指标，和限流。</p>
+</li>
+</ol>
+<h2 id="Spring-Cloud架构亮点"><a href="#Spring-Cloud架构亮点" class="headerlink" title="Spring Cloud架构亮点"></a>Spring Cloud架构亮点</h2><p><img src="/" class="lazyload" data-src="https://spring.io/images/cloud-diagram-1a4cad7294b4452864b5ff57175dd983.svg"  alt="SpringCloud架构图"></p>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="Spring-Cloud-Gateway功能："><a href="#Spring-Cloud-Gateway功能：" class="headerlink" title="Spring Cloud Gateway功能："></a>Spring Cloud Gateway功能：</h3><ul>
+<li>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</li>
+<li>能够匹配任何请求属性上的路由。</li>
+<li>谓词和过滤器特定于路由。</li>
+<li>Hystrix断路器集成。</li>
+<li>Spring Cloud DiscoveryClient集成</li>
+<li>易于编写的谓词和过滤器</li>
+<li>请求速率限制</li>
+<li>路径改写</li>
+</ul>
+<h2 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h2><h3 id="Route（-路由）"><a href="#Route（-路由）" class="headerlink" title="Route（ 路由）"></a>Route（ 路由）</h3><pre><code>路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true则匹配该路由。</code></pre><h3 id="Predicate（断言）"><a href="#Predicate（断言）" class="headerlink" title="Predicate（断言）"></a>Predicate（断言）</h3><pre><code>开发人员可以匹配HTTP请求中的所有内容（例如请求头或请求参数），如果请求与断言相匹配则进行路由。</code></pre><h3 id="Filter（过滤）"><a href="#Filter（过滤）" class="headerlink" title="Filter（过滤）"></a>Filter（过滤）</h3><pre><code>值得是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或者之后对请求进行修改。</code></pre><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img src="/" class="lazyload" data-src="https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/images/spring_cloud_gateway_diagram.png"  alt=""></p>
+<pre><code>Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.</code></pre><ol>
+<li>客户端向Spring Cloud Gateway发出请求。然后在Gate Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web Handler。</li>
+<li>Handler再通过指定的过滤器来讲请求发送到实际的服务执行业务逻辑，然后返回。</li>
+<li>过滤器之间用虚线分开是因为过滤器可能会在发送代理之前（“pre”）或之后（”post“）执行业务逻辑。</li>
+<li>Filter在”pre“类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等</li>
+<li>在”post“类型的过滤器中可以做响应内容、响应头修改，日志输出，流量监控等有着非常重要的作用。</li>
+<li>核心逻辑：<strong>路由转发+执行过滤器链</strong></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Springcloud</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dubbo</title>
+    <url>/2020/04/08/Dubbo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="一、分布式系统"><a href="#一、分布式系统" class="headerlink" title="一、分布式系统"></a>一、分布式系统</h2><pre><code>分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统，分布式系统（distributed system）是建立在网络之上的软件系统。</code></pre><h3 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h3><pre><code>1. 做不到界面+业务逻辑实现分离
+2. 应用不可能完全独立，大量的应用之间需要交互</code></pre><h3 id="分布式应用架构"><a href="#分布式应用架构" class="headerlink" title="分布式应用架构"></a>分布式应用架构</h3><pre><code>1. 可以做到点后端分离
+2. 应用之间的相互调用</code></pre><h2 id="二、RPC（远程过程调用）"><a href="#二、RPC（远程过程调用）" class="headerlink" title="二、RPC（远程过程调用）"></a>二、RPC（远程过程调用）</h2><h3 id="什么叫RPC"><a href="#什么叫RPC" class="headerlink" title="什么叫RPC"></a>什么叫RPC</h3><pre><code>RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</code></pre><h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/1.png"  alt="截屏2020-04-12上午10.31.38"></p>
+<h3 id="Dubbo中的序列化"><a href="#Dubbo中的序列化" class="headerlink" title="Dubbo中的序列化"></a>Dubbo中的序列化</h3><ol>
+<li>Dubbo RPC是Dubbo体系最核心的一种高性能，高吞吐量的远程调用方式，可以称之为多路复用的TCP长连接调用<ul>
+<li>长连接：避免了每次调用新建TCP连接，提高了调用的响应速度</li>
+<li>多路复用：单个TCP连接可以交替传输多个请求和响应的消息，降低了连接的等待闲置时间从而减少了同样并发数下的网络连接数，提高了系统吞吐量</li>
+<li>Dubbo RPC 主要用于两个 Dubbo 系统之间的远程调用，特别适合高并发、小数据的互联网场景。而序列化对于远程调用的响应速度、吞吐量、网络带宽消耗等同样也起着至关重要的作用，是我们提升分布式系统性能的最关键因素之一。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Dubbo-中支持的序列化方式："><a href="#Dubbo-中支持的序列化方式：" class="headerlink" title="Dubbo 中支持的序列化方式："></a>Dubbo 中支持的序列化方式：</h3><ul>
+<li><p>dubbo 序列化：阿里尚未开发成熟的高效 java 序列化实现，阿里不建议在生产环境使用它</p>
+</li>
+<li><p>hessian2 序列化：hessian 是一种跨语言的高效二进制序列化方式。但这里实际不是原生的hessian2 序列化，而是阿里修改过的 hessian lite，它是 dubbo RPC 默认启用的序列化方式</p>
+</li>
+<li><p>json 序列化：目前有两种实现，一种是采用的阿里的 fastjson 库，另一种是采用 dubbo 中自己实现的简单 json 库，但其实现都不是特别成熟，而且 json 这种文本序列化性能一般不如上面两种二进制序列化。</p>
+</li>
+<li><p>java 序列化：主要是采用 JDK 自带的 Java 序列化实现，性能很不理想。</p>
+<p>  在通常情况下，这四种主要序列化方式的性能从上到下依次递减。对于 dubbo RPC 这种追求高性能的远程调用方式来说，实际上只有 1、2 两种高效序列化方式比较般配，而第 1 个 dubbo 序列化由于还不成熟，所以实际只剩下 2 可用，所以 dubbo RPC 默认采用 hessian2 序列化。</p>
+<p>  但 hessian 是一个比较老的序列化实现了，而且它是跨语言的，所以不是单独针对 Java 进行优化的。而 dubbo RPC 实际上完全是一种 Java to Java 的远程调用，其实没有必要采用跨语言的序列化方式（当然肯定也不排斥跨语言的序列化）。</p>
+<p>  最近几年，各种新的高效序列化方式层出不穷，不断刷新序列化性能的上限，最典型的包括：</p>
+</li>
+<li><p>专门针对 Java 语言的：Kryo，FST 等等</p>
+</li>
+<li><p>跨语言的：Protostuff，ProtoBuf，Thrift，Avro，MsgPack 等等<br>这些序列化方式的性能多数都显著优于 hessian2（甚至包括尚未成熟的 dubbo 序列化）</p>
+<p>  有鉴于此，我们为 dubbo 引入 Kryo 和 FST 这两种高效 Java 序列化实现，来逐步取代 hessian2。</p>
+<p>  其中，Kryo 是一种非常成熟的序列化实现，已经在 Twitter、Groupon、Yahoo 以及多个著名开源项目（如 Hive、Storm）中广泛的使用。而 FST 是一种较新的序列化实现，目前还缺乏足够多的成熟使用案例。</p>
+</li>
+</ul>
+<p><strong>吞吐量：吞吐量是指对网络、设备、端口、虚电路或其他设施，单位时间内成功地传送数据的数量（以比特、字节、分组等测量）。</strong></p>
+<p><strong>在面向生产环境的应用中，目前更优先选择 Kryo。</strong></p>
+<h2 id="Dubbo-Hystrix-实现服务熔断"><a href="#Dubbo-Hystrix-实现服务熔断" class="headerlink" title="Dubbo + Hystrix 实现服务熔断"></a>Dubbo + Hystrix 实现服务熔断</h2><h3 id="熔断器简介"><a href="#熔断器简介" class="headerlink" title="熔断器简介"></a>熔断器简介</h3><pre><code>在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以通过 RPC 相互调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证 100% 可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet 容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的 “雪崩” 效应。
+
+为了解决这个问题，业界提出了熔断器模型。</code></pre><p>Netflix 开源了 Hystrix 组件，实现了熔断器模式，Spring Cloud 对这一组件进行了整合。在微服务架构中，一个请求需要调用多个服务是非常常见的，如下图：<br><img src="/" class="lazyload" data-src="https://www.funtl.com/assets/Lusifer201805292246007.png"  alt=""></p>
+<p>较底层的服务如果出现故障，会导致连锁故障。当对特定的服务的调用的不可用达到一个阀值（Hystrix 是 5 秒 20 次） 熔断器将会被打开。<br><img src="/" class="lazyload" data-src="https://www.funtl.com/assets/Lusifer201805292246008.png"  alt=""><br>熔断器打开后，为了避免连锁故障，通过 fallback 方法可以直接返回一个固定值。</p>
+]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1642,8 +1668,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1798,8 +1824,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1826,8 +1852,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>高并发</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1870,8 +1896,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Interview</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1889,8 +1915,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Web</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -1975,8 +2001,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2007,8 +2033,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2029,8 +2055,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2047,8 +2073,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2071,8 +2097,8 @@ pc计数器/寄存器：指令计数，线程独享</code></pre><p>如果需要�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2115,8 +2141,8 @@ If-Modified—Since：只有当所请求的内容在指定的日期之后又经�
         <category>Web</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2171,8 +2197,8 @@ If-Modified—Since：只有当所请求的内容在指定的日期之后又经�
         <category>Hadoop</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2250,8 +2276,8 @@ If-Modified—Since：只有当所请求的内容在指定的日期之后又经�
         <category>Mysql</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2271,8 +2297,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2285,8 +2311,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2297,8 +2323,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2340,8 +2366,23 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Shell</title>
+    <url>/2020/01/29/Shell/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Shell传递参数值"><a href="#Shell传递参数值" class="headerlink" title="Shell传递参数值"></a>Shell传递参数值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Shell 传递参数实例&quot;</span><br><span class="line">echo &quot;执行的文件名：$0&quot;</span><br><span class="line">echo &quot;第一个参数为：$1&quot;</span><br><span class="line">echo &quot;第二个参数为：$2&quot;</span><br><span class="line">echo &quot;第三个参数为：$3&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Shell-和-的演示"><a href="#Shell-和-的演示" class="headerlink" title="Shell $*和$@的演示"></a>Shell $*和$@的演示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;--\$*演示---&quot;</span><br><span class="line">for i in &quot;$*&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br><span class="line">echo &quot;--\$@演示---&quot;</span><br><span class="line">for i in &quot;$@&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h2 id="Shell的基础命令（find）"><a href="#Shell的基础命令（find）" class="headerlink" title="Shell的基础命令（find）"></a>Shell的基础命令（find）</h2><p>查找文件的位置 find 位置 选项 参数<br> 例如：按文件名进行查询 find / -name java<br>  查找当前系统中所有的.log后缀名的文件  find / -name “*.log”<br>  查找系统中/home目录下的非普通文件 find /home ! -type f<br>  查找/home目录下权限为700的文件 find /home -perm 700<br>  查找/dev目录下的块设备文件  find /dev -type b</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2372,23 +2413,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Shell</title>
-    <url>/2020/01/29/Shell/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Shell传递参数值"><a href="#Shell传递参数值" class="headerlink" title="Shell传递参数值"></a>Shell传递参数值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Shell 传递参数实例&quot;</span><br><span class="line">echo &quot;执行的文件名：$0&quot;</span><br><span class="line">echo &quot;第一个参数为：$1&quot;</span><br><span class="line">echo &quot;第二个参数为：$2&quot;</span><br><span class="line">echo &quot;第三个参数为：$3&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Shell-和-的演示"><a href="#Shell-和-的演示" class="headerlink" title="Shell $*和$@的演示"></a>Shell $*和$@的演示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;--\$*演示---&quot;</span><br><span class="line">for i in &quot;$*&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br><span class="line">echo &quot;--\$@演示---&quot;</span><br><span class="line">for i in &quot;$@&quot; ;do</span><br><span class="line">        echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<h2 id="Shell的基础命令（find）"><a href="#Shell的基础命令（find）" class="headerlink" title="Shell的基础命令（find）"></a>Shell的基础命令（find）</h2><p>查找文件的位置 find 位置 选项 参数<br> 例如：按文件名进行查询 find / -name java<br>  查找当前系统中所有的.log后缀名的文件  find / -name “*.log”<br>  查找系统中/home目录下的非普通文件 find /home ! -type f<br>  查找/home目录下权限为700的文件 find /home -perm 700<br>  查找/dev目录下的块设备文件  find /dev -type b</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -2421,8 +2447,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>面试</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2438,8 +2464,8 @@ $\color{#FF0000}{在linux的世界里，一切皆文件}$</code></pre><h3 id="�
         <category>微服务</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2479,8 +2505,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2517,8 +2543,195 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringDay05</title>
+    <url>/2020/01/29/SpringDay05/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h2><h3 id="within表达式"><a href="#within表达式" class="headerlink" title="within表达式"></a>within表达式</h3><pre><code>通过类名进行匹配，是一种粗粒度的切入点表达式，不可以指定某个方法进行增强，以类作为基本的单位</code></pre><h3 id="在Spring的约束文件中配置切入点和切面（within切入点表达式）"><a href="#在Spring的约束文件中配置切入点和切面（within切入点表达式）" class="headerlink" title="在Spring的约束文件中配置切入点和切面（within切入点表达式）"></a>在Spring的约束文件中配置切入点和切面（within切入点表达式）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">    <span class="comment">&lt;!--添加Spring AOP相关的约束</span></span><br><span class="line"><span class="comment">    xmlns:aop="http://www.springframework.org/schema/aop"</span></span><br><span class="line"><span class="comment">    http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注释配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定切入点规则,通知方法--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="execution表达式"><a href="#execution表达式" class="headerlink" title="execution表达式"></a>execution表达式</h3><pre><code>通过方法进行匹配，是一种细粒度的切入点表达式，以方法作为基本的单元</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..*(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Spring的五大通知类型"><a href="#Spring的五大通知类型" class="headerlink" title="Spring的五大通知类型"></a>Spring的五大通知类型</h2><h3 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h3><ol>
+<li>在目标方法执行之前执行的通知<h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3></li>
+<li>在目标方法执行之前，执行之后都会执行的通知<h3 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h3></li>
+<li>在目标方法执行之后的通知<h3 id="异常通知"><a href="#异常通知" class="headerlink" title="异常通知"></a>异常通知</h3></li>
+<li>在目标方法抛出异常后执行的通知<h3 id="最终通知"><a href="#最终通知" class="headerlink" title="最终通知"></a>最终通知</h3></li>
+<li>无论如何都会在目标方法调用后执行</li>
+</ol>
+<h4 id="多个通知执行顺序"><a href="#多个通知执行顺序" class="headerlink" title="多个通知执行顺序"></a>多个通知执行顺序</h4><h5 id="未出现异常"><a href="#未出现异常" class="headerlink" title="未出现异常"></a>未出现异常</h5><pre><code>前置通知
+环绕通知前
+目标方法（添加用户cn.tedu.domain.User@710f4dc7）
+最终通知
+环绕通知后
+后置通知</code></pre><h5 id="出现异常（）"><a href="#出现异常（）" class="headerlink" title="出现异常（）"></a>出现异常（）</h5><pre><code>前置通知
+环绕通知前
+目标方法（添加用户cn.tedu.domain.User@710f4dc7）
+最终通知
+异常通知</code></pre><h4 id="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："><a href="#出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：" class="headerlink" title="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："></a>出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：</h4><pre><code>web层调用service层目标方法时，会经过第一个切面，执行前置通知和环绕前通知，环绕通知调用proceed（）时进入下一个切面，执行第二个切面的前置通知，和环绕前通知，进入第二个切面的proceed的方法，放行调用目标方法，下面进入第二个切面的环绕后通知，和后置通知，最终通知，在进入第一个切面层，环绕后通知，和后置通知，最终通知，响应给web层</code></pre><h6 id="代码执行结果"><a href="#代码执行结果" class="headerlink" title="代码执行结果"></a>代码执行结果</h6><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">前置通知</span><br><span class="line">环绕通知前</span><br><span class="line">second前置通知</span><br><span class="line">second环绕通知前</span><br><span class="line">添加用户cn.tedu.domain.User@2de23121</span><br><span class="line">second最终通知</span><br><span class="line">second环绕通知后</span><br><span class="line">second后置通知</span><br><span class="line">最终通知</span><br><span class="line">环绕通知后</span><br><span class="line">后置通知</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringDay04</title>
+    <url>/2020/01/29/SpringDay04/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h2><h3 id="1-Spring-aop的基本概念"><a href="#1-Spring-aop的基本概念" class="headerlink" title="1. Spring aop的基本概念"></a>1. Spring aop的基本概念</h3><h4 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h4><ul>
+<li>连接点（Joinpoint）：在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。<ul>
+<li>通俗讲：<ul>
+<li>层与层之间方法调用的过程称之为连接点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>切入点（Pointcut）：匹配连接点的断言。通知和一个切入点表达式关联，并在满足这个切入点的连接点上运行（例如，当执行某个特定名称的方法时）。切入点表达式如何和连接点匹配是AOP的核心。核心：Spring缺省使用AspectJ切入点语法。<ul>
+<li>通俗讲<ul>
+<li>在连接点的基础上 增加上切入规则 选择出需要进行增强的连接点 这些基于切入规则选出来的<br>连接点 就称之为切入点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="切面"><a href="#切面" class="headerlink" title="切面"></a>切面</h4><ul>
+<li>切面（Aspect）：一个关注点的模块化，这个关注点可能会横切多个对象。事务管理是J2EE应用<br>中一个关于横切关注点的很好的例子。在Spring AOP中，切面可以使用基于模式）或者基于<br>@Aspect注解的方式来实现。</li>
+</ul>
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
+<li>通知（Advice）：在切面的某个特定的连接点上执行的动作。其中包括了 “around”、“before”和“after”等不同类型的通知（通知的类型将在后面部分进行讨论）。许多AOP框架（包括Spring）都是以拦截器做通知模型，并维护一个以连接点为中心的拦截器链。<ul>
+<li>通俗讲：<ul>
+<li>在spring底层的代理拦截下切入点后，将切入点交给切面类，切面类中就要有处理这些切入点的方法，这些方法就称之为通知（也叫增强 增强方法）。针对于切入点执行的过程，通知还分为不同的类型，分别关注切入点在执行过程中的不同的时机。<h4 id="目标对象"><a href="#目标对象" class="headerlink" title="目标对象"></a>目标对象</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>目标对象（Target Object）： 被一个或者多个切面所通知的对象。也被称做被通知（advised）对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个被代理（proxied）对象<ul>
+<li>通俗讲：就是真正希望被访问到的对象。spring底层的动态代理对他进行了代理，具体能不能真的访问到目标对象，或在目标对象真正执行之前和之后是否做一些额外的操作，取决于切面。<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切面--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置通知方法--&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"myBefore"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myBefore</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"记录日志"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringDay06</title>
+    <url>/2020/01/29/SpringDay06/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-通过aop进行权限的控制"><a href="#1-通过aop进行权限的控制" class="headerlink" title="1.通过aop进行权限的控制"></a>1.通过aop进行权限的控制</h2><ol>
+<li>通过自定义注解声明业务方法是否需要权限控制</li>
+<li>通过权限注解上的属性声明需要什么样的权限</li>
+<li>通过切面拦截业务的方法，根据是否需要权限，是否具有权限，控制目标方法的执行<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//切面代码</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrivAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* cn.tedu.servive..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//1.获取目标对象</span></span><br><span class="line">        Object target = pjp.getTarget();</span><br><span class="line">        <span class="comment">//2.获取目标方法</span></span><br><span class="line">        MethodSignature signature = (MethodSignature) pjp.getSignature();</span><br><span class="line">        Method method = signature.getMethod();<span class="comment">//接口上的方法</span></span><br><span class="line">        <span class="comment">//3.获取实现类上的目标方法</span></span><br><span class="line">        Method methodInstance = target.getClass().getMethod(method.getName(), method.getParameterTypes());</span><br><span class="line">        <span class="comment">//4.判断是否有注解</span></span><br><span class="line">        <span class="keyword">if</span> (methodInstance.isAnnotationPresent(PrivAnno<span class="class">.<span class="keyword">class</span>))</span>&#123;</span><br><span class="line">            PrivAnno annotation = methodInstance.getAnnotation(PrivAnno<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            PrivEnum[] privEnums = annotation.value();</span><br><span class="line">            <span class="keyword">if</span> (Arrays.asList(privEnums).contains(Test01.priv)) &#123;</span><br><span class="line">                 <span class="keyword">return</span> pjp.proceed();</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"权限不够"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> pjp.proceed();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//枚举类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> PrivEnum &#123;</span><br><span class="line">    ADMIN,SUPERADMIN,VISITOR</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//开发注释，来进行权限控制</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> PrivAnno &#123;</span><br><span class="line">    PrivEnum [] value() ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现事务的控制"><a href="#实现事务的控制" class="headerlink" title="实现事务的控制"></a>实现事务的控制</h2> 通过AOP实现事务的控制</li>
+<li>开发事务注解，通过业务方法上是否有注解来表示方法是否需要事务</li>
+<li>在切面中判断目标方法是否具有事务注解决定是否执行事务</li>
+<li>通过事务管理器管理事务防止耦合<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//jdbc连接工具类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBCUtils</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">JDBCUtils</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> DriverManager.getConnection(<span class="string">"jdbc:mysql:///mydb2"</span>,<span class="string">"root"</span>,<span class="string">"root1234"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Connection conn, Statement stat, ResultSet rs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                rs = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                stat = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                conn = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//事务管理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Connection conn = JDBCUtils.getConn();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">TransactionManager</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 开启事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">startTran</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取连接</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConn</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提交事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">commitTran</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 回滚事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rollbackTran</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.rollback();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 释放资源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//切面类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* cn.tedu.service..*(..)) &amp;&amp; @annotation(ax)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">myAround</span><span class="params">(ProceedingJoinPoint pjp, Trans ax)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TransactionManager.startTran();</span><br><span class="line">            Object retObj = pjp.proceed();</span><br><span class="line">            TransactionManager.commitTran();</span><br><span class="line">            <span class="keyword">return</span> retObj;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            TransactionManager.rollbackTran();</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            TransactionManager.release();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="spring整合JDBC-声名式事务处理"><a href="#spring整合JDBC-声名式事务处理" class="headerlink" title="spring整合JDBC-声名式事务处理"></a>spring整合JDBC-声名式事务处理</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///mydb2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置jdbc模版--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///mydb2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Spring中的事务管理（配置文件）"><a href="#Spring中的事务管理（配置文件）" class="headerlink" title="Spring中的事务管理（配置文件）"></a>Spring中的事务管理（配置文件）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置事务管理--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--配置事务切面--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..* (..))"</span>/&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:advisor</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--配置事务通知--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> &gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">           <span class="comment">&lt;!--rollback-for="java.lang.Throwable 对异常强制回滚，进行事务管理--&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"addUser"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span> <span class="attr">rollback-for</span>=<span class="string">"java.lang.Throwable"</span>/&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"delUser"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Spring中的事务管理（注解方式）"><a href="#Spring中的事务管理（注解方式）" class="headerlink" title="Spring中的事务管理（注解方式）"></a>Spring中的事务管理（注解方式）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///mydb2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置jdbc模版类--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置事务管理器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--开启注解方式事务管理--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="指定开启事务的方法"><a href="#指定开启事务的方法" class="headerlink" title="指定开启事务的方法"></a>指定开启事务的方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(rollbackFor = IOException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    @<span class="title">Override</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">void</span> <span class="title">addUser</span>(<span class="title">User</span> <span class="title">user</span>) <span class="title">throws</span> <span class="title">IOException</span> </span>&#123;</span><br><span class="line">        userDao.addUser(user);</span><br><span class="line">        <span class="comment">//int i = 1/0;</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"io 异常"</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringMVCDay01</title>
+    <url>/2020/01/29/SpringMVCDay01/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
+<h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
+<li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
+</ol>
+<h2 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-28%E4%B8%8B%E5%8D%8810.54.07.png"  alt=""></p>
+<h3 id="配置前端控制器"><a href="#配置前端控制器" class="headerlink" title="配置前端控制器"></a>配置前端控制器</h3><h4 id="1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet"><a href="#1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet" class="headerlink" title="1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet"></a>1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置servlet的映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="生成SpringMVC核心配置文件"><a href="#生成SpringMVC核心配置文件" class="headerlink" title="生成SpringMVC核心配置文件"></a>生成SpringMVC核心配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系，拼接上前缀后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建类实现controller接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//创建modelAndView</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//封装数据</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"msg1"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"msg2"</span>,<span class="string">"hello springMVC"</span>);</span><br><span class="line">        <span class="comment">//封装视图</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="comment">//返回modelAndView</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC注解方式配置"><a href="#SpringMVC注解方式配置" class="headerlink" title="SpringMVC注解方式配置"></a>SpringMVC注解方式配置</h2><h3 id="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"><a href="#SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式" class="headerlink" title="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"></a>SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式</h3><h3 id="springMVC注解工作原理"><a href="#springMVC注解工作原理" class="headerlink" title="springMVC注解工作原理"></a>springMVC注解工作原理</h3><ol>
+<li>当服务器启动时，会先加载web.xml文件，之后通过引入核心配置文件来加载SpringMVC.xml</li>
+<li>当解析到包扫描时，扫描指定的包，并将含有@Conteoller注解的类解析为处理器</li>
+<li>如果配置过<a href="mvc:annotation-driven">mvc:annotation-driven</a>就会解析Spring-MVC注解</li>
+<li>解析@requestMapping（value=“/test01.action”），将指定的地址和当前方法的映射关系保存</li>
+<li>当客户端发出请求访问时，SpringMVC寻找改地址的映射关系，找到就执行方法，找不到抛出404</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置mvc注解方式的DI--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="test01-jsp"><a href="#test01-jsp" class="headerlink" title="test01.jsp"></a>test01.jsp</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;this is test01.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;$&#123;msg&#125;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="comment">//在类上加上注解指的是在访问的地址上加上前缀</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/my01"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test01"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过value属性指定当前的映射到那些路径,可以映射到多个路径</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/test04.action"</span>,<span class="string">"/test02.action"</span>,<span class="string">"/test03.action"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just do it"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test02"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SpringMVC获取请求参数"><a href="#SpringMVC获取请求参数" class="headerlink" title="SpringMVC获取请求参数"></a>SpringMVC获取请求参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：日期数据处理</span></span><br><span class="line"><span class="comment">     *  通过注册自定义类型编辑器使SpringMVC支持自定义格式请求参数的处理</span></span><br><span class="line"><span class="comment">     *  此处，SpringMVC为Date类型已经提供了编辑器类，所以直接使用，不用自己写</span></span><br><span class="line"><span class="comment">     * http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01test09.jsp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myInitBinder</span><span class="params">(ServletRequestDataBinder dataBinder)</span></span>&#123;</span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test09.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test09</span><span class="params">(String name, <span class="keyword">int</span> age, Date birthday)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        String format1 = format.format(birthday);</span><br><span class="line">        System.out.println(format1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：中文乱码解决</span></span><br><span class="line"><span class="comment">     *     如果服务器配置的编码是utf-8,且项目采用的也是utf-8则默认请求参数无乱码</span></span><br><span class="line"><span class="comment">     *     tomcat8默认编码为utf-8(可以更改)</span></span><br><span class="line"><span class="comment">     *     tomcat7及更老的版本默认编码为iso8859-1(可以更改)</span></span><br><span class="line"><span class="comment">     *     如果遇到服务器编码和项目编码不一致时会产生乱码</span></span><br><span class="line"><span class="comment">     *     对于POST提交 可以通过request.setCharacterEncoding("utf-8")解决乱码</span></span><br><span class="line"><span class="comment">     *     但此行代码对GET无效，GET提交的请求参数乱码，只能手工编解码来解决</span></span><br><span class="line"><span class="comment">     *     手工编解码解决乱码的方式对POST提交也有效</span></span><br><span class="line"><span class="comment">     *     springmvc提供了过滤器CharacterEncodingFilter来帮助我们解决乱码</span></span><br><span class="line"><span class="comment">     *     但此过滤器本质上就是request.setCharacterEncoing()所以也是只对POST有效</span></span><br><span class="line"><span class="comment">     *     ,即使配置了GET提交乱码也要手动解决</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test08.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test08</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">        <span class="comment">//POST提交</span></span><br><span class="line">        <span class="comment">//request.setCharacterEncoding("utf-8");</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">        <span class="comment">//GET提交</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//byte [] data = uname.getBytes("iso8859-1");</span></span><br><span class="line">        <span class="comment">//uname = new String(data,"utf-8");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    获取请求参数：多个同名请求参数的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test07.action?name=tt&amp;love=bb&amp;love=pp&amp;love=zz</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test07.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">(String name,String [] love)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//封装到数组里</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(Arrays.asList(love));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test06.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1&amp;dog.cat.name=xx&amp;dog.cat.age=3</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test06.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test05.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test05.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test04.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test04.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 通过@RequestParam指定参数赋值,解决请求参数名和方法参数不一致时赋值问题</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test03.action?name=yasuo&amp;uage=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test03.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"uage"</span>)</span> <span class="keyword">int</span> age) </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 直接获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test02.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test02.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：传统方式获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test01.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        <span class="keyword">int</span> age = Integer.parseInt(request.getParameter(<span class="string">"age"</span>));</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis-cluster</title>
+    <url>/2020/01/29/redis-cluster/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ol>
+<li>两两互联，任意节点和其他节点通信，底层使用二进制协议优化传输速度</li>
+<li></li>
+<li></li>
+<li>引入新的数据分片计算方法（hash槽）引入hash取模（散列算法CRC16后对16384取余<h2 id="槽道"><a href="#槽道" class="headerlink" title="槽道"></a>槽道</h2></li>
+</ol>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2596,195 +2809,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>框架</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringDay04</title>
-    <url>/2020/01/29/SpringDay04/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h2><h3 id="1-Spring-aop的基本概念"><a href="#1-Spring-aop的基本概念" class="headerlink" title="1. Spring aop的基本概念"></a>1. Spring aop的基本概念</h3><h4 id="连接点"><a href="#连接点" class="headerlink" title="连接点"></a>连接点</h4><ul>
-<li>连接点（Joinpoint）：在程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中，一个连接点总是表示一个方法的执行。<ul>
-<li>通俗讲：<ul>
-<li>层与层之间方法调用的过程称之为连接点</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>切入点（Pointcut）：匹配连接点的断言。通知和一个切入点表达式关联，并在满足这个切入点的连接点上运行（例如，当执行某个特定名称的方法时）。切入点表达式如何和连接点匹配是AOP的核心。核心：Spring缺省使用AspectJ切入点语法。<ul>
-<li>通俗讲<ul>
-<li>在连接点的基础上 增加上切入规则 选择出需要进行增强的连接点 这些基于切入规则选出来的<br>连接点 就称之为切入点。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="切面"><a href="#切面" class="headerlink" title="切面"></a>切面</h4><ul>
-<li>切面（Aspect）：一个关注点的模块化，这个关注点可能会横切多个对象。事务管理是J2EE应用<br>中一个关于横切关注点的很好的例子。在Spring AOP中，切面可以使用基于模式）或者基于<br>@Aspect注解的方式来实现。</li>
-</ul>
-<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
-<li>通知（Advice）：在切面的某个特定的连接点上执行的动作。其中包括了 “around”、“before”和“after”等不同类型的通知（通知的类型将在后面部分进行讨论）。许多AOP框架（包括Spring）都是以拦截器做通知模型，并维护一个以连接点为中心的拦截器链。<ul>
-<li>通俗讲：<ul>
-<li>在spring底层的代理拦截下切入点后，将切入点交给切面类，切面类中就要有处理这些切入点的方法，这些方法就称之为通知（也叫增强 增强方法）。针对于切入点执行的过程，通知还分为不同的类型，分别关注切入点在执行过程中的不同的时机。<h4 id="目标对象"><a href="#目标对象" class="headerlink" title="目标对象"></a>目标对象</h4></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>目标对象（Target Object）： 被一个或者多个切面所通知的对象。也被称做被通知（advised）对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个被代理（proxied）对象<ul>
-<li>通俗讲：就是真正希望被访问到的对象。spring底层的动态代理对他进行了代理，具体能不能真的访问到目标对象，或在目标对象真正执行之前和之后是否做一些额外的操作，取决于切面。<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切面--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置通知方法--&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"myBefore"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myBefore</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"记录日志"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
         <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringDay05</title>
-    <url>/2020/01/29/SpringDay05/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h2><h3 id="within表达式"><a href="#within表达式" class="headerlink" title="within表达式"></a>within表达式</h3><pre><code>通过类名进行匹配，是一种粗粒度的切入点表达式，不可以指定某个方法进行增强，以类作为基本的单位</code></pre><h3 id="在Spring的约束文件中配置切入点和切面（within切入点表达式）"><a href="#在Spring的约束文件中配置切入点和切面（within切入点表达式）" class="headerlink" title="在Spring的约束文件中配置切入点和切面（within切入点表达式）"></a>在Spring的约束文件中配置切入点和切面（within切入点表达式）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">    <span class="comment">&lt;!--添加Spring AOP相关的约束</span></span><br><span class="line"><span class="comment">    xmlns:aop="http://www.springframework.org/schema/aop"</span></span><br><span class="line"><span class="comment">    http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注释配置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置AOP--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面类--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定切入点规则,通知方法--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut</span>=<span class="string">"within(cn.tedu.service.UserServiceImpl)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="execution表达式"><a href="#execution表达式" class="headerlink" title="execution表达式"></a>execution表达式</h3><pre><code>通过方法进行匹配，是一种细粒度的切入点表达式，以方法作为基本的单元</code></pre><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..*(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"firstAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"before"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Spring的五大通知类型"><a href="#Spring的五大通知类型" class="headerlink" title="Spring的五大通知类型"></a>Spring的五大通知类型</h2><h3 id="前置通知"><a href="#前置通知" class="headerlink" title="前置通知"></a>前置通知</h3><ol>
-<li>在目标方法执行之前执行的通知<h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3></li>
-<li>在目标方法执行之前，执行之后都会执行的通知<h3 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h3></li>
-<li>在目标方法执行之后的通知<h3 id="异常通知"><a href="#异常通知" class="headerlink" title="异常通知"></a>异常通知</h3></li>
-<li>在目标方法抛出异常后执行的通知<h3 id="最终通知"><a href="#最终通知" class="headerlink" title="最终通知"></a>最终通知</h3></li>
-<li>无论如何都会在目标方法调用后执行</li>
-</ol>
-<h4 id="多个通知执行顺序"><a href="#多个通知执行顺序" class="headerlink" title="多个通知执行顺序"></a>多个通知执行顺序</h4><h5 id="未出现异常"><a href="#未出现异常" class="headerlink" title="未出现异常"></a>未出现异常</h5><pre><code>前置通知
-环绕通知前
-目标方法（添加用户cn.tedu.domain.User@710f4dc7）
-最终通知
-环绕通知后
-后置通知</code></pre><h5 id="出现异常（）"><a href="#出现异常（）" class="headerlink" title="出现异常（）"></a>出现异常（）</h5><pre><code>前置通知
-环绕通知前
-目标方法（添加用户cn.tedu.domain.User@710f4dc7）
-最终通知
-异常通知</code></pre><h4 id="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："><a href="#出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：" class="headerlink" title="出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下："></a>出现多个切面类时，采用了责任链设计模式，切面的配置顺序决定了通知的执行顺序。以两个切面为例：具体执行过程如下：</h4><pre><code>web层调用service层目标方法时，会经过第一个切面，执行前置通知和环绕前通知，环绕通知调用proceed（）时进入下一个切面，执行第二个切面的前置通知，和环绕前通知，进入第二个切面的proceed的方法，放行调用目标方法，下面进入第二个切面的环绕后通知，和后置通知，最终通知，在进入第一个切面层，环绕后通知，和后置通知，最终通知，响应给web层</code></pre><h6 id="代码执行结果"><a href="#代码执行结果" class="headerlink" title="代码执行结果"></a>代码执行结果</h6><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">前置通知</span><br><span class="line">环绕通知前</span><br><span class="line">second前置通知</span><br><span class="line">second环绕通知前</span><br><span class="line">添加用户cn.tedu.domain.User@2de23121</span><br><span class="line">second最终通知</span><br><span class="line">second环绕通知后</span><br><span class="line">second后置通知</span><br><span class="line">最终通知</span><br><span class="line">环绕通知后</span><br><span class="line">后置通知</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringDay06</title>
-    <url>/2020/01/29/SpringDay06/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-通过aop进行权限的控制"><a href="#1-通过aop进行权限的控制" class="headerlink" title="1.通过aop进行权限的控制"></a>1.通过aop进行权限的控制</h2><ol>
-<li>通过自定义注解声明业务方法是否需要权限控制</li>
-<li>通过权限注解上的属性声明需要什么样的权限</li>
-<li>通过切面拦截业务的方法，根据是否需要权限，是否具有权限，控制目标方法的执行<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//切面代码</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrivAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* cn.tedu.servive..*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//1.获取目标对象</span></span><br><span class="line">        Object target = pjp.getTarget();</span><br><span class="line">        <span class="comment">//2.获取目标方法</span></span><br><span class="line">        MethodSignature signature = (MethodSignature) pjp.getSignature();</span><br><span class="line">        Method method = signature.getMethod();<span class="comment">//接口上的方法</span></span><br><span class="line">        <span class="comment">//3.获取实现类上的目标方法</span></span><br><span class="line">        Method methodInstance = target.getClass().getMethod(method.getName(), method.getParameterTypes());</span><br><span class="line">        <span class="comment">//4.判断是否有注解</span></span><br><span class="line">        <span class="keyword">if</span> (methodInstance.isAnnotationPresent(PrivAnno<span class="class">.<span class="keyword">class</span>))</span>&#123;</span><br><span class="line">            PrivAnno annotation = methodInstance.getAnnotation(PrivAnno<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            PrivEnum[] privEnums = annotation.value();</span><br><span class="line">            <span class="keyword">if</span> (Arrays.asList(privEnums).contains(Test01.priv)) &#123;</span><br><span class="line">                 <span class="keyword">return</span> pjp.proceed();</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"权限不够"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> pjp.proceed();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//枚举类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> PrivEnum &#123;</span><br><span class="line">    ADMIN,SUPERADMIN,VISITOR</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//开发注释，来进行权限控制</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> PrivAnno &#123;</span><br><span class="line">    PrivEnum [] value() ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实现事务的控制"><a href="#实现事务的控制" class="headerlink" title="实现事务的控制"></a>实现事务的控制</h2> 通过AOP实现事务的控制</li>
-<li>开发事务注解，通过业务方法上是否有注解来表示方法是否需要事务</li>
-<li>在切面中判断目标方法是否具有事务注解决定是否执行事务</li>
-<li>通过事务管理器管理事务防止耦合<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//jdbc连接工具类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBCUtils</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">JDBCUtils</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> DriverManager.getConnection(<span class="string">"jdbc:mysql:///mydb2"</span>,<span class="string">"root"</span>,<span class="string">"root1234"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Connection conn, Statement stat, ResultSet rs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                rs = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (stat != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                stat = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                conn = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//事务管理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Connection conn = JDBCUtils.getConn();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">TransactionManager</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 开启事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">startTran</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取连接</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConn</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提交事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">commitTran</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 回滚事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rollbackTran</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.rollback();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 释放资源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//切面类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* cn.tedu.service..*(..)) &amp;&amp; @annotation(ax)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">myAround</span><span class="params">(ProceedingJoinPoint pjp, Trans ax)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TransactionManager.startTran();</span><br><span class="line">            Object retObj = pjp.proceed();</span><br><span class="line">            TransactionManager.commitTran();</span><br><span class="line">            <span class="keyword">return</span> retObj;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            TransactionManager.rollbackTran();</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            TransactionManager.release();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="spring整合JDBC-声名式事务处理"><a href="#spring整合JDBC-声名式事务处理" class="headerlink" title="spring整合JDBC-声名式事务处理"></a>spring整合JDBC-声名式事务处理</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///mydb2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置jdbc模版--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///mydb2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Spring中的事务管理（配置文件）"><a href="#Spring中的事务管理（配置文件）" class="headerlink" title="Spring中的事务管理（配置文件）"></a>Spring中的事务管理（配置文件）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置事务管理--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--配置事务切面--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pc01"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.tedu.service..* (..))"</span>/&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pc01"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:advisor</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--配置事务通知--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> &gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">           <span class="comment">&lt;!--rollback-for="java.lang.Throwable 对异常强制回滚，进行事务管理--&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"addUser"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span> <span class="attr">rollback-for</span>=<span class="string">"java.lang.Throwable"</span>/&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"delUser"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Spring中的事务管理（注解方式）"><a href="#Spring中的事务管理（注解方式）" class="headerlink" title="Spring中的事务管理（注解方式）"></a>Spring中的事务管理（注解方式）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>&gt;</span><span class="tag">&lt;/<span class="name">context:annotation-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///mydb2"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置jdbc模版类--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置事务管理器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--开启注解方式事务管理--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="指定开启事务的方法"><a href="#指定开启事务的方法" class="headerlink" title="指定开启事务的方法"></a>指定开启事务的方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(rollbackFor = IOException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    @<span class="title">Override</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">void</span> <span class="title">addUser</span>(<span class="title">User</span> <span class="title">user</span>) <span class="title">throws</span> <span class="title">IOException</span> </span>&#123;</span><br><span class="line">        userDao.addUser(user);</span><br><span class="line">        <span class="comment">//int i = 1/0;</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"io 异常"</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringMVCDay01</title>
-    <url>/2020/01/29/SpringMVCDay01/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-SpringMVC概述"><a href="#1-SpringMVC概述" class="headerlink" title="1.SpringMVC概述"></a>1.SpringMVC概述</h2><h3 id="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"><a href="#SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳" class="headerlink" title="SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳"></a>SpringMVC是一个WEB层，控制层框架，主要用来负责与客户端交互，业务逻辑的调用。SpringMVC是Spring家族的一大组件，Spring整合SpringMVC可以做到无缝集成，特点：简单易用性能佳</h3><h2 id="2-SpringMVC相对与Servlet的优势"><a href="#2-SpringMVC相对与Servlet的优势" class="headerlink" title="2.SpringMVC相对与Servlet的优势"></a>2.SpringMVC相对与Servlet的优势</h2><p>a. Servlet的开发配置相对麻烦，servlet特别多的时候web.xml文件将会非常的臃肿<br>b. 每个Servlet都只能处理一个功能，如果需要多个功能就需要开发多个servlet，项目中存在大量的servlet显得臃肿。<br>c. 获取请求参数进行类型转换封装数据到bean的过程比较繁琐。<br>d. 其他开发中不方便的地方，例如乱码问题，数据格式处理，表单检索</p>
-<h2 id="spring-MVC详解"><a href="#spring-MVC详解" class="headerlink" title="spring MVC详解"></a>spring MVC详解</h2><ol>
-<li>SpringMVC的组件<br>a. 前端控制器（DispatcherServlet）<br> 本质上是一个servlet，相当于一个中转站，所有的访问都会走到这个servlet中，再根据配置进行中转到相对应的handler中进行处理，获取数据和视图<br>b. 处理器映射器（HandlerMapping）<br> 本质上就是一段映射关系，将将访问路径和对应的Handler存储为映射关系，在需要时供前端控制器查阅。<br>c. 处理器适配器（HandlerAdapter）<br> 本质上就是一个适配器，可以根据要求找到对应的handler来运行。前端控制器找到处理器映射器找到对应的handler信息之后，将请求响应和对应的handler信息交由处理器适配器来处理，处理器适配器找到真正的handler执行后，将结果也就是model and view返回给前端控制器。<br>d. 视图解析器（ViewResolver）<br> 本质上是一种映射关系，可以将视图名称映射到真正的视图地址。前端控制器调用处理器适配完成后的到model和view，将view信息传给视图解析器得到真正的view。<br>e. 视图（view）<br> 本质上就是将handler处理器中返回的model数据嵌入到视图解析后得到的jsp页面中，向客户端作出响应</li>
-</ol>
-<h2 id="图解："><a href="#图解：" class="headerlink" title="图解："></a>图解：</h2><p><img src="/" class="lazyload" data-src="/Users/yuxiangrui/blog/source/picture/%E6%88%AA%E5%B1%8F2020-04-28%E4%B8%8B%E5%8D%8810.54.07.png"  alt=""></p>
-<h3 id="配置前端控制器"><a href="#配置前端控制器" class="headerlink" title="配置前端控制器"></a>配置前端控制器</h3><h4 id="1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet"><a href="#1-前端控制器本身就是一个servlet-，首先要在WEB-INF下的web-xml中配置该web项目的servlet" class="headerlink" title="1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet"></a>1.前端控制器本身就是一个servlet ，首先要在WEB-INF下的web.xml中配置该web项目的servlet</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:/springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置servlet的映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="生成SpringMVC核心配置文件"><a href="#生成SpringMVC核心配置文件" class="headerlink" title="生成SpringMVC核心配置文件"></a>生成SpringMVC核心配置文件</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置处理器映射器中的路径和处理器的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"cn.tedu.web.Hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系，拼接上前缀后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建类实现controller接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//创建modelAndView</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//封装数据</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"msg1"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"msg2"</span>,<span class="string">"hello springMVC"</span>);</span><br><span class="line">        <span class="comment">//封装视图</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="comment">//返回modelAndView</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="SpringMVC注解方式配置"><a href="#SpringMVC注解方式配置" class="headerlink" title="SpringMVC注解方式配置"></a>SpringMVC注解方式配置</h2><h3 id="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"><a href="#SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式" class="headerlink" title="SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式"></a>SpringMVC支持使用注解方式配置，比配置文件更加的灵活易用，是目前的主流配置方式</h3><h3 id="springMVC注解工作原理"><a href="#springMVC注解工作原理" class="headerlink" title="springMVC注解工作原理"></a>springMVC注解工作原理</h3><ol>
-<li>当服务器启动时，会先加载web.xml文件，之后通过引入核心配置文件来加载SpringMVC.xml</li>
-<li>当解析到包扫描时，扫描指定的包，并将含有@Conteoller注解的类解析为处理器</li>
-<li>如果配置过<a href="mvc:annotation-driven">mvc:annotation-driven</a>就会解析Spring-MVC注解</li>
-<li>解析@requestMapping（value=“/test01.action”），将指定的地址和当前方法的映射关系保存</li>
-<li>当客户端发出请求访问时，SpringMVC寻找改地址的映射关系，找到就执行方法，找不到抛出404</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.tedu"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置mvc注解方式的DI--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器中视图名称和真正页面的映射关系--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置前端控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--手动配置核心文件的位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="test01-jsp"><a href="#test01-jsp" class="headerlink" title="test01.jsp"></a>test01.jsp</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;this is test01.jsp&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;$&#123;msg&#125;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="comment">//在类上加上注解指的是在访问的地址上加上前缀</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/my01"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test01"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过value属性指定当前的映射到那些路径,可以映射到多个路径</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/test04.action"</span>,<span class="string">"/test02.action"</span>,<span class="string">"/test03.action"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just do it"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"msg"</span>,<span class="string">"one word one dream"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test02"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="SpringMVC获取请求参数"><a href="#SpringMVC获取请求参数" class="headerlink" title="SpringMVC获取请求参数"></a>SpringMVC获取请求参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：日期数据处理</span></span><br><span class="line"><span class="comment">     *  通过注册自定义类型编辑器使SpringMVC支持自定义格式请求参数的处理</span></span><br><span class="line"><span class="comment">     *  此处，SpringMVC为Date类型已经提供了编辑器类，所以直接使用，不用自己写</span></span><br><span class="line"><span class="comment">     * http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01test09.jsp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myInitBinder</span><span class="params">(ServletRequestDataBinder dataBinder)</span></span>&#123;</span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test09.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test09</span><span class="params">(String name, <span class="keyword">int</span> age, Date birthday)</span> </span>&#123;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        SimpleDateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        String format1 = format.format(birthday);</span><br><span class="line">        System.out.println(format1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取请求参数：中文乱码解决</span></span><br><span class="line"><span class="comment">     *     如果服务器配置的编码是utf-8,且项目采用的也是utf-8则默认请求参数无乱码</span></span><br><span class="line"><span class="comment">     *     tomcat8默认编码为utf-8(可以更改)</span></span><br><span class="line"><span class="comment">     *     tomcat7及更老的版本默认编码为iso8859-1(可以更改)</span></span><br><span class="line"><span class="comment">     *     如果遇到服务器编码和项目编码不一致时会产生乱码</span></span><br><span class="line"><span class="comment">     *     对于POST提交 可以通过request.setCharacterEncoding("utf-8")解决乱码</span></span><br><span class="line"><span class="comment">     *     但此行代码对GET无效，GET提交的请求参数乱码，只能手工编解码来解决</span></span><br><span class="line"><span class="comment">     *     手工编解码解决乱码的方式对POST提交也有效</span></span><br><span class="line"><span class="comment">     *     springmvc提供了过滤器CharacterEncodingFilter来帮助我们解决乱码</span></span><br><span class="line"><span class="comment">     *     但此过滤器本质上就是request.setCharacterEncoing()所以也是只对POST有效</span></span><br><span class="line"><span class="comment">     *     ,即使配置了GET提交乱码也要手动解决</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test08.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test08</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</span><br><span class="line">        <span class="comment">//POST提交</span></span><br><span class="line">        <span class="comment">//request.setCharacterEncoding("utf-8");</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">        <span class="comment">//GET提交</span></span><br><span class="line">        <span class="comment">//String uname = request.getParameter("uname");</span></span><br><span class="line">        <span class="comment">//byte [] data = uname.getBytes("iso8859-1");</span></span><br><span class="line">        <span class="comment">//uname = new String(data,"utf-8");</span></span><br><span class="line">        <span class="comment">//System.out.println(uname);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    获取请求参数：多个同名请求参数的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test07.action?name=tt&amp;love=bb&amp;love=pp&amp;love=zz</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test07.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">(String name,String [] love)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//封装到数组里</span></span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(Arrays.asList(love));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test06.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1&amp;dog.cat.name=xx&amp;dog.cat.age=3</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test06.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean 对复杂类型的处理</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test05.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd&amp;dog.name=wd&amp;dog.age=1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test05.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：自动封装请求参数到bean</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test04.action?id=35&amp;name=jj&amp;age=18&amp;addr=cd</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test04.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 通过@RequestParam指定参数赋值,解决请求参数名和方法参数不一致时赋值问题</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test03.action?name=yasuo&amp;uage=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test03.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"uage"</span>)</span> <span class="keyword">int</span> age) </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数: 直接获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test02.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test02.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取请求参数：传统方式获取</span></span><br><span class="line">    <span class="comment">// http://localhost:8080/SpringMVCDay01_04_Params_war_exploded/my01/test01.action?username=yasuo&amp;age=19</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test01.action"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">        <span class="keyword">int</span> age = Integer.parseInt(request.getParameter(<span class="string">"age"</span>));</span><br><span class="line">        System.out.println(username + <span class="string">"~~~~"</span> + age);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis-cluster</title>
-    <url>/2020/01/29/redis-cluster/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ol>
-<li>两两互联，任意节点和其他节点通信，底层使用二进制协议优化传输速度</li>
-<li></li>
-<li></li>
-<li>引入新的数据分片计算方法（hash槽）引入hash取模（散列算法CRC16后对16384取余<h2 id="槽道"><a href="#槽道" class="headerlink" title="槽道"></a>槽道</h2></li>
-</ol>
-]]></content>
-      <categories>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>导航</tag>
       </tags>
   </entry>
   <entry>
@@ -2804,8 +2830,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
   <entry>
@@ -2858,8 +2884,8 @@ AOP：- 面向切面编程</code></pre><h3 id="案例一"><a href="#案例一" c
         <category>前端</category>
       </categories>
       <tags>
-        <tag>分享</tag>
         <tag>导航</tag>
+        <tag>分享</tag>
       </tags>
   </entry>
 </search>
